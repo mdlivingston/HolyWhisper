@@ -28,17 +28,28 @@ import
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faFire, faCog } from '@fortawesome/free-solid-svg-icons'
+
 export default function App()
 {
     return (
         <>
             <StatusBar barStyle="dark-content" />
             <View style={styles.center}>
+                <TouchableOpacity style={styles.settingsIcon} >
+                    <FontAwesomeIcon size={20} icon={faCog} />
+                </TouchableOpacity>
+
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => Alert.alert('Simple Button pressed')}
                 >
-                    <Text style={styles.lightText}>Add Whisper</Text>
+
+                    <Text style={styles.lightText}>
+                        <FontAwesomeIcon size={20} style={styles.lightText} icon={faFire} /> &nbsp;
+                        Add Whisper
+                    </Text>
                 </TouchableOpacity>
             </View>
             {/* <SafeAreaView>
@@ -93,57 +104,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',
-        backgroundColor: 'red'
+        // backgroundColor: 'red'
     },
     button: {
         alignItems: "center",
-        backgroundColor: Colors.dark,
+        // backgroundColor: Colors.dark,
         padding: 10,
+        borderColor: 'black',
+        borderWidth: 1,
         width: '50%',
         borderRadius: 5,
+        justifyContent: 'center'
     },
     lightText: {
-        color: 'white'
+        fontSize: 20
+        // color: 'white',
     },
-    scrollView: {
-        backgroundColor: Colors.lighter,
-        //alignItems: 'center',
-        flex: 1,
-        //justifyContent: 'center'
-    },
-    engine: {
+    settingsIcon: {
         position: 'absolute',
-        right: 0,
-    },
-    body: {
-        backgroundColor: Colors.white,
-    },
-    sectionContainer: {
-        marginTop: 32,
-        paddingHorizontal: 24,
-    },
-    sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
-        color: Colors.black,
-    },
-    sectionDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
-        color: Colors.dark,
-    },
-    highlight: {
-        fontWeight: '700',
-    },
-    footer: {
-        color: Colors.dark,
-        fontSize: 12,
-        fontWeight: '600',
-        padding: 4,
-        paddingRight: 12,
-        textAlign: 'right',
-    },
+        top: 70,
+        right: 20
+    }
 });
 
 
