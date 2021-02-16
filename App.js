@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect, useRef } from 'react';
@@ -23,18 +15,8 @@ import
     Animated
 } from 'react-native';
 
-import
-{
-    Header,
-    LearnMoreLinks,
-    Colors,
-    DebugInstructions,
-    ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faFire, faCog } from '@fortawesome/free-solid-svg-icons'
-
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
@@ -118,14 +100,9 @@ const styles = StyleSheet.create({
     },
     lightText: {
         fontSize: 20
-        // color: 'white',
     },
     settingsIcon: {
         paddingRight: 30,
-        // paddingTop: 30
-        // position: 'absolute',
-        // top: 70,
-        // right: 20
     }
 });
 
