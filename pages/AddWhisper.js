@@ -29,9 +29,9 @@ export default function AddWhisper()
     {
         notifService.localNotif()
     }
-    function sendScheduledTestNoftification(seconds)
+    function sendScheduledTestNoftification()
     {
-        notifService.scheduleNotif(seconds)
+        notifService.scheduleNotif(new Date(Date.now() + 10 * 1000))
     }
     useEffect(() =>
     {
@@ -49,7 +49,7 @@ export default function AddWhisper()
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => sendScheduledTestNoftification(10)}
+                onPress={() => sendScheduledTestNoftification()}
             >
                 <Text>
                     Test Notification in 10 seconds

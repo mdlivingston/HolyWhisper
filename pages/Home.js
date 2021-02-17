@@ -14,9 +14,12 @@ import
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faFire, faCog } from '@fortawesome/free-solid-svg-icons'
+import { compareAsc, format, addDays, addHours } from 'date-fns'
+import NotificationService from '../notifications/NotificationService';
 
 export default function Home({ navigation })
 {
+    const notifService = new NotificationService();
 
     const fadeAnim = useRef(new Animated.Value(0)).current
     useEffect(() =>
@@ -30,6 +33,18 @@ export default function Home({ navigation })
                 useNativeDriver: true // Add This line
             },
         ).start();
+
+
+        for (let i = 1; i <= 64; i++)
+        {
+            var now = addDays(new Date(Date.now()), i)
+            now.setHours(8);
+            now.setMinutes(0);
+            now.setMilliseconds(0);
+
+            //console.log(result.toLocaleDateString())
+            //notifService.scheduleNotif(now)
+        }
 
     }, [fadeAnim])
 
