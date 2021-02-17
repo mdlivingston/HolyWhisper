@@ -16,7 +16,7 @@ import PushNotification from "react-native-push-notification";
 import NotificationService from '../notifications/NotificationService';
 
 
-export default function AddWhisper()
+export default function GetWhisper()
 {
     function onNotif(notif)
     {

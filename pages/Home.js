@@ -9,7 +9,8 @@ import
     StatusBar,
     TouchableOpacity,
     Alert,
-    Animated
+    Animated,
+    Image
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -51,15 +52,22 @@ export default function Home({ navigation })
     return (
         <View style={styles.center}>
             <Animated.View style={{ opacity: fadeAnim }}>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => navigation.navigate('AddWhisper', { name: 'Jane' })}
-                >
-                    <FontAwesomeIcon size={30} style={styles.lightText} icon={faFire} />
+
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
+                    {/* <FontAwesomeIcon size={30} style={styles.lightText} icon={faFire} /> */}
+                    <Image
+                        style={styles.tinyLogo}
+                        source={
+                            //uri: 'https://tenor.com/view/fire-flames-blue-fire-burning-embers-gif-16971771.gif',
+                            require('../assets/blueFire.gif')
+                        }
+                    />
                 </TouchableOpacity>
-                <Text style={{ textAlign: 'center', fontStyle: 'italic' }}>
-                    Add a Whisper
+
+                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 12 }}>
+                    Get a Whisper
                 </Text>
+
             </Animated.View>
 
         </View>
@@ -87,12 +95,17 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     lightText: {
-        fontSize: 20
-        // color: 'white',
+        fontSize: 20,
+        color: '#3104ec',
     },
     settingsIcon: {
         position: 'absolute',
         top: 70,
         right: 20
-    }
+    },
+    tinyLogo: {
+        width: 50,
+        height: 50,
+        resizeMode: 'contain'
+    },
 });

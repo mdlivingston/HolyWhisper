@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, Tab } from '@react-navigation/native';
 import React, { useEffect, useRef } from 'react';
 import
 {
@@ -22,14 +22,17 @@ import { faFire, faCog } from '@fortawesome/free-solid-svg-icons'
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
-import AddWhisper from './pages/AddWhisper';
+import GetWhisper from './pages/GetWhisper';
 import BackgroundFetch from 'react-native-background-fetch';
 import NotificationService from './notifications/NotificationService';
 import PushNotification from 'react-native-push-notification';
 import messaging from '@react-native-firebase/messaging';
+import ShowWhisper from './pages/ShowWhisper';
+import PreferredWhispers from './pages/PreferredWhispers';
 
 const Stack = createStackNavigator();
 const notifService = new NotificationService();
+
 
 async function requestUserPermission()
 {
@@ -102,7 +105,7 @@ export default function App()
     return (
         <NavigationContainer>
             {Platform.OS === 'ios' ? <StatusBar barStyle="dark-content" /> : <StatusBar barStyle="light-content" />}
-            <Stack.Navigator initialRouteName="Home">
+            <Stack.Navigator initialRouteName="Home" detachInactiveScreens={true}>
                 <Stack.Screen name="Home" options={({ navigation, route }) => (
                     {
                         title: '',
@@ -122,12 +125,26 @@ export default function App()
                     headerTintColor: 'black'
                 }} component={Settings} />
 
-                <Stack.Screen name="AddWhisper" options={{
-                    title: "Add Whisper",
+                <Stack.Screen name="GetWhisper" options={{
+                    title: "Get Whisper",
                     headerTransparent: false,
                     headerBackTitleVisible: false,
                     headerTintColor: 'black'
-                }} component={AddWhisper} />
+                }} component={GetWhisper} />
+
+                <Stack.Screen name="ShowWhisper" options={{
+                    title: "",
+                    headerTransparent: true,
+                    headerBackTitleVisible: false,
+                    headerTintColor: 'black'
+                }} component={ShowWhisper} />
+
+                <Stack.Screen name="PreferredWhispers" options={{
+                    title: "Preferred Whispers",
+                    headerTransparent: false,
+                    headerBackTitleVisible: false,
+                    headerTintColor: 'black'
+                }} component={PreferredWhispers} />
             </Stack.Navigator>
         </NavigationContainer>
     );
