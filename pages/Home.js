@@ -43,7 +43,7 @@ export default function Home({ navigation })
             now.setMilliseconds(0);
 
             //console.log(result.toLocaleDateString())
-            //notifService.scheduleNotif(now)
+            notifService.scheduleNotif(now)
         }
 
     }, [fadeAnim])

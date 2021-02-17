@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 class NotificationHandler
@@ -82,7 +83,7 @@ PushNotification.configure({
      * - Specified if permissions (ios) and token (android and ios) will requested or not,
      * - if not, you must call PushNotificationsHandler.requestPermissions() later
      */
-    requestPermissions: true,
+    requestPermissions: Platform.OS === 'ios',  // <---- Android throws a fit about firebase 
 });
 
 export default handler;

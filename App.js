@@ -30,23 +30,23 @@ const Stack = createStackNavigator();
 const notifService = new NotificationService();
 
 
-BackgroundFetch.configure(
-    {
-        minimumFetchInterval: 15, // minutes
-        startOnBoot: true,
-    },
-    (id) =>
-    {
-        notifService.localNotif()
+// BackgroundFetch.configure(
+//     {
+//         minimumFetchInterval: 15, // minutes
+//         startOnBoot: true,
+//     },
+//     (id) =>
+//     {
+//         notifService.localNotif()
 
-        console.log("Received background fetch event: " + id);
-        BackgroundFetch.finish(id);
-    },
-    (error) =>
-    {
-        console.log("Background fetch failed to start with error: " + error);
-    }
-);
+//         console.log("Received background fetch event: " + id);
+//         BackgroundFetch.finish(id);
+//     },
+//     (error) =>
+//     {
+//         console.log("Background fetch failed to start with error: " + error);
+//     }
+// );
 
 
 export default function App()
@@ -124,7 +124,7 @@ export default function App()
                 }} component={AddWhisper} />
 
             </Stack.Navigator>
-            <StatusBar barStyle="dark-content" />
+            <StatusBar barStyle="light-content" />
         </NavigationContainer>
     );
 
