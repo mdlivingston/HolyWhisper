@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import
 {
     SafeAreaView,
@@ -11,11 +11,67 @@ import
     Alert,
     Animated
 } from 'react-native';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import PushNotification from "react-native-push-notification";
+import NotificationService from '../notifications/NotificationService';
+
+
 export default function AddWhisper()
 {
+    function onNotif(notif)
+    {
+        Alert.alert(notif.title, notif.message);
+    }
+
+    const notifService = new NotificationService(null, onNotif.bind());
+
+    function sendTestNotification()
+    {
+        notifService.localNotif()
+    }
+    function sendScheduledTestNoftification(seconds)
+    {
+        notifService.scheduleNotif(seconds)
+    }
+    useEffect(() =>
+    {
+
+    }, [])
     return (
         <View style={styles.center}>
-            <Text>Hey</Text>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => sendTestNotification()}
+            >
+                <Text>
+                    Test Notification
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => sendScheduledTestNoftification(10)}
+            >
+                <Text>
+                    Test Notification in 10 seconds
+                </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => notifService.getScheduledLocalNotifications(notifs => console.log(notifs))}
+            >
+                <Text>
+                    Get Scheduled Notifications
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() =>
+                {
+                    notifService.cancelAll();
+                }}>
+                <Text>Cancel all notifications</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -33,9 +89,10 @@ const styles = StyleSheet.create({
         padding: 10,
         borderColor: 'black',
         borderWidth: 1,
-        width: '50%',
+        width: '60%',
         borderRadius: 5,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        margin: 10
     },
     lightText: {
         fontSize: 20

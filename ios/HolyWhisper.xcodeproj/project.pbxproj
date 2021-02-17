@@ -19,6 +19,7 @@
 		558F175D2946E7AF8245D8FC /* libPods-HolyWhisper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 254A59609C0F1117FF76B1CB /* libPods-HolyWhisper.a */; };
 		56D8672876AD38FAECCE0EF8 /* libPods-HolyWhisper-HolyWhisperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F964F7B611731BE4B4DD3AD2 /* libPods-HolyWhisper-HolyWhisperTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8C8A8E8425DCAA9200C755F9 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8A8E8325DCAA9200C755F9 /* RNBackgroundFetch+AppDelegate.m */; };
 		94BA262BD11EFC94962D51BF /* libPods-HolyWhisper-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0416A7A396D052E62C41DF /* libPods-HolyWhisper-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		2D02E4901E0B4A5D006451C7 /* HolyWhisper-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HolyWhisper-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E58432BD82D633FF4EBE676 /* libPods-HolyWhisper-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HolyWhisper-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HolyWhisper/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8C8A8E7E25DCA9FA00C755F9 /* HolyWhisper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HolyWhisper.entitlements; path = HolyWhisper/HolyWhisper.entitlements; sourceTree = "<group>"; };
+		8C8A8E8325DCAA9200C755F9 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RNBackgroundFetch+AppDelegate.m"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
 		941FEF74B5958283EE4D6F14 /* Pods-HolyWhisper-HolyWhisperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolyWhisper-HolyWhisperTests.release.xcconfig"; path = "Target Support Files/Pods-HolyWhisper-HolyWhisperTests/Pods-HolyWhisper-HolyWhisperTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A0416A7A396D052E62C41DF /* libPods-HolyWhisper-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HolyWhisper-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0620FD61295FF2C092ED3A /* Pods-HolyWhisper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolyWhisper.debug.xcconfig"; path = "Target Support Files/Pods-HolyWhisper/Pods-HolyWhisper.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 		13B07FAE1A68108700A75B9A /* HolyWhisper */ = {
 			isa = PBXGroup;
 			children = (
+				8C8A8E8325DCAA9200C755F9 /* RNBackgroundFetch+AppDelegate.m */,
+				8C8A8E7E25DCA9FA00C755F9 /* HolyWhisper.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -568,6 +573,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C8A8E8425DCAA9200C755F9 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -655,6 +661,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HolyWhisper/HolyWhisper.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X4U72GY3G3;
 				ENABLE_BITCODE = NO;
@@ -679,6 +686,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HolyWhisper/HolyWhisper.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X4U72GY3G3;
 				INFOPLIST_FILE = HolyWhisper/Info.plist;

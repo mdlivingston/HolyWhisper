@@ -17,9 +17,11 @@ import { faFire, faCog } from '@fortawesome/free-solid-svg-icons'
 
 export default function Home({ navigation })
 {
+
     const fadeAnim = useRef(new Animated.Value(0)).current
     useEffect(() =>
     {
+
         Animated.timing(
             fadeAnim,
             {
@@ -28,7 +30,9 @@ export default function Home({ navigation })
                 useNativeDriver: true // Add This line
             },
         ).start();
+
     }, [fadeAnim])
+
 
     return (
         <View style={styles.center}>

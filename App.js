@@ -12,7 +12,8 @@ import
     TouchableOpacity,
     Alert,
     Button,
-    Animated
+    Animated,
+    AppState
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -21,11 +22,36 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import AddWhisper from './pages/AddWhisper';
+import BackgroundFetch from 'react-native-background-fetch';
+import NotificationService from './notifications/NotificationService';
+import PushNotification from 'react-native-push-notification';
 
 const Stack = createStackNavigator();
+const notifService = new NotificationService();
+
+
+BackgroundFetch.configure(
+    {
+        minimumFetchInterval: 15, // minutes
+        startOnBoot: true,
+    },
+    (id) =>
+    {
+        notifService.localNotif()
+
+        console.log("Received background fetch event: " + id);
+        BackgroundFetch.finish(id);
+    },
+    (error) =>
+    {
+        console.log("Background fetch failed to start with error: " + error);
+    }
+);
+
 
 export default function App()
 {
+    const appState = useRef(AppState.currentState);
     const fadeAnim = useRef(new Animated.Value(0)).current
 
     useEffect(() =>
@@ -42,7 +68,30 @@ export default function App()
             ).start();
         }, 2000)
 
+        AppState.addEventListener("change", _handleAppStateChange);
+
+        return () =>
+        {
+            AppState.removeEventListener("change", _handleAppStateChange);
+        };
+
     }, [fadeAnim])
+
+    const _handleAppStateChange = (nextAppState) =>
+    {
+        if (
+            appState.current.match(/inactive|background/) &&
+            nextAppState === "active"
+        )
+        {
+
+            PushNotification.setApplicationIconBadgeNumber(0);
+            console.log("App has come to the foreground!");
+        }
+
+        appState.current = nextAppState;
+        console.log("AppState", appState.current);
+    };
 
     return (
         <NavigationContainer>
@@ -78,6 +127,7 @@ export default function App()
             <StatusBar barStyle="dark-content" />
         </NavigationContainer>
     );
+
 };
 
 const styles = StyleSheet.create({
