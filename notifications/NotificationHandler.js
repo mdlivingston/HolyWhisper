@@ -83,7 +83,7 @@ PushNotification.configure({
      * - Specified if permissions (ios) and token (android and ios) will requested or not,
      * - if not, you must call PushNotificationsHandler.requestPermissions() later
      */
-    requestPermissions: Platform.OS === 'ios',  // <---- Android throws a fit about firebase 
+    requestPermissions: true,  // <---- Android throws a fit about firebase 
 });
 
 export default handler;

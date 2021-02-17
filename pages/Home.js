@@ -34,7 +34,6 @@ export default function Home({ navigation })
             },
         ).start();
 
-
         for (let i = 1; i <= 64; i++)
         {
             var now = addDays(new Date(Date.now()), i)
@@ -43,7 +42,7 @@ export default function Home({ navigation })
             now.setMilliseconds(0);
 
             //console.log(result.toLocaleDateString())
-            notifService.scheduleNotif(now)
+            //notifService.scheduleNotif(now)
         }
 
     }, [fadeAnim])

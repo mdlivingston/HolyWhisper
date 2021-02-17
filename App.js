@@ -13,7 +13,8 @@ import
     Alert,
     Button,
     Animated,
-    AppState
+    AppState,
+    Platform
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -25,29 +26,23 @@ import AddWhisper from './pages/AddWhisper';
 import BackgroundFetch from 'react-native-background-fetch';
 import NotificationService from './notifications/NotificationService';
 import PushNotification from 'react-native-push-notification';
+import messaging from '@react-native-firebase/messaging';
 
 const Stack = createStackNavigator();
 const notifService = new NotificationService();
 
+async function requestUserPermission()
+{
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
-// BackgroundFetch.configure(
-//     {
-//         minimumFetchInterval: 15, // minutes
-//         startOnBoot: true,
-//     },
-//     (id) =>
-//     {
-//         notifService.localNotif()
-
-//         console.log("Received background fetch event: " + id);
-//         BackgroundFetch.finish(id);
-//     },
-//     (error) =>
-//     {
-//         console.log("Background fetch failed to start with error: " + error);
-//     }
-// );
-
+    if (enabled)
+    {
+        console.log('Authorization status:', authStatus);
+    }
+}
 
 export default function App()
 {
@@ -56,6 +51,21 @@ export default function App()
 
     useEffect(() =>
     {
+        const handleFirebaseInit = async () =>
+        {
+            await requestUserPermission()
+            let token = await messaging().getToken();
+            console.log(token)
+
+            const unsubscribe = messaging().onMessage(async remoteMessage =>
+            {
+                Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+            });
+            return unsubscribe;
+        }
+
+        handleFirebaseInit()
+
         setTimeout(() =>
         {
             Animated.timing(
@@ -79,12 +89,8 @@ export default function App()
 
     const _handleAppStateChange = (nextAppState) =>
     {
-        if (
-            appState.current.match(/inactive|background/) &&
-            nextAppState === "active"
-        )
+        if (appState.current.match(/inactive|background/) && nextAppState === "active")
         {
-
             PushNotification.setApplicationIconBadgeNumber(0);
             console.log("App has come to the foreground!");
         }
@@ -95,8 +101,8 @@ export default function App()
 
     return (
         <NavigationContainer>
+            {Platform.OS === 'ios' ? <StatusBar barStyle="dark-content" /> : <StatusBar barStyle="light-content" />}
             <Stack.Navigator initialRouteName="Home">
-
                 <Stack.Screen name="Home" options={({ navigation, route }) => (
                     {
                         title: '',
@@ -122,9 +128,7 @@ export default function App()
                     headerBackTitleVisible: false,
                     headerTintColor: 'black'
                 }} component={AddWhisper} />
-
             </Stack.Navigator>
-            <StatusBar barStyle="light-content" />
         </NavigationContainer>
     );
 
@@ -157,3 +161,20 @@ const styles = StyleSheet.create({
 });
 
 
+// BackgroundFetch.configure(
+//     {
+//         minimumFetchInterval: 15, // minutes
+//         startOnBoot: true,
+//     },
+//     (id) =>
+//     {
+//         notifService.localNotif()
+
+//         console.log("Received background fetch event: " + id);
+//         BackgroundFetch.finish(id);
+//     },
+//     (error) =>
+//     {
+//         console.log("Background fetch failed to start with error: " + error);
+//     }
+// );
