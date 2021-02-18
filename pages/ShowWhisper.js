@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import
 {
     SafeAreaView,
@@ -12,39 +12,75 @@ import
     Animated,
     Platform
 } from 'react-native';
-import { ShareWhisper } from '../components/Share';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faShareSquare } from '@fortawesome/free-solid-svg-icons'
-import { identity } from '../whispers/Identity';
+import { getRandomWhisper } from '../components/Categories';
+import { removeValue } from '../components/LocalStorage';
+import { ShareWhisper } from '../components/Share';
 
-function getRandomInt(max)
-{
-    return Math.floor(Math.random() * Math.floor(max));
-}
 
 export default function ShowWhisper({ navigation })
 {
     const fadeAnim = useRef(new Animated.Value(0)).current
     const delayedFadeAnim = useRef(new Animated.Value(0)).current
-    const randomIndex = getRandomInt(identity.length - 1)
+    const doubleDelayedFadeAnim = useRef(new Animated.Value(0)).current
+    const [randomWhisper, setRandomWhisper] = useState()
 
-    let shareOptions = {
-        title: 'Share this Holy Whisper',
-        message: `"${identity[randomIndex].text}" ${identity[randomIndex].verse} ${identity[randomIndex].version}`
-    };
+    useEffect(() =>
+    {
+        const asyncFunc = async () =>
+        {
+            let randomW = await getRandomWhisper()
+            setRandomWhisper(randomW)
+
+
+            handleAnimations()
+
+        }
+        asyncFunc()
+        //removeValue()
+    }, [])
 
     React.useLayoutEffect(() =>
     {
         navigation.setOptions({
             headerRight: () => (
-                <TouchableOpacity onPress={() => ShareWhisper(shareOptions)} style={styles.shareButton} >
+                <TouchableOpacity onPress={() => ShareWhisper({
+                    title: 'Share this Holy Whisper',
+                    message: `${randomWhisper.text} ${randomWhisper.verse} ${randomWhisper.version}`
+                })}
+                    style={styles.shareButton} >
                     <FontAwesomeIcon size={20} icon={faShareSquare} />
                 </TouchableOpacity>
             ),
         });
-    }, [navigation]);
+    }, [navigation, randomWhisper]);
 
-    useEffect(() =>
+
+    return (
+        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} style={styles.center}>
+            <Animated.View style={{ opacity: fadeAnim }}>
+                <Text style={{ ...styles.text }}>
+                    {randomWhisper ? randomWhisper.text : ''}
+                </Text>
+            </Animated.View>
+            <Animated.View style={{ opacity: delayedFadeAnim }}>
+                <Text style={styles.verse}>
+                    {randomWhisper ? randomWhisper.verse : ''} &nbsp;
+                    <Text style={styles.version}>
+                        {randomWhisper ? randomWhisper.version : ''}
+                    </Text>
+                </Text>
+                <Animated.View style={{ opacity: doubleDelayedFadeAnim }}>
+                    <Text style={styles.category}>
+                        {randomWhisper ? `-${randomWhisper.category}` : ''}
+                    </Text>
+                </Animated.View>
+            </Animated.View>
+        </ScrollView>
+    )
+
+    function handleAnimations()
     {
         Animated.timing(
             fadeAnim,
@@ -67,34 +103,25 @@ export default function ShowWhisper({ navigation })
             ).start();
         }, 1000)
 
-
-    }, [fadeAnim, delayedFadeAnim])
-
-    return (
-        <View style={styles.center}>
-            <Animated.View style={{ opacity: fadeAnim }}>
-                <Text style={{ ...styles.text }}>
-                    {identity[randomIndex].text}
-                </Text>
-            </Animated.View>
-            <Animated.View style={{ opacity: delayedFadeAnim }}>
-                <Text style={styles.verse}>
-                    {identity[randomIndex].verse} &nbsp;
-                    <Text style={styles.version}>
-                        {identity[randomIndex].version}
-                    </Text>
-                </Text>
-
-            </Animated.View>
-        </View>
-    )
+        setTimeout(() =>
+        {
+            Animated.timing(
+                doubleDelayedFadeAnim,
+                {
+                    toValue: 1,
+                    duration: 3000,
+                    useNativeDriver: true // Add This line
+                },
+            ).start();
+        }, 3000);
+    }
 }
 
 const styles = StyleSheet.create({
     center: {
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         height: '100%',
         backgroundColor: 'white',
         paddingLeft: 25,
@@ -103,18 +130,25 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 24,
         fontStyle: 'italic',
-        textAlign: 'left'
+        alignSelf: "flex-start"
     },
     verse: {
         fontSize: 20,
         fontWeight: 'bold',
-        padding: 10
+        padding: 10,
+        alignSelf: 'flex-end'
     },
     version: {
         fontSize: 12,
         fontStyle: 'italic'
     },
+    category: {
+        fontSize: 12,
+        fontStyle: 'italic',
+        alignSelf: 'flex-end'
+    },
     shareButton: {
         paddingRight: 15,
-    }
+    },
+
 });

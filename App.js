@@ -18,8 +18,6 @@ import
     Image
 } from 'react-native';
 
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faFire, faCog, faCross, faShareSquare } from '@fortawesome/free-solid-svg-icons'
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
@@ -27,18 +25,12 @@ import GetWhisper from './pages/GetWhisper';
 import BackgroundFetch from 'react-native-background-fetch';
 import NotificationService from './notifications/NotificationService';
 import PushNotification from 'react-native-push-notification';
-import messaging from '@react-native-firebase/messaging';
 import ShowWhisper from './pages/ShowWhisper';
 import PreferredWhispers from './pages/PreferredWhispers';
-
 import { handleFirebaseInit } from './components/Firebase';
-import { ShareWhisper } from './components/Share';
-
 
 const Stack = createStackNavigator();
 const notifService = new NotificationService();
-
-
 
 export default function App()
 {
@@ -52,6 +44,7 @@ export default function App()
         const asyncFunc = async () =>
         {
             await handleFirebaseInit()
+
             handleEventListener()
         }
         asyncFunc();
