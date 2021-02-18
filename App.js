@@ -76,13 +76,9 @@ export default function App()
                             <Animated.View style={{ opacity: fadeAnim }}>
 
                                 <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
-                                    {/* <FontAwesomeIcon size={20} icon={faCross} /> */}
                                     <Image
                                         style={styles.tinyLogo}
-                                        source={
-
-                                            require('./assets/cross2.png')
-                                        }
+                                        source={require('./assets/cross2.png')}
                                     />
                                 </TouchableOpacity>
 

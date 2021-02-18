@@ -27,7 +27,7 @@ export async function getRandomWhisper()
         case 'Identity':
             return identity[getRandomInt(identity.length - 1)]
         case 'Hope':
-            return
+            return identity[getRandomInt(identity.length - 1)]
         default:
             return identity[getRandomInt(identity.length - 1)]
     }

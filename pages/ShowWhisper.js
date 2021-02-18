@@ -33,9 +33,7 @@ export default function ShowWhisper({ navigation })
             let randomW = await getRandomWhisper()
             setRandomWhisper(randomW)
 
-
             handleAnimations()
-
         }
         asyncFunc()
         //removeValue()

@@ -26,7 +26,7 @@ export default function Settings({ route, navigation })
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.section}>
-                <Text style={styles.title} >Whisper Frequency</Text>
+                <Text style={styles.title} >Whisper Notifications</Text>
                 <Text style={{ width: 2, flex: 1 }}></Text>
                 <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
             </TouchableOpacity>
