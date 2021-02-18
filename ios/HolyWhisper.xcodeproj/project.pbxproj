@@ -47,7 +47,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* HolyWhisperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HolyWhisperTests.m; sourceTree = "<group>"; };
 		01B639413F23C6C53D206CB4 /* Pods-HolyWhisper-HolyWhisperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolyWhisper-HolyWhisperTests.debug.xcconfig"; path = "Target Support Files/Pods-HolyWhisper-HolyWhisperTests/Pods-HolyWhisper-HolyWhisperTests.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* HolyWhisper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolyWhisper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Holy Whisper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Holy Whisper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HolyWhisper/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = HolyWhisper/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HolyWhisper/Images.xcassets; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* HolyWhisper.app */,
+				13B07F961A680F5B00A75B9A /* Holy Whisper.app */,
 				00E356EE1AD99517003FC87E /* HolyWhisperTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* HolyWhisper-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* HolyWhisper-tvOSTests.xctest */,
@@ -247,7 +247,7 @@
 			);
 			name = HolyWhisper;
 			productName = HolyWhisper;
-			productReference = 13B07F961A680F5B00A75B9A /* HolyWhisper.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Holy Whisper.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* HolyWhisper-tvOS */ = {
@@ -688,7 +688,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = developer.maximus.HolyWhisper;
-				PRODUCT_NAME = HolyWhisper;
+				PRODUCT_NAME = "Holy Whisper";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -712,7 +712,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = developer.maximus.HolyWhisper;
-				PRODUCT_NAME = HolyWhisper;
+				PRODUCT_NAME = "Holy Whisper";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
