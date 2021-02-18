@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        borderColor: 'black',
+        borderColor: 'lightgrey',
         borderWidth: 1,
         width: 100,
         height: 100,
