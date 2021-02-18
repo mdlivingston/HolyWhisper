@@ -14,11 +14,12 @@ import
     Button,
     Animated,
     AppState,
-    Platform
+    Platform,
+    Image
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faFire, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faFire, faCog, faCross, faShareSquare } from '@fortawesome/free-solid-svg-icons'
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
@@ -30,44 +31,31 @@ import messaging from '@react-native-firebase/messaging';
 import ShowWhisper from './pages/ShowWhisper';
 import PreferredWhispers from './pages/PreferredWhispers';
 
+import { handleFirebaseInit } from './components/Firebase';
+import { ShareWhisper } from './components/Share';
+
+
 const Stack = createStackNavigator();
 const notifService = new NotificationService();
 
 
-async function requestUserPermission()
-{
-    const authStatus = await messaging().requestPermission();
-    const enabled =
-        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
-    if (enabled)
-    {
-        console.log('Authorization status:', authStatus);
-    }
-}
 
 export default function App()
 {
+
     const appState = useRef(AppState.currentState);
     const fadeAnim = useRef(new Animated.Value(0)).current
 
+
     useEffect(() =>
     {
-        const handleFirebaseInit = async () =>
+        const asyncFunc = async () =>
         {
-            await requestUserPermission()
-            let token = await messaging().getToken();
-            console.log(token)
-
-            const unsubscribe = messaging().onMessage(async remoteMessage =>
-            {
-                Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-            });
-            return unsubscribe;
+            await handleFirebaseInit()
+            handleEventListener()
         }
+        asyncFunc();
 
-        handleFirebaseInit()
 
         setTimeout(() =>
         {
@@ -81,26 +69,7 @@ export default function App()
             ).start();
         }, 2000)
 
-        AppState.addEventListener("change", _handleAppStateChange);
-
-        return () =>
-        {
-            AppState.removeEventListener("change", _handleAppStateChange);
-        };
-
     }, [fadeAnim])
-
-    const _handleAppStateChange = (nextAppState) =>
-    {
-        if (appState.current.match(/inactive|background/) && nextAppState === "active")
-        {
-            PushNotification.setApplicationIconBadgeNumber(0);
-            console.log("App has come to the foreground!");
-        }
-
-        appState.current = nextAppState;
-        console.log("AppState", appState.current);
-    };
 
     return (
         <NavigationContainer>
@@ -112,9 +81,18 @@ export default function App()
                         headerTransparent: true,
                         headerRight: () => (
                             <Animated.View style={{ opacity: fadeAnim }}>
+
                                 <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
-                                    <FontAwesomeIcon size={20} icon={faCog} />
+                                    {/* <FontAwesomeIcon size={20} icon={faCross} /> */}
+                                    <Image
+                                        style={styles.tinyLogo}
+                                        source={
+
+                                            require('./assets/cross2.png')
+                                        }
+                                    />
                                 </TouchableOpacity>
+
                             </Animated.View>
                         ),
                     })} component={Home} />
@@ -136,7 +114,8 @@ export default function App()
                     title: "",
                     headerTransparent: true,
                     headerBackTitleVisible: false,
-                    headerTintColor: 'black'
+                    headerTintColor: 'black',
+
                 }} component={ShowWhisper} />
 
                 <Stack.Screen name="PreferredWhispers" options={{
@@ -148,6 +127,28 @@ export default function App()
             </Stack.Navigator>
         </NavigationContainer>
     );
+
+    function _handleAppStateChange(nextAppState)
+    {
+        if (appState.current.match(/inactive|background/) && nextAppState === "active")
+        {
+            PushNotification.setApplicationIconBadgeNumber(0);
+            console.log("App has come to the foreground!");
+        }
+
+        appState.current = nextAppState;
+        console.log("AppState", appState.current);
+    };
+
+    function handleEventListener()
+    {
+        AppState.addEventListener("change", (nextAppState) => _handleAppStateChange(nextAppState));
+
+        return () =>
+        {
+            AppState.removeEventListener("change", (nextAppState) => _handleAppStateChange(nextAppState));
+        };
+    }
 
 };
 
@@ -162,19 +163,29 @@ const styles = StyleSheet.create({
     button: {
         alignItems: "center",
         // backgroundColor: Colors.dark,
-        padding: 10,
-        borderColor: 'black',
         borderWidth: 1,
-        width: '50%',
-        borderRadius: 5,
-        justifyContent: 'center',
+        borderRadius: 2,
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
     },
     lightText: {
         fontSize: 20
     },
     settingsIcon: {
-        paddingRight: 30,
-    }
+        paddingRight: 15,
+    },
+    tinyLogo: {
+        width: 35,
+        height: 35,
+        resizeMode: 'contain'
+    },
 });
 
 

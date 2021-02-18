@@ -9,19 +9,43 @@ import
     StatusBar,
     TouchableOpacity,
     Alert,
-    Animated
+    Animated,
+    Platform
 } from 'react-native';
-
+import { ShareWhisper } from '../components/Share';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faShareSquare } from '@fortawesome/free-solid-svg-icons'
 import { identity } from '../whispers/Identity';
 
+function getRandomInt(max)
+{
+    return Math.floor(Math.random() * Math.floor(max));
+}
 
 export default function ShowWhisper({ navigation })
 {
     const fadeAnim = useRef(new Animated.Value(0)).current
     const delayedFadeAnim = useRef(new Animated.Value(0)).current
+    const randomIndex = getRandomInt(identity.length - 1)
+
+    let shareOptions = {
+        title: 'Share this Holy Whisper',
+        message: `"${identity[randomIndex].text}" ${identity[randomIndex].verse} ${identity[randomIndex].version}`
+    };
+
+    React.useLayoutEffect(() =>
+    {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity onPress={() => ShareWhisper(shareOptions)} style={styles.shareButton} >
+                    <FontAwesomeIcon size={20} icon={faShareSquare} />
+                </TouchableOpacity>
+            ),
+        });
+    }, [navigation]);
+
     useEffect(() =>
     {
-
         Animated.timing(
             fadeAnim,
             {
@@ -47,23 +71,24 @@ export default function ShowWhisper({ navigation })
     }, [fadeAnim, delayedFadeAnim])
 
     return (
-
         <View style={styles.center}>
             <Animated.View style={{ opacity: fadeAnim }}>
                 <Text style={{ ...styles.text }}>
-                    {identity[0].text}
+                    {identity[randomIndex].text}
                 </Text>
             </Animated.View>
             <Animated.View style={{ opacity: delayedFadeAnim }}>
                 <Text style={styles.verse}>
-                    {identity[0].verse}
+                    {identity[randomIndex].verse} &nbsp;
+                    <Text style={styles.version}>
+                        {identity[randomIndex].version}
+                    </Text>
                 </Text>
+
             </Animated.View>
         </View>
-
     )
 }
-
 
 const styles = StyleSheet.create({
     center: {
@@ -84,5 +109,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         padding: 10
+    },
+    version: {
+        fontSize: 12,
+        fontStyle: 'italic'
+    },
+    shareButton: {
+        paddingRight: 15,
     }
 });

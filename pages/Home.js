@@ -10,13 +10,12 @@ import
     TouchableOpacity,
     Alert,
     Animated,
-    Image
+    Image,
+    Platform
 } from 'react-native';
-
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faFire, faCog } from '@fortawesome/free-solid-svg-icons'
 import { compareAsc, format, addDays, addHours } from 'date-fns'
 import NotificationService from '../notifications/NotificationService';
+
 
 export default function Home({ navigation })
 {
@@ -25,6 +24,15 @@ export default function Home({ navigation })
     const fadeAnim = useRef(new Animated.Value(0)).current
     useEffect(() =>
     {
+        //removeValue()
+        //storeData()
+        const asyncFUnc = async () =>
+        {
+            //await storeData(['fear'])
+            //console.log(await getData())
+        }
+
+        asyncFUnc()
 
         Animated.timing(
             fadeAnim,
@@ -64,7 +72,7 @@ export default function Home({ navigation })
                     />
                 </TouchableOpacity>
 
-                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 12 }}>
+                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }}>
                     Get a Whisper
                 </Text>
 
@@ -86,13 +94,17 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        borderColor: 'lightgrey',
-        borderWidth: 1,
+        borderColor: 'black',
+        borderWidth: .5,
         width: 100,
         height: 100,
         borderRadius: 50,
         justifyContent: 'center',
-        marginBottom: 20
+        marginBottom: 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 1,
+        shadowRadius: 2
     },
     lightText: {
         fontSize: 20,
