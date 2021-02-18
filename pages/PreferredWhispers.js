@@ -16,8 +16,6 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { getData, removeValue, storeData } from '../components/LocalStorage';
 import { categories } from '../components/Categories';
 
-
-
 export default function PreferredWhispers()
 {
     const [selectedIds, setSelectedIds] = useState([])
