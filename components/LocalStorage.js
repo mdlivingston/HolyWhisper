@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const storeData = async (value) =>
+export const storeData = async (key, value) =>
 {
     try
     {
         const jsonValue = JSON.stringify(value)
-        await AsyncStorage.setItem('preferredWhispers', jsonValue)
+        await AsyncStorage.setItem(key, jsonValue)
         console.log('Stored!')
     } catch (e)
     {
@@ -13,11 +13,38 @@ export const storeData = async (value) =>
     }
 }
 
-export const getData = async () =>
+export const storeString = async (key, value) =>
 {
     try
     {
-        const jsonValue = await AsyncStorage.getItem('preferredWhispers')
+        await AsyncStorage.setItem(key, value)
+    } catch (e)
+    {
+        // saving error
+    }
+}
+
+export const getString = async (key) =>
+{
+    try
+    {
+        const value = await AsyncStorage.getItem(key)
+        if (value !== null)
+        {
+            return value
+        }
+        return null
+    } catch (e)
+    {
+        // error reading value
+    }
+}
+
+export const getData = async (key) =>
+{
+    try
+    {
+        const jsonValue = await AsyncStorage.getItem(key)
         return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e)
     {
@@ -25,11 +52,11 @@ export const getData = async () =>
     }
 }
 
-export const removeValue = async () =>
+export const removeValue = async (key) =>
 {
     try
     {
-        await AsyncStorage.removeItem('preferredWhispers')
+        await AsyncStorage.removeItem(key)
     } catch (e)
     {
         // remove error

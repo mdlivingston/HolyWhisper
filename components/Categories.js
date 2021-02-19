@@ -1,3 +1,4 @@
+import { authority } from "../whispers/Authority";
 import { identity } from "../whispers/Identity";
 import { getData } from "./LocalStorage";
 
@@ -6,29 +7,32 @@ export const categories = [
     'Confidence',
     'Hope',
     'Purity',
-    'Promises'
+    'Promises',
+    'Authority'
 ]
 
-function getRandomInt(max)
+function getRandomInt(min, max)
 {
-    return Math.floor(Math.random() * Math.floor(max));
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export async function getRandomWhisper()
 {
-    const preferredWhispers = await getData()
+    const preferredWhispers = await getData('preferredWhispers')
     const category = preferredWhispers && preferredWhispers.length > 0 ?
-        preferredWhispers[getRandomInt(preferredWhispers.length - 1)] :
-        categories[getRandomInt(categories.length - 1)]
+        preferredWhispers[getRandomInt(0, preferredWhispers.length - 1)] :
+        categories[getRandomInt(0, categories.length - 1)]
+
+    console.log(authority.length)
 
     switch (category)
     {
         case 'Identity':
-            return identity[getRandomInt(identity.length - 1)]
-        case 'Hope':
-            return identity[getRandomInt(identity.length - 1)]
+            return identity[getRandomInt(0, identity.length - 1)]
+        case 'Authority':
+            return authority[getRandomInt(0, authority.length - 1)]
         default:
-            return identity[getRandomInt(identity.length - 1)]
+            return identity[getRandomInt(0, identity.length - 1)]
     }
 
 }

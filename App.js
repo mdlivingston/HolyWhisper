@@ -127,7 +127,7 @@ export default function App()
 
         appState.current = nextAppState;
         console.log("AppState", appState.current);
-    };
+    }
 
     function handleEventListener()
     {
@@ -139,7 +139,7 @@ export default function App()
         };
     }
 
-};
+}
 
 const styles = StyleSheet.create({
     center: {

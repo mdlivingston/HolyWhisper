@@ -24,12 +24,12 @@ export default function PreferredWhispers()
     {
         const asyncFunc = async () =>
         {
-            let storage = await getData()
+            let storage = await getData('preferredWhispers')
 
             if (!storage)
-                await storeData([])
+                await storeData('preferredWhisper', [])
 
-            setSelectedIds(await getData())
+            setSelectedIds(await getData('preferredWhispers'))
             //removeValue()
         }
         asyncFunc()
@@ -47,8 +47,8 @@ export default function PreferredWhispers()
             tempSelected.push(id)
 
         setSelectedIds(tempSelected)
-        await storeData(tempSelected)
-        await console.log(await getData())
+        await storeData('preferredWhispers', tempSelected)
+        await console.log(await getData('preferredWhispers'))
 
     }
 
