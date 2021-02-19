@@ -1,4 +1,5 @@
 import { authority } from "../whispers/Authority";
+import { healing } from "../whispers/Healing";
 import { identity } from "../whispers/Identity";
 import { getData } from "./LocalStorage";
 
@@ -8,7 +9,8 @@ export const categories = [
     'Hope',
     'Purity',
     'Promises',
-    'Authority'
+    'Authority',
+    'Healing'
 ]
 
 function getRandomInt(min, max)
@@ -29,6 +31,8 @@ export async function getRandomWhisper()
             return identity[getRandomInt(0, identity.length - 1)]
         case 'Authority':
             return authority[getRandomInt(0, authority.length - 1)]
+        case 'Healing':
+            return healing[getRandomInt(0, healing.length - 1)]
         default:
             return identity[getRandomInt(0, identity.length - 1)]
     }
