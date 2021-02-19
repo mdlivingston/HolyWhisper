@@ -293,4 +293,11 @@ export const authority = [
         version: "NIV"
     },
 
+    {
+        text: "The seventy-two returned with joy and said, \"Lord, even the demons submit to us in your name.\"",
+        verse: "Luke 10:17",
+        category: 'Authority in Christ',
+        version: "NIV"
+    },
+
 ]

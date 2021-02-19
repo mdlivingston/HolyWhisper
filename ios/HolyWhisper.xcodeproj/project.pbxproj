@@ -20,6 +20,7 @@
 		56D8672876AD38FAECCE0EF8 /* libPods-HolyWhisper-HolyWhisperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F964F7B611731BE4B4DD3AD2 /* libPods-HolyWhisper-HolyWhisperTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8C8A8E8425DCAA9200C755F9 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8A8E8325DCAA9200C755F9 /* RNBackgroundFetch+AppDelegate.m */; };
+		8CA6E0CB25DFA27C00347B2A /* shofar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8CA6E0CA25DFA27C00347B2A /* shofar.mp3 */; };
 		8CBECD7E25DCEB7000307EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CBECD7D25DCEB7000307EAA /* GoogleService-Info.plist */; };
 		94BA262BD11EFC94962D51BF /* libPods-HolyWhisper-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0416A7A396D052E62C41DF /* libPods-HolyWhisper-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HolyWhisper/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C8A8E7E25DCA9FA00C755F9 /* HolyWhisper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HolyWhisper.entitlements; path = HolyWhisper/HolyWhisper.entitlements; sourceTree = "<group>"; };
 		8C8A8E8325DCAA9200C755F9 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RNBackgroundFetch+AppDelegate.m"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
+		8CA6E0CA25DFA27C00347B2A /* shofar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shofar.mp3; sourceTree = "<group>"; };
 		8CBECD7D25DCEB7000307EAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		941FEF74B5958283EE4D6F14 /* Pods-HolyWhisper-HolyWhisperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolyWhisper-HolyWhisperTests.release.xcconfig"; path = "Target Support Files/Pods-HolyWhisper-HolyWhisperTests/Pods-HolyWhisper-HolyWhisperTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A0416A7A396D052E62C41DF /* libPods-HolyWhisper-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HolyWhisper-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				8CBECD7D25DCEB7000307EAA /* GoogleService-Info.plist */,
+				8CA6E0CA25DFA27C00347B2A /* shofar.mp3 */,
 				13B07FAE1A68108700A75B9A /* HolyWhisper */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* HolyWhisperTests */,
@@ -352,6 +355,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				8CBECD7E25DCEB7000307EAA /* GoogleService-Info.plist in Resources */,
+				8CA6E0CB25DFA27C00347B2A /* shofar.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +389,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		29B9391DAE26AD6E97B2CF93 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -1,11 +1,18 @@
-import { Platform } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 class NotificationHandler
 {
+
     onNotification(notification)
     {
         console.log('NotificationHandler:', notification);
+
+        if (notification.userInteraction)
+        {
+            PushNotification.setApplicationIconBadgeNumber(0);
+            this.goToWhisper.navigate('ShowWhisper', { name: 'Jane' })
+        }
 
         if (typeof this._onNotification === 'function')
         {
@@ -49,6 +56,16 @@ class NotificationHandler
     attachNotification(handler)
     {
         this._onNotification = handler;
+    }
+
+    attachNavagation(handler)
+    {
+        this.goToWhisper = handler
+    }
+
+    goToWhisper(navigation)
+    {
+        return navigation
     }
 }
 

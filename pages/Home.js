@@ -19,20 +19,12 @@ import NotificationService from '../notifications/NotificationService';
 
 export default function Home({ navigation })
 {
-    const notifService = new NotificationService();
-
+    const notifService = new NotificationService(null, null, navigation);
     const fadeAnim = useRef(new Animated.Value(0)).current
+
     useEffect(() =>
     {
-        //removeValue()
-        //storeData()
-        const asyncFUnc = async () =>
-        {
-            //await storeData(['fear'])
-            //console.log(await getData())
-        }
-
-        asyncFUnc()
+        //notifService.schedule5Notif()
 
         Animated.timing(
             fadeAnim,
@@ -42,17 +34,6 @@ export default function Home({ navigation })
                 useNativeDriver: true // Add This line
             },
         ).start();
-
-        for (let i = 1; i <= 64; i++)
-        {
-            var now = addDays(new Date(Date.now()), i)
-            now.setHours(8);
-            now.setMinutes(0);
-            now.setMilliseconds(0);
-
-            //console.log(result.toLocaleDateString())
-            //notifService.scheduleNotif(now)
-        }
 
     }, [fadeAnim])
 

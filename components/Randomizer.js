@@ -23,8 +23,6 @@ export async function getRandomWhisper()
         preferredWhispers[getRandomInt(0, preferredWhispers.length - 1)] :
         categories[getRandomInt(0, categories.length - 1)]
 
-    console.log(authority.length)
-
     switch (category)
     {
         case 'Identity':

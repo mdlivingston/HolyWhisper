@@ -13,8 +13,8 @@ import
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { getData, removeValue, storeData } from '../components/LocalStorage';
-import { categories } from '../components/Categories';
+import { getData, preferredWhispersKey, removeValue, storeData } from '../components/LocalStorage';
+import { categories } from '../components/Randomizer';
 
 export default function PreferredWhispers()
 {
@@ -24,12 +24,12 @@ export default function PreferredWhispers()
     {
         const asyncFunc = async () =>
         {
-            let storage = await getData('preferredWhispers')
+            let storage = await getData(preferredWhispersKey)
 
             if (!storage)
-                await storeData('preferredWhisper', [])
+                await storeData(preferredWhispersKey, [])
 
-            setSelectedIds(await getData('preferredWhispers'))
+            setSelectedIds(await getData(preferredWhispersKey))
             //removeValue()
         }
         asyncFunc()
@@ -42,13 +42,12 @@ export default function PreferredWhispers()
         const tempSelected = [...selectedIds];
         if (idIndex > -1)
             tempSelected.splice(idIndex, 1)
-
         else
             tempSelected.push(id)
 
         setSelectedIds(tempSelected)
-        await storeData('preferredWhispers', tempSelected)
-        await console.log(await getData('preferredWhispers'))
+        await storeData(preferredWhispersKey, tempSelected)
+        await console.log(await getData(preferredWhispersKey))
 
     }
 

@@ -1,9 +1,10 @@
+import { addDays } from 'date-fns';
 import PushNotification from 'react-native-push-notification';
+import { getRandomWhisper } from '../components/Randomizer';
 import NotificationHandler from './NotificationHandler';
-
 export default class NotificationService
 {
-    constructor(onRegister, onNotification)
+    constructor(onRegister, onNotification, navigation)
     {
         this.lastId = 0;
         this.lastChannelCounter = 0;
@@ -12,6 +13,7 @@ export default class NotificationService
 
         NotificationHandler.attachRegister(onRegister);
         NotificationHandler.attachNotification(onNotification);
+        NotificationHandler.attachNavagation(navigation);
 
         // Clear badge number at start
         PushNotification.getApplicationIconBadgeNumber(function (number)
@@ -119,7 +121,7 @@ export default class NotificationService
     {
         this.lastId++;
         PushNotification.localNotificationSchedule({
-            date: new Date(date), 
+            date: new Date(date),
 
             /* Android Only Properties */
             channelId: soundName ? 'sound-channel-id' : 'default-channel-id',
@@ -151,11 +153,70 @@ export default class NotificationService
             title: title, // (optional)
             message: message, // (required)
             userInfo: { sceen: "home" }, // (optional) default: {} (using null throws a JSON value '<null>' error)
-            playSound: true, // (optional) default: true
-            soundName: soundName ? soundName : 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+            sound: true, // (optional) default: true
+            soundName: 'shofar.mp3', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
             number: 1, // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
             repeatType: "day"
         });
+    }
+    schedule5Notif(date, title, message, soundName)
+    {
+        this.lastId++;
+        PushNotification.localNotificationSchedule({
+            date: new Date(Date.now() + 5 * 1000), // in 30 secs
+            /* Android Only Properties */
+            channelId: soundName ? 'sound-channel-id' : 'default-channel-id',
+            ticker: 'My Notification Ticker', // (optional)
+            autoCancel: true, // (optional) default: true
+            largeIcon: 'ic_launcher', // (optional) default: "ic_launcher"
+            smallIcon: 'ic_notification', // (optional) default: "ic_notification" with fallback for "ic_launcher"
+            bigText: 'My big text that will be shown when notification is expanded', // (optional) default: "message" prop
+            subText: 'This is a subText', // (optional) default: none
+            color: 'red', // (optional) default: system default
+            vibrate: true, // (optional) default: true
+            vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+            tag: 'some_tag', // (optional) add tag to message
+            group: 'group', // (optional) add group to message
+            groupSummary: false, // (optional) set this notification to be the group summary for a group of notifications, default: false
+            ongoing: false, // (optional) set whether this is an "ongoing" notification
+            actions: ['Read'], // (Android only) See the doc for notification actions to know more
+            invokeApp: true, // (optional) This enable click on actions to bring back the application to foreground or stay in background, default: true
+
+            when: null, // (optionnal) Add a timestamp pertaining to the notification (usually the time the event occurred). For apps targeting Build.VERSION_CODES.N and above, this time is not shown anymore by default and must be opted into by using `showWhen`, default: null.
+            usesChronometer: false, // (optional) Show the `when` field as a stopwatch. Instead of presenting `when` as a timestamp, the notification will show an automatically updating display of the minutes and seconds since when. Useful when showing an elapsed time (like an ongoing phone call), default: false.
+            timeoutAfter: null, // (optional) Specifies a duration in milliseconds after which this notification should be canceled, if it is not already canceled, default: null
+
+            /* iOS only properties */
+            category: '', // (optional) default: empty string
+
+            /* iOS and Android properties */
+            id: this.lastId, // (optional) Valid unique 32 bit integer specified as string. default: Autogenerated Unique ID
+            title: 'Local Notification', // (optional)
+            message: 'My Notification Message', // (required)
+            userInfo: { screen: 'home' }, // (optional) default: {} (using null throws a JSON value '<null>' error)
+            sound: true, // (optional) default: true
+            soundName: 'default', //'shofar.mp3', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+            number: 1, // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
+        });
+    }
+
+    async fillScheduledNotifications()
+    {
+        this.cancelAll();
+        this.getScheduledLocalNotifications(notifs => console.log(notifs))
+
+        for (let i = 0; i < 64; i++) 
+        {
+            var now = addDays(new Date(Date.now()), i)
+            now.setHours(9);
+            now.setMinutes(0);
+            now.setSeconds(0)
+            now.setMilliseconds(0);
+
+            //const randomWhisper = await getRandomWhisper()
+
+            this.scheduleNotif(now, 'Daily Whisper', 'Your whisper has arrived! 🔥')
+        }
     }
 
     checkPermission(cbk)

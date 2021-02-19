@@ -14,7 +14,7 @@ import
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faShareSquare } from '@fortawesome/free-solid-svg-icons'
-import { getRandomWhisper } from '../components/Categories';
+import { getRandomWhisper } from '../components/Randomizer';
 import { removeValue } from '../components/LocalStorage';
 import { ShareWhisper } from '../components/Share';
 

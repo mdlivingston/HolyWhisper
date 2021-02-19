@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import { NavigationContainer, Tab } from '@react-navigation/native';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import
 {
     SafeAreaView,
@@ -28,6 +28,7 @@ import PushNotification from 'react-native-push-notification';
 import ShowWhisper from './pages/ShowWhisper';
 import PreferredWhispers from './pages/PreferredWhispers';
 import { handleFirebaseInit } from './components/Firebase';
+import { allowNotificationKey, getString } from './components/LocalStorage';
 
 const Stack = createStackNavigator();
 const notifService = new NotificationService();
@@ -36,6 +37,7 @@ export default function App()
 {
 
     const appState = useRef(AppState.currentState);
+
     const fadeAnim = useRef(new Animated.Value(0)).current
 
 
@@ -45,7 +47,10 @@ export default function App()
         {
             await handleFirebaseInit()
 
-            handleEventListener()
+            if (await getString(allowNotificationKey) === 'true')
+                await notifService.fillScheduledNotifications()
+
+            notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
         }
         asyncFunc();
 
@@ -62,7 +67,29 @@ export default function App()
             ).start();
         }, 2000)
 
+        AppState.addEventListener("change", _handleAppStateChange);
+
+        return () =>
+        {
+            AppState.removeEventListener("change", _handleAppStateChange);
+        };
+
     }, [fadeAnim])
+
+
+    const _handleAppStateChange = (nextAppState) =>
+    {
+        if (
+            appState.current.match(/inactive|background/) &&
+            nextAppState === "active"
+        )
+        {
+            console.log("App has come to the foreground!");
+        }
+
+        appState.current = nextAppState;
+        console.log("AppState", appState.current);
+    };
 
     return (
         <NavigationContainer>
@@ -117,27 +144,6 @@ export default function App()
         </NavigationContainer>
     );
 
-    function _handleAppStateChange(nextAppState)
-    {
-        if (appState.current.match(/inactive|background/) && nextAppState === "active")
-        {
-            PushNotification.setApplicationIconBadgeNumber(0);
-            console.log("App has come to the foreground!");
-        }
-
-        appState.current = nextAppState;
-        console.log("AppState", appState.current);
-    }
-
-    function handleEventListener()
-    {
-        AppState.addEventListener("change", (nextAppState) => _handleAppStateChange(nextAppState));
-
-        return () =>
-        {
-            AppState.removeEventListener("change", (nextAppState) => _handleAppStateChange(nextAppState));
-        };
-    }
 
 }
 

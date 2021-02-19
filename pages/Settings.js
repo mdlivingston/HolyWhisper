@@ -16,12 +16,15 @@ import
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { requestUserPermission } from '../components/Firebase';
-import { getString, storeString } from '../components/LocalStorage';
+import { allowNotificationKey, getString, storeString } from '../components/LocalStorage';
+import NotificationService from '../notifications/NotificationService';
 
 export default function Settings({ route, navigation })
 {
+    const notifService = new NotificationService(null, null, navigation)
     const { name } = route.params;
     const [isEnabled, setIsEnabled] = useState(false);
+
     const toggleSwitch = async () => 
     {
         const enabled = await requestUserPermission()
@@ -32,14 +35,23 @@ export default function Settings({ route, navigation })
             Linking.openURL('app-settings:');
         }
 
-        storeString('allowNotification', !isEnabled ? 'true' : 'false')
+        storeString(allowNotificationKey, !isEnabled ? 'true' : 'false')
+
+        if (!isEnabled) // True
+        {
+            await notifService.fillScheduledNotifications()
+        }
+        else
+            notifService.cancelAll()
+
+        notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
     }
 
     useEffect(() =>
     {
         const asyncFunc = async () =>
         {
-            const allowNotif = await getString('allowNotification')
+            const allowNotif = await getString(allowNotificationKey)
 
             const enabled = await requestUserPermission()
             if (!enabled) // Force to false if permissions have change
@@ -49,6 +61,11 @@ export default function Settings({ route, navigation })
             else
                 setIsEnabled(false)
 
+            if (!allowNotif && enabled)
+            {
+                storeString(allowNotificationKey, 'true')
+                setIsEnabled(true)
+            }
         }
         asyncFunc()
     }, [])
@@ -64,7 +81,7 @@ export default function Settings({ route, navigation })
 
             <TouchableWithoutFeedback >
                 <View style={styles.section}>
-                    <Text style={styles.title} >Whisper Notifications</Text>
+                    <Text style={styles.title}>Daily Whisper Notifications</Text>
                     <Text style={{ width: 2, flex: 1 }}></Text>
                     <Switch
                         trackColor={{ false: "#767577", true: "limegreen" }}
@@ -75,6 +92,15 @@ export default function Settings({ route, navigation })
                     />
                 </View>
             </TouchableWithoutFeedback>
+
+            {/* <TouchableOpacity
+                style={styles.button}
+                onPress={() => notifService.localNotif()}
+            >
+                <Text>
+                    Test Notification
+                </Text>
+            </TouchableOpacity> */}
 
         </View>
     )
