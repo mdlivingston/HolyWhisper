@@ -77,7 +77,6 @@ export default function ShowWhisper({ navigation })
                         {randomWhisper ? `-${randomWhisper.category}` : ''}
                     </Text>
                 </Animated.View>
-
             </Animated.View>
 
             <Animated.View style={{ transform: [{ translateY: fireMoveAnim }, { scaleY: fireGrowAnim }], }}>
@@ -228,12 +227,13 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
     text: {
-        fontSize: 24,
+        fontSize: Platform.OS == 'ios' ? 24 : 20,
         fontStyle: 'italic',
-        alignSelf: "flex-start"
+        alignSelf: "flex-start",
+        paddingTop: 10,
     },
     verse: {
-        fontSize: 20,
+        fontSize: Platform.OS == 'ios' ? 20 : 16,
         fontWeight: 'bold',
         padding: 10,
         alignSelf: 'flex-end'
@@ -256,6 +256,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
         marginTop: 75,
+        marginBottom: 25
     },
 
 });

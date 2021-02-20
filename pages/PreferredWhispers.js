@@ -51,8 +51,24 @@ export default function PreferredWhispers()
 
     }
 
+    async function clickAll()
+    {
+        if (selectedIds.length > 0) 
+        {
+            await storeData(preferredWhispersKey, [])
+            setSelectedIds([])
+        }
+    }
+
     return (
         <View style={styles.container}>
+
+            <TouchableOpacity style={styles.section} onPress={() => clickAll()}>
+                <Text style={styles.title}>All</Text>
+                <Text style={{ width: 2, flex: 1 }}></Text>
+                {!selectedIds || (selectedIds && selectedIds.length < 1) && <FontAwesomeIcon style={{ color: 'limegreen' }} size={15} icon={faCheck} />}
+            </TouchableOpacity>
+
             { categories.map((c, i) => (
                 <TouchableOpacity key={c} style={styles.section} onPress={() => changeSelectedId(c)}>
                     <Text style={styles.title}>{c}</Text>
@@ -82,5 +98,6 @@ const styles = StyleSheet.create({
     },
     title: {
         width: '90%',
+
     }
 });
