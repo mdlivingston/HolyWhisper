@@ -48,7 +48,7 @@ export default function ShowWhisper({ navigation })
             headerRight: () => (
                 <TouchableOpacity onPress={() => ShareWhisper({
                     title: 'Share this Holy Whisper',
-                    message: `${randomWhisper.text} ${randomWhisper.verse} ${randomWhisper.version}`
+                    message: `${randomWhisper.text} ${randomWhisper.verse} ${randomWhisper.version} Sent with Holy Whisper.`
                 })}
                     style={styles.shareButton} >
                     <FontAwesomeIcon size={20} icon={faShareSquare} />
@@ -79,7 +79,7 @@ export default function ShowWhisper({ navigation })
                 </Animated.View>
             </Animated.View>
 
-            <Animated.View style={{ transform: [{ translateY: fireMoveAnim }, { scaleY: fireGrowAnim }], }}>
+            <Animated.View style={{ transform: [{ translateY: fireMoveAnim }, { scaleY: fireGrowAnim }], ...styles.button }}>
                 <TouchableWithoutFeedback onPress={() => newWhisper()}>
                     <Image
                         style={styles.tinyLogo}
@@ -256,7 +256,14 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
         marginTop: 75,
-        marginBottom: 25
+        marginBottom: 25,
+
     },
+    button: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 1,
+        shadowRadius: 2
+    }
 
 });

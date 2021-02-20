@@ -30,6 +30,7 @@ import PreferredWhispers from './pages/PreferredWhispers';
 import { handleFirebaseInit } from './components/Firebase';
 import { allowNotificationKey, getString } from './components/LocalStorage';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import PrayerRequest from './pages/PrayerRequest';
 
 const Stack = createStackNavigator();
 const notifService = new NotificationService();
@@ -144,6 +145,13 @@ export default function App()
                         headerBackTitleVisible: false,
                         headerTintColor: 'black'
                     }} component={PreferredWhispers} />
+
+                    <Stack.Screen name="PrayerRequest" options={{
+                        title: "Prayer Request",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black'
+                    }} component={PrayerRequest} />
                 </Stack.Navigator>
             </NavigationContainer>
         </AuthProvider>

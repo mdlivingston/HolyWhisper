@@ -78,6 +78,11 @@ export default function Settings({ route, navigation })
                 <Text style={{ width: 2, flex: 1 }}></Text>
                 <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
             </TouchableOpacity>
+            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PrayerRequest', { name: 'Jane' })}>
+                <Text style={styles.title}>Prayer Request</Text>
+                <Text style={{ width: 2, flex: 1 }}></Text>
+                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+            </TouchableOpacity>
 
             <TouchableWithoutFeedback >
                 <View style={styles.section}>
