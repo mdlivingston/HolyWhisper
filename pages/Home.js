@@ -16,6 +16,8 @@ import
 import { compareAsc, format, addDays, addHours } from 'date-fns'
 import NotificationService from '../notifications/NotificationService';
 import { useAuth } from '../context/AuthContext';
+import firestore from '@react-native-firebase/firestore';
+
 
 
 export default function Home({ navigation })
@@ -27,7 +29,6 @@ export default function Home({ navigation })
 
     useEffect(() =>
     {
-
         const asyncFunc = async () =>
         {
             try
@@ -37,10 +38,10 @@ export default function Home({ navigation })
             }
             catch (e)
             {
-                console.log('Failed to login.')
+                console.log('Failed to login.' + e)
             }
 
-            console.log(currentUser)
+            //console.log(currentUser)
         }
         asyncFunc();
 
