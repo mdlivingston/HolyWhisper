@@ -109,7 +109,7 @@ export default function ShowWhisper({ navigation })
 
             fireMoveAnim,
             {
-                toValue: 500,
+                toValue: 1000,
                 duration: 750,
                 useNativeDriver: true // Add This line
             },

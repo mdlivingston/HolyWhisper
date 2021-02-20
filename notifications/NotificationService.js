@@ -26,7 +26,7 @@ export default class NotificationService
 
         PushNotification.getChannels(function (channels)
         {
-            console.log(channels);
+            //console.log(channels);
         });
     }
 
@@ -205,7 +205,7 @@ export default class NotificationService
         this.cancelAll();
 
 
-        for (let i = 0; i < 30; i++) 
+        for (let i = 1; i < 30; i++) 
         {
             var now = addDays(new Date(Date.now()), i)
             now.setHours(9);

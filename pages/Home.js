@@ -22,7 +22,7 @@ import firestore from '@react-native-firebase/firestore';
 
 export default function Home({ navigation })
 {
-    const { currentUser, login } = useAuth()
+    const { currentUser, login, logout } = useAuth()
 
     const notifService = new NotificationService(null, null, navigation);
     const fadeAnim = useRef(new Animated.Value(0)).current
@@ -41,7 +41,7 @@ export default function Home({ navigation })
                 console.log('Failed to login.' + e)
             }
 
-            //console.log(currentUser)
+            console.log(currentUser)
         }
         asyncFunc();
 

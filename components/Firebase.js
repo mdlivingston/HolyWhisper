@@ -1,6 +1,6 @@
 import messaging from '@react-native-firebase/messaging';
 import { Alert } from 'react-native';
-import { storeString } from './LocalStorage';
+import { allowNotificationKey, storeString } from './LocalStorage';
 
 export async function requestUserPermission()
 {
@@ -11,12 +11,12 @@ export async function requestUserPermission()
 
     if (enabled)
     {
-        await storeString('allowNotification', 'true')
+        await storeString(allowNotificationKey, 'true')
         console.log('Authorization status:', authStatus);
     }
     else 
     {
-        await storeString('allowNotification', 'false')
+        await storeString(allowNotificationKey, 'false')
     }
 
     return enabled

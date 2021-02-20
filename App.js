@@ -50,10 +50,10 @@ export default function App()
         {
             await handleFirebaseInit()
 
-            //if (await getString(allowNotificationKey) === 'true')
-            //await notifService.fillScheduledNotifications()
+            if (await getString(allowNotificationKey) === 'true')
+                await notifService.fillScheduledNotifications()
 
-            //notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
+            notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
         }
         asyncFunc();
 
