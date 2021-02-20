@@ -203,9 +203,9 @@ export default class NotificationService
     async fillScheduledNotifications()
     {
         this.cancelAll();
-        this.getScheduledLocalNotifications(notifs => console.log(notifs))
 
-        for (let i = 0; i < 64; i++) 
+
+        for (let i = 0; i < 30; i++) 
         {
             var now = addDays(new Date(Date.now()), i)
             now.setHours(9);

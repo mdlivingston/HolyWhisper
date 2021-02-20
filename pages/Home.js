@@ -15,17 +15,36 @@ import
 } from 'react-native';
 import { compareAsc, format, addDays, addHours } from 'date-fns'
 import NotificationService from '../notifications/NotificationService';
+import { useAuth } from '../context/AuthContext';
 
 
 export default function Home({ navigation })
 {
+    const { currentUser, login } = useAuth()
+
     const notifService = new NotificationService(null, null, navigation);
     const fadeAnim = useRef(new Animated.Value(0)).current
 
     useEffect(() =>
     {
-        //notifService.schedule5Notif()
 
+        const asyncFunc = async () =>
+        {
+            try
+            {
+                if (!currentUser)
+                    await login()
+            }
+            catch (e)
+            {
+                console.log('Failed to login.')
+            }
+
+            console.log(currentUser)
+        }
+        asyncFunc();
+
+        //notifService.schedule5Notif()
         Animated.timing(
             fadeAnim,
             {

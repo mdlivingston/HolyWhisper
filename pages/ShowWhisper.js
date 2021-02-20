@@ -10,7 +10,9 @@ import
     TouchableOpacity,
     Alert,
     Animated,
-    Platform
+    Platform,
+    Image,
+    TouchableWithoutFeedback
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faShareSquare } from '@fortawesome/free-solid-svg-icons'
@@ -18,12 +20,13 @@ import { getRandomWhisper } from '../components/Randomizer';
 import { removeValue } from '../components/LocalStorage';
 import { ShareWhisper } from '../components/Share';
 
-
 export default function ShowWhisper({ navigation })
 {
     const fadeAnim = useRef(new Animated.Value(0)).current
     const delayedFadeAnim = useRef(new Animated.Value(0)).current
     const doubleDelayedFadeAnim = useRef(new Animated.Value(0)).current
+    const fireMoveAnim = useRef(new Animated.Value(1000)).current
+    const fireGrowAnim = useRef(new Animated.Value(1)).current
     const [randomWhisper, setRandomWhisper] = useState()
 
     useEffect(() =>
@@ -33,10 +36,10 @@ export default function ShowWhisper({ navigation })
             let randomW = await getRandomWhisper()
             setRandomWhisper(randomW)
 
-            handleAnimations()
+            handleWordAnimationsEnter(1)
         }
         asyncFunc()
-        //removeValue()
+
     }, [])
 
     React.useLayoutEffect(() =>
@@ -74,11 +77,57 @@ export default function ShowWhisper({ navigation })
                         {randomWhisper ? `-${randomWhisper.category}` : ''}
                     </Text>
                 </Animated.View>
+
+            </Animated.View>
+
+            <Animated.View style={{ transform: [{ translateY: fireMoveAnim }, { scaleY: fireGrowAnim }], }}>
+                <TouchableWithoutFeedback onPress={() => newWhisper()}>
+                    <Image
+                        style={styles.tinyLogo}
+                        source={
+                            //uri: 'https://tenor.com/view/fire-flames-blue-fire-burning-embers-gif-16971771.gif',
+                            require('../assets/blueFire.gif')
+                        }
+                    />
+                </TouchableWithoutFeedback>
             </Animated.View>
         </ScrollView>
     )
 
-    function handleAnimations()
+    async function newWhisper()
+    {
+        Animated.timing(
+            fireGrowAnim,
+            {
+                toValue: 1.9,
+                duration: 500,
+                useNativeDriver: true // Add This line
+            },
+
+        ).start();
+
+        Animated.timing(
+
+            fireMoveAnim,
+            {
+                toValue: 500,
+                duration: 750,
+                useNativeDriver: true // Add This line
+            },
+        ).start();
+
+        handleWordAnimationsExit();
+
+        setTimeout(async () =>
+        {
+            let randomW = await getRandomWhisper()
+            setRandomWhisper(randomW)
+
+            handleWordAnimationsEnter()
+        }, 1000);
+    }
+
+    function handleWordAnimationsEnter()
     {
         Animated.timing(
             fadeAnim,
@@ -88,6 +137,7 @@ export default function ShowWhisper({ navigation })
                 useNativeDriver: true // Add This line
             },
         ).start();
+
 
         setTimeout(() =>
         {
@@ -99,7 +149,7 @@ export default function ShowWhisper({ navigation })
                     useNativeDriver: true // Add This line
                 },
             ).start();
-        }, 1000)
+        }, 2000);
 
         setTimeout(() =>
         {
@@ -112,18 +162,70 @@ export default function ShowWhisper({ navigation })
                 },
             ).start();
         }, 3000);
+
+        Animated.timing(
+            fireGrowAnim,
+            {
+                toValue: 1,
+                duration: 100,
+                useNativeDriver: true // Add This line
+            },
+
+        ).start();
+
+        Animated.timing(
+            fireMoveAnim,
+            {
+                toValue: 0,
+                duration: 8000,
+                useNativeDriver: true // Add This line
+            },
+        ).start();
+    }
+
+    function handleWordAnimationsExit()
+    {
+        Animated.timing(
+            fadeAnim,
+            {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true // Add This line
+            },
+        ).start();
+
+
+        Animated.timing(
+            delayedFadeAnim,
+            {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true // Add This line
+            },
+        ).start();
+
+        Animated.timing(
+            doubleDelayedFadeAnim,
+            {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true // Add This line
+            },
+        ).start();
+
     }
 }
 
 const styles = StyleSheet.create({
     center: {
-        display: 'flex',
+        // display: 'flex',
         // alignItems: 'center',
         // justifyContent: 'center',
         height: '100%',
         backgroundColor: 'white',
         paddingLeft: 25,
-        paddingRight: 25
+        paddingRight: 25,
+        paddingTop: 20
     },
     text: {
         fontSize: 24,
@@ -147,6 +249,13 @@ const styles = StyleSheet.create({
     },
     shareButton: {
         paddingRight: 15,
+    },
+    tinyLogo: {
+        width: 150,
+        height: 150,
+        resizeMode: 'contain',
+        alignSelf: 'center',
+        marginTop: 75,
     },
 
 });

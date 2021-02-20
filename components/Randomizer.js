@@ -5,10 +5,6 @@ import { getData } from "./LocalStorage";
 
 export const categories = [
     'Identity',
-    'Confidence',
-    'Hope',
-    'Purity',
-    'Promises',
     'Authority',
     'Healing'
 ]
