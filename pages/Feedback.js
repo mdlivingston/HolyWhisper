@@ -20,9 +20,9 @@ import { useAuth } from '../context/AuthContext';
 import { useRef } from 'react';
 import { db } from '../helpers/Firebase';
 
-export default function PrayerRequest({ navigation: { goBack } })
+export default function Feedback({ navigation: { goBack } })
 {
-    const [value, onChangeText] = React.useState('Enter prayer request...');
+    const [value, onChangeText] = React.useState('Enter feedback...');
     const fallAnim = useRef(new Animated.Value(-100)).current
     const stokeAmin = useRef(new Animated.Value(1)).current
 
@@ -66,26 +66,26 @@ export default function PrayerRequest({ navigation: { goBack } })
     }
     const sendRequest = async () =>
     {
-        if (value && value != 'Enter prayer request...')
+        if (value && value != 'Enter feedback...')
             try
             {
-                await db.prayers
+                await db.feedback
                     .add({
                         uid: currentUser ? currentUser.uid : 'null',
                         prayer: value,
                         createdAt: db.getCurrentTimeStamp()
                     })
 
-                onChangeText('Enter prayer request...')
+                onChangeText('Enter feedback...')
 
-                Alert.alert('Success!', 'Your prayer request has been sent. Jesus loves you!')
+                Alert.alert('Success!', 'Your feedback has been submitted. Jesus loves you and thank you very much for your feedback!')
 
 
                 goBack();
             }
             catch (e)
             {
-                console.error('Prayer error.' + e)
+                console.error('Feedback error.' + e)
             }
     }
     return (

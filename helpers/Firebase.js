@@ -1,6 +1,21 @@
 import messaging from '@react-native-firebase/messaging';
 import { Alert } from 'react-native';
 import { allowNotificationKey, storeString } from './LocalStorage';
+import firestore from '@react-native-firebase/firestore';
+
+export const db = {
+    prayers: firestore().collection('Prayers'),
+    lastActive: firestore().collection('LastActive'),
+    feedback: firestore().collection('Feedback'),
+    formatDoc: doc =>
+    {
+        return {
+            id: doc.id,
+            ...doc.data(),
+        }
+    },
+    getCurrentTimeStamp: firestore.FieldValue.serverTimestamp
+}
 
 export async function requestUserPermission()
 {

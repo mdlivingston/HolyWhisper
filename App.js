@@ -24,29 +24,23 @@ import Settings from './pages/Settings';
 import GetWhisper from './pages/GetWhisper';
 import BackgroundFetch from 'react-native-background-fetch';
 import NotificationService from './notifications/NotificationService';
-import PushNotification from 'react-native-push-notification';
 import ShowWhisper from './pages/ShowWhisper';
 import PreferredWhispers from './pages/PreferredWhispers';
-import { handleFirebaseInit } from './components/Firebase';
-import { allowNotificationKey, getString } from './components/LocalStorage';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { handleFirebaseInit } from './helpers/Firebase';
+import { allowNotificationKey, getString } from './helpers/LocalStorage';
+import { AuthProvider } from './context/AuthContext';
 import PrayerRequest from './pages/PrayerRequest';
+import Feedback from './pages/Feedback';
 
 const Stack = createStackNavigator();
 const notifService = new NotificationService();
 
 export default function App()
 {
-
-
-    const appState = useRef(AppState.currentState);
     const fadeAnim = useRef(new Animated.Value(0)).current
-
 
     useEffect(() =>
     {
-
-
         const asyncFunc = async () =>
         {
             await handleFirebaseInit()
@@ -57,7 +51,6 @@ export default function App()
             notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
         }
         asyncFunc();
-
 
         setTimeout(() =>
         {
@@ -71,29 +64,7 @@ export default function App()
             ).start();
         }, 2000)
 
-        AppState.addEventListener("change", _handleAppStateChange);
-
-        return () =>
-        {
-            AppState.removeEventListener("change", _handleAppStateChange);
-        };
-
     }, [fadeAnim])
-
-
-    const _handleAppStateChange = (nextAppState) =>
-    {
-        if (
-            appState.current.match(/inactive|background/) &&
-            nextAppState === "active"
-        )
-        {
-            console.log("App has come to the foreground!");
-        }
-
-        appState.current = nextAppState;
-        console.log("AppState", appState.current);
-    };
 
     return (
         <AuthProvider>
@@ -109,7 +80,7 @@ export default function App()
 
                                     <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
                                         <Image
-                                            style={styles.tinyLogo}
+                                            style={styles.crossIcon}
                                             source={require('./assets/cross2.png')}
                                         />
                                     </TouchableOpacity>
@@ -152,44 +123,25 @@ export default function App()
                         headerBackTitleVisible: false,
                         headerTintColor: 'black'
                     }} component={PrayerRequest} />
+
+                    <Stack.Screen name="Feedback" options={{
+                        title: "Feedback",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black'
+                    }} component={Feedback} />
+
                 </Stack.Navigator>
             </NavigationContainer>
         </AuthProvider>
     );
-
-
 }
 
 const styles = StyleSheet.create({
-    center: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-        // backgroundColor: 'red'
-    },
-    button: {
-        alignItems: "center",
-        // backgroundColor: Colors.dark,
-        borderWidth: 1,
-        borderRadius: 2,
-        borderColor: '#ddd',
-        borderBottomWidth: 0,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        marginLeft: 5,
-        marginRight: 5,
-        marginTop: 10,
-    },
-    lightText: {
-        fontSize: 20
-    },
     settingsIcon: {
         paddingRight: 15,
     },
-    tinyLogo: {
+    crossIcon: {
         width: 35,
         height: 35,
         resizeMode: 'contain'

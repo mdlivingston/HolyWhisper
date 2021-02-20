@@ -30,7 +30,11 @@ export async function getRandomWhisper()
         case 'Healing':
             return healing[getRandomInt(0, healing.length - 1)]
         default:
-            return identity[getRandomInt(0, identity.length - 1)]
+            return identity[0]
     }
+}
 
+export function truncate(str, n)
+{
+    return (str.length > n) ? str.substr(0, n - 1) + '...' : str;
 }

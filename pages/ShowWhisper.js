@@ -16,11 +16,10 @@ import
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faShareSquare } from '@fortawesome/free-solid-svg-icons'
-import { getRandomWhisper } from '../components/Randomizer';
-import { removeValue } from '../components/LocalStorage';
-import { ShareWhisper } from '../components/Share';
+import { getRandomWhisper } from '../helpers/Randomizer';
+import { ShareWhisper } from '../helpers/Share';
 
-export default function ShowWhisper({ navigation })
+export default function ShowWhisper({ route, navigation })
 {
     const fadeAnim = useRef(new Animated.Value(0)).current
     const delayedFadeAnim = useRef(new Animated.Value(0)).current
@@ -29,12 +28,15 @@ export default function ShowWhisper({ navigation })
     const fireGrowAnim = useRef(new Animated.Value(1)).current
     const [randomWhisper, setRandomWhisper] = useState()
 
+    const { forcedWhisper } = route.params;
     useEffect(() =>
     {
         const asyncFunc = async () =>
         {
-            let randomW = await getRandomWhisper()
-            setRandomWhisper(randomW)
+            if (forcedWhisper)
+                setRandomWhisper(forcedWhisper)
+            else
+                setRandomWhisper(await getRandomWhisper())
 
             handleWordAnimationsEnter(1)
         }
@@ -59,7 +61,7 @@ export default function ShowWhisper({ navigation })
 
 
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} style={styles.center}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} style={styles.container}>
             <Animated.View style={{ opacity: fadeAnim }}>
                 <Text style={{ ...styles.text }}>
                     {randomWhisper ? randomWhisper.text : ''}
@@ -82,11 +84,8 @@ export default function ShowWhisper({ navigation })
             <Animated.View style={{ transform: [{ translateY: fireMoveAnim }, { scaleY: fireGrowAnim }], ...styles.button }}>
                 <TouchableWithoutFeedback onPress={() => newWhisper()}>
                     <Image
-                        style={styles.tinyLogo}
-                        source={
-                            //uri: 'https://tenor.com/view/fire-flames-blue-fire-burning-embers-gif-16971771.gif',
-                            require('../assets/blueFire.gif')
-                        }
+                        style={styles.blueFire}
+                        source={require('../assets/blueFire.gif')}
                     />
                 </TouchableWithoutFeedback>
             </Animated.View>
@@ -216,10 +215,7 @@ export default function ShowWhisper({ navigation })
 }
 
 const styles = StyleSheet.create({
-    center: {
-        // display: 'flex',
-        // alignItems: 'center',
-        // justifyContent: 'center',
+    container: {
         height: '100%',
         backgroundColor: 'white',
         paddingLeft: 25,
@@ -250,14 +246,13 @@ const styles = StyleSheet.create({
     shareButton: {
         paddingRight: 15,
     },
-    tinyLogo: {
-        width: 150,
-        height: 150,
+    blueFire: {
+        width: 100,
+        height: 100,
         resizeMode: 'contain',
         alignSelf: 'center',
         marginTop: 75,
         marginBottom: 25,
-
     },
     button: {
         shadowColor: '#000',
@@ -265,5 +260,4 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 2
     }
-
 });

@@ -11,8 +11,6 @@ import
     Alert,
     Animated
 } from 'react-native';
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import PushNotification from "react-native-push-notification";
 import NotificationService from '../notifications/NotificationService';
 
 
@@ -94,15 +92,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 10
     },
-    lightText: {
-        fontSize: 20
-        // color: 'white',
-    },
-    settingsIcon: {
-        paddingRight: 30,
-        // paddingTop: 30
-        // position: 'absolute',
-        // top: 70,
-        // right: 20
-    }
 });

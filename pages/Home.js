@@ -11,20 +11,16 @@ import
     Alert,
     Animated,
     Image,
-    Platform
+    Platform,
+    AppState
 } from 'react-native';
-import { compareAsc, format, addDays, addHours } from 'date-fns'
-import NotificationService from '../notifications/NotificationService';
 import { useAuth } from '../context/AuthContext';
-import firestore from '@react-native-firebase/firestore';
-
-
+import { db } from '../helpers/Firebase';
 
 export default function Home({ navigation })
 {
-    const { currentUser, login, logout } = useAuth()
-
-    const notifService = new NotificationService(null, null, navigation);
+    const { currentUser, login } = useAuth()
+    const appState = useRef(AppState.currentState);
     const fadeAnim = useRef(new Animated.Value(0)).current
 
     useEffect(() =>
@@ -45,7 +41,6 @@ export default function Home({ navigation })
         }
         asyncFunc();
 
-        //notifService.schedule5Notif()
         Animated.timing(
             fadeAnim,
             {
@@ -55,7 +50,43 @@ export default function Home({ navigation })
             },
         ).start();
 
+        AppState.addEventListener("change", _handleAppStateChange);
+
+        return () =>
+        {
+            AppState.removeEventListener("change", _handleAppStateChange);
+        };
+
     }, [fadeAnim])
+
+    const _handleAppStateChange = async (nextAppState) =>
+    {
+        if (
+            appState.current.match(/inactive|background/) &&
+            nextAppState === "active"
+        )
+        {
+            if (currentUser)
+            {
+                try
+                {
+                    await db.lastActive.doc(currentUser.uid)
+                        .set({
+                            uid: currentUser ? currentUser.uid : 'null',
+                            lastActive: db.getCurrentTimeStamp()
+                        })
+                }
+                catch (e)
+                {
+                    console.error('LastActive update failed.' + e)
+                }
+            }
+            console.log("App has come to the foreground!");
+        }
+
+        appState.current = nextAppState;
+        console.log("AppState", appState.current);
+    };
 
 
     return (
@@ -63,20 +94,15 @@ export default function Home({ navigation })
             <Animated.View style={{ opacity: fadeAnim }}>
 
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
-                    {/* <FontAwesomeIcon size={30} style={styles.lightText} icon={faFire} /> */}
                     <Image
-                        style={styles.tinyLogo}
-                        source={
-                            //uri: 'https://tenor.com/view/fire-flames-blue-fire-burning-embers-gif-16971771.gif',
-                            require('../assets/blueFire.gif')
-                        }
+                        style={styles.blueFire}
+                        source={require('../assets/blueFire.gif')}
                     />
                 </TouchableOpacity>
 
                 <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }}>
                     Get a Whisper
                 </Text>
-
             </Animated.View>
 
         </View>
@@ -107,16 +133,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 2
     },
-    lightText: {
-        fontSize: 20,
-        color: '#3104ec',
-    },
-    settingsIcon: {
-        position: 'absolute',
-        top: 70,
-        right: 20
-    },
-    tinyLogo: {
+    blueFire: {
         width: 50,
         height: 50,
         resizeMode: 'contain'

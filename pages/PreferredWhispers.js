@@ -13,8 +13,8 @@ import
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { getData, preferredWhispersKey, removeValue, storeData } from '../components/LocalStorage';
-import { categories } from '../components/Randomizer';
+import { getData, preferredWhispersKey, storeData } from '../helpers/LocalStorage';
+import { categories } from '../helpers/Randomizer';
 
 export default function PreferredWhispers()
 {
@@ -26,11 +26,10 @@ export default function PreferredWhispers()
         {
             let storage = await getData(preferredWhispersKey)
 
-            if (!storage)
+            if (!storage) // First time on page
                 await storeData(preferredWhispersKey, [])
 
             setSelectedIds(await getData(preferredWhispersKey))
-            //removeValue()
         }
         asyncFunc()
     }, [])
@@ -48,7 +47,6 @@ export default function PreferredWhispers()
         setSelectedIds(tempSelected)
         await storeData(preferredWhispersKey, tempSelected)
         await console.log(await getData(preferredWhispersKey))
-
     }
 
     async function clickAll()

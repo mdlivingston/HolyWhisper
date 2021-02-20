@@ -15,37 +15,15 @@ import
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
-import { requestUserPermission } from '../components/Firebase';
-import { allowNotificationKey, getString, storeString } from '../components/LocalStorage';
+import { requestUserPermission } from '../helpers/Firebase';
+import { allowNotificationKey, getString, storeString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
+import { getRandomWhisper, truncate } from '../helpers/Randomizer';
 
-export default function Settings({ route, navigation })
+export default function Settings({ navigation })
 {
     const notifService = new NotificationService(null, null, navigation)
-    const { name } = route.params;
     const [isEnabled, setIsEnabled] = useState(false);
-
-    const toggleSwitch = async () => 
-    {
-        const enabled = await requestUserPermission()
-        setIsEnabled(previousState => enabled ? !previousState : false);
-
-        if (!enabled)
-        {
-            Linking.openURL('app-settings:');
-        }
-
-        storeString(allowNotificationKey, !isEnabled ? 'true' : 'false')
-
-        if (!isEnabled) // True
-        {
-            await notifService.fillScheduledNotifications()
-        }
-        else
-            notifService.cancelAll()
-
-        notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
-    }
 
     useEffect(() =>
     {
@@ -55,7 +33,7 @@ export default function Settings({ route, navigation })
 
             const enabled = await requestUserPermission()
             if (!enabled) // Force to false if permissions have change
-                setIsEnabled(enabled);
+                setIsEnabled(false);
             else if (allowNotif === 'true') //
                 setIsEnabled(true)
             else
@@ -70,6 +48,28 @@ export default function Settings({ route, navigation })
         asyncFunc()
     }, [])
 
+    const toggleSwitch = async () => 
+    {
+        const enabled = await requestUserPermission()
+        setIsEnabled(previousState => enabled ? !previousState : false);
+
+        if (!enabled)
+        {
+            Linking.openURL('app-settings:'); // Go to settings
+        }
+
+        storeString(allowNotificationKey, !isEnabled ? 'true' : 'false')
+
+        if (!isEnabled) // True
+        {
+            await notifService.fillScheduledNotifications()
+        }
+        else
+            notifService.cancelAll()
+
+        notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
+    }
+
     return (
         <View style={styles.container}>
 
@@ -80,6 +80,11 @@ export default function Settings({ route, navigation })
             </TouchableOpacity>
             <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PrayerRequest', { name: 'Jane' })}>
                 <Text style={styles.title}>Prayer Request</Text>
+                <Text style={{ width: 2, flex: 1 }}></Text>
+                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Feedback', { name: 'Jane' })}>
+                <Text style={styles.title}>Submit Feedback</Text>
                 <Text style={{ width: 2, flex: 1 }}></Text>
                 <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
             </TouchableOpacity>
@@ -100,7 +105,7 @@ export default function Settings({ route, navigation })
 
             {/* <TouchableOpacity
                 style={styles.button}
-                onPress={() => notifService.localNotif()}
+                onPress={() => testNotif()}
             >
                 <Text>
                     Test Notification
@@ -109,6 +114,12 @@ export default function Settings({ route, navigation })
 
         </View>
     )
+
+    // async function testNotif()
+    // {
+    //     let random = await getRandomWhisper();
+    //     notifService.schedule5Notif(null, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(random.text, 100)} ${random.verse}`, null, random)
+    // }
 }
 const styles = StyleSheet.create({
     container: {
