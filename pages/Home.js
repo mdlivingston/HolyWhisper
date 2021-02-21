@@ -16,15 +16,19 @@ import
 } from 'react-native';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../helpers/Firebase';
+import { allowNotificationKey, getString } from '../helpers/LocalStorage';
+import NotificationService from '../notifications/NotificationService';
 
 export default function Home({ navigation })
 {
     const { currentUser, login } = useAuth()
     const appState = useRef(AppState.currentState);
     const fadeAnim = useRef(new Animated.Value(0)).current
+    const notifService = new NotificationService(null, null, navigation);
 
     useEffect(() =>
     {
+
         const asyncFunc = async () =>
         {
             try
@@ -36,6 +40,11 @@ export default function Home({ navigation })
             {
                 console.log('Failed to login.' + e)
             }
+
+            if (await getString(allowNotificationKey) === 'true')
+                await notifService.fillScheduledNotifications()
+
+            notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
 
             console.log(currentUser)
         }
@@ -59,6 +68,22 @@ export default function Home({ navigation })
 
     }, [fadeAnim])
 
+    React.useLayoutEffect(() =>
+    {
+        navigation.setOptions({
+            headerRight: () => (
+                <Animated.View style={{ opacity: fadeAnim }}>
+                    <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
+                        <Image
+                            style={styles.crossIcon}
+                            source={require('../assets/cross2.png')}
+                        />
+                    </TouchableOpacity>
+                </Animated.View>
+            ),
+        });
+    }, [navigation]);
+
     const _handleAppStateChange = async (nextAppState) =>
     {
         if (
@@ -72,7 +97,7 @@ export default function Home({ navigation })
                 {
                     await db.lastActive.doc(currentUser.uid)
                         .set({
-                            uid: currentUser ? currentUser.uid : 'null',
+                            uid: currentUser.uid,
                             lastActive: db.getCurrentTimeStamp()
                         })
                 }
@@ -136,6 +161,14 @@ const styles = StyleSheet.create({
     blueFire: {
         width: 55,
         height: 55,
+        resizeMode: 'contain'
+    },
+    settingsIcon: {
+        paddingRight: 15,
+    },
+    crossIcon: {
+        width: 35,
+        height: 35,
         resizeMode: 'contain'
     },
 });

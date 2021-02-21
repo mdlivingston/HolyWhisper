@@ -34,11 +34,10 @@ import Feedback from './pages/Feedback';
 import FavoriteWhispers from './pages/FavoriteWhispers';
 
 const Stack = createStackNavigator();
-const notifService = new NotificationService();
+
 
 export default function App()
 {
-    const fadeAnim = useRef(new Animated.Value(0)).current
 
     useEffect(() =>
     {
@@ -46,49 +45,20 @@ export default function App()
         {
             await handleFirebaseInit()
 
-            if (await getString(allowNotificationKey) === 'true')
-                await notifService.fillScheduledNotifications()
-
-            notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
         }
         asyncFunc();
 
-        setTimeout(() =>
-        {
-            Animated.timing(
-                fadeAnim,
-                {
-                    toValue: 1,
-                    duration: 3000,
-                    useNativeDriver: true // Add This line
-                },
-            ).start();
-        }, 2000)
-
-    }, [fadeAnim])
+    }, [])
 
     return (
         <AuthProvider>
             <NavigationContainer>
                 {Platform.OS === 'ios' ? <StatusBar barStyle="dark-content" /> : <StatusBar barStyle="light-content" />}
                 <Stack.Navigator initialRouteName="Home" detachInactiveScreens={true}>
-                    <Stack.Screen name="Home" options={({ navigation, route }) => (
-                        {
-                            title: '',
-                            headerTransparent: true,
-                            headerRight: () => (
-                                <Animated.View style={{ opacity: fadeAnim }}>
-
-                                    <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
-                                        <Image
-                                            style={styles.crossIcon}
-                                            source={require('./assets/cross2.png')}
-                                        />
-                                    </TouchableOpacity>
-
-                                </Animated.View>
-                            ),
-                        })} component={Home} />
+                    <Stack.Screen name="Home" options={{
+                        title: '',
+                        headerTransparent: true,
+                    }} component={Home} />
 
                     <Stack.Screen name="Settings" options={{
                         headerTransparent: false,
@@ -146,14 +116,6 @@ export default function App()
 }
 
 const styles = StyleSheet.create({
-    settingsIcon: {
-        paddingRight: 15,
-    },
-    crossIcon: {
-        width: 35,
-        height: 35,
-        resizeMode: 'contain'
-    },
 });
 
 

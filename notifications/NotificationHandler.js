@@ -6,13 +6,13 @@ class NotificationHandler
 
     onNotification(notification)
     {
-        // console.log('NotificationHandler:', notification);
 
         if (notification.userInteraction)
         {
             PushNotification.setApplicationIconBadgeNumber(0);
             if (notification.title === 'Your Daily Whisper Has Arrived! 🔥')
             {
+                console.log('NotificationHandler:', notification);
                 this.goToWhisper.navigate('ShowWhisper', { forcedWhisper: notification.data.whisper })
             }
         }
@@ -32,6 +32,7 @@ class NotificationHandler
             this._onRegister(token);
         }
     }
+
 
     onAction(notification)
     {

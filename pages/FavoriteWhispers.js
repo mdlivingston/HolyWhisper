@@ -30,7 +30,7 @@ export default function FavoriteWhispers({ navigation, route })
         const unsubscribe = navigation.addListener('focus', async () =>
         {
             const favs = await db.favoriteWhispers.where('uid', '==', currentUser.uid)
-                //.orderBy('createdAt', 'desc')
+                .orderBy('createdAt', 'desc')
                 .get()
 
             console.log(favs.docs.map(doc => db.formatDoc(doc)))
