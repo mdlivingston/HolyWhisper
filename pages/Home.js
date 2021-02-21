@@ -134,8 +134,8 @@ const styles = StyleSheet.create({
         shadowRadius: 2
     },
     blueFire: {
-        width: 50,
-        height: 50,
+        width: 55,
+        height: 55,
         resizeMode: 'contain'
     },
 });

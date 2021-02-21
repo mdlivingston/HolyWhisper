@@ -7,6 +7,7 @@ export const db = {
     prayers: firestore().collection('Prayers'),
     lastActive: firestore().collection('LastActive'),
     feedback: firestore().collection('Feedback'),
+    favoriteWhispers: firestore().collection('FavoriteWhispers'),
     formatDoc: doc =>
     {
         return {

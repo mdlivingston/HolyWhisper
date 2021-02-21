@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         width: '90%',
-        height: Platform.OS === 'ios' ? 175 : 75,
+        height: Platform.OS === 'ios' ? 125 : 75,
         //backgroundColor: 'blue',
         borderWidth: 1,
         borderRadius: 5,

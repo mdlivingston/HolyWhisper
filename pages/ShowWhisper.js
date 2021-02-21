@@ -15,9 +15,13 @@ import
     TouchableWithoutFeedback
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faShareSquare } from '@fortawesome/free-solid-svg-icons'
+import { faShareSquare, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as outlinedHeart } from '@fortawesome/free-regular-svg-icons'
 import { getRandomWhisper } from '../helpers/Randomizer';
 import { ShareWhisper } from '../helpers/Share';
+import { db } from '../helpers/Firebase';
+import { useAuth } from '../context/AuthContext';
+import NetInfo from "@react-native-community/netinfo";
 
 export default function ShowWhisper({ route, navigation })
 {
@@ -27,16 +31,30 @@ export default function ShowWhisper({ route, navigation })
     const fireMoveAnim = useRef(new Animated.Value(1000)).current
     const fireGrowAnim = useRef(new Animated.Value(1)).current
     const [randomWhisper, setRandomWhisper] = useState()
+    const [favoriteWhisper, setFavoriteWhisper] = useState()
+    const [disabled, setDisabled] = useState()
+
+    const { currentUser } = useAuth()
 
     const { forcedWhisper } = route.params;
     useEffect(() =>
     {
+
         const asyncFunc = async () =>
         {
+            let whisper;
             if (forcedWhisper)
+            {
                 setRandomWhisper(forcedWhisper)
+                whisper = forcedWhisper;
+            }
             else
-                setRandomWhisper(await getRandomWhisper())
+            {
+                whisper = await getRandomWhisper()
+                setRandomWhisper(whisper)
+            }
+
+            await grabFavoriteWhisper(whisper)
 
             handleWordAnimationsEnter(1)
         }
@@ -48,17 +66,70 @@ export default function ShowWhisper({ route, navigation })
     {
         navigation.setOptions({
             headerRight: () => (
-                <TouchableOpacity onPress={() => ShareWhisper({
-                    title: 'Share this Holy Whisper',
-                    message: `${randomWhisper.text} ${randomWhisper.verse} ${randomWhisper.version} Sent with Holy Whisper.`
-                })}
-                    style={styles.shareButton} >
-                    <FontAwesomeIcon size={20} icon={faShareSquare} />
-                </TouchableOpacity>
+                <View style={{ display: 'flex', flexDirection: 'row' }}>
+                    <TouchableOpacity disabled={disabled} onPress={favoriteWhisper ? onUnFavorite : onFavorite}
+                        style={styles.shareButton} >
+                        <FontAwesomeIcon size={20} icon={favoriteWhisper ? faHeart : outlinedHeart} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => ShareWhisper({
+                        title: 'Share this Holy Whisper',
+                        message: `${randomWhisper.text} ${randomWhisper.verse} ${randomWhisper.version} - Sent with the Holy Whisper app!.`
+                    })}
+                        style={styles.shareButton} >
+                        <FontAwesomeIcon size={20} icon={faShareSquare} />
+                    </TouchableOpacity>
+                </View>
             ),
         });
-    }, [navigation, randomWhisper]);
+    }, [navigation, randomWhisper, favoriteWhisper, disabled]);
 
+    const grabFavoriteWhisper = async (whisper) =>
+    {
+        let fbFavoriteArray = await db.favoriteWhispers.where('verse', '==', whisper.verse).where('uid', '==', currentUser.uid).get()
+
+        fbFavoriteArray = fbFavoriteArray.docs.map(doc => db.formatDoc(doc))
+
+        setFavoriteWhisper(fbFavoriteArray[0])
+    }
+
+    const onFavorite = async () =>
+    {
+        NetInfo.fetch().then(async (state) =>
+        {
+            console.log("Connection type", state.type);
+            console.log("Is connected?", state.isConnected);
+            if (state.isConnected)
+                await addFavorite()
+        });
+    }
+
+    const onUnFavorite = async () =>
+    {
+        await deleteFavorite()
+        setFavoriteWhisper(null)
+    }
+
+    const addFavorite = async () =>
+    {
+        setDisabled(true)
+        await db.favoriteWhispers.add({
+            ...randomWhisper,
+            createdAt: db.getCurrentTimeStamp(),
+            uid: currentUser.uid
+        }).then((data) =>
+        {
+            console.log(data.id)
+            setFavoriteWhisper({ ...randomWhisper, id: data.id })
+            setDisabled(false)
+        })
+    }
+
+    const deleteFavorite = async () =>
+    {
+        setDisabled(true)
+        await db.favoriteWhispers.doc(favoriteWhisper.id).delete()
+        setDisabled(false)
+    }
 
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} style={styles.container}>
@@ -120,6 +191,8 @@ export default function ShowWhisper({ route, navigation })
         {
             let randomW = await getRandomWhisper()
             setRandomWhisper(randomW)
+
+            await grabFavoriteWhisper(randomW)
 
             handleWordAnimationsEnter()
         }, 1000);

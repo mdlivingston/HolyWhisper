@@ -78,17 +78,11 @@ export default function Settings({ navigation })
                 <Text style={{ width: 2, flex: 1 }}></Text>
                 <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PrayerRequest', { name: 'Jane' })}>
-                <Text style={styles.title}>Prayer Request</Text>
+            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('FavoriteWhispers', { name: 'Jane' })}>
+                <Text style={styles.title}>Favorite Whispers</Text>
                 <Text style={{ width: 2, flex: 1 }}></Text>
                 <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Feedback', { name: 'Jane' })}>
-                <Text style={styles.title}>Submit Feedback</Text>
-                <Text style={{ width: 2, flex: 1 }}></Text>
-                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-            </TouchableOpacity>
-
             <TouchableWithoutFeedback >
                 <View style={styles.section}>
                     <Text style={styles.title}>Daily Whisper Notifications</Text>
@@ -102,6 +96,16 @@ export default function Settings({ navigation })
                     />
                 </View>
             </TouchableWithoutFeedback>
+            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PrayerRequest', { name: 'Jane' })}>
+                <Text style={styles.title}>Prayer Request</Text>
+                <Text style={{ width: 2, flex: 1 }}></Text>
+                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Feedback', { name: 'Jane' })}>
+                <Text style={styles.title}>Submit Feedback</Text>
+                <Text style={{ width: 2, flex: 1 }}></Text>
+                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+            </TouchableOpacity>
 
             {/* <TouchableOpacity
                 style={styles.button}

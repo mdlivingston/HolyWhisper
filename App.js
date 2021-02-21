@@ -31,6 +31,7 @@ import { allowNotificationKey, getString } from './helpers/LocalStorage';
 import { AuthProvider } from './context/AuthContext';
 import PrayerRequest from './pages/PrayerRequest';
 import Feedback from './pages/Feedback';
+import FavoriteWhispers from './pages/FavoriteWhispers';
 
 const Stack = createStackNavigator();
 const notifService = new NotificationService();
@@ -130,6 +131,13 @@ export default function App()
                         headerBackTitleVisible: false,
                         headerTintColor: 'black'
                     }} component={Feedback} />
+
+                    <Stack.Screen name="FavoriteWhispers" options={{
+                        title: "Favorite Whispers",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black'
+                    }} component={FavoriteWhispers} />
 
                 </Stack.Navigator>
             </NavigationContainer>
