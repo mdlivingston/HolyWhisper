@@ -21,7 +21,7 @@ import NotificationService from '../notifications/NotificationService';
 
 export default function Home({ navigation })
 {
-    const { currentUser, login } = useAuth()
+    const { currentUser, login, logout } = useAuth()
     const appState = useRef(AppState.currentState);
     const fadeAnim = useRef(new Animated.Value(0)).current
     const notifService = new NotificationService(null, null, navigation);
@@ -44,7 +44,7 @@ export default function Home({ navigation })
             if (await getString(allowNotificationKey) === 'true')
                 await notifService.fillScheduledNotifications()
 
-            notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
+            //notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
 
             console.log(currentUser)
         }
