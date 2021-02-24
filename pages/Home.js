@@ -34,7 +34,9 @@ export default function Home({ navigation })
             try
             {
                 if (!currentUser)
-                    await login()
+                    await login().then((e) => console.log('Login Done'))
+                else
+                    await lastActive()
             }
             catch (e)
             {
@@ -46,8 +48,9 @@ export default function Home({ navigation })
 
             //notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
 
-            console.log(currentUser)
+            //console.log(currentUser)
         }
+
         asyncFunc();
 
         Animated.timing(
@@ -66,7 +69,23 @@ export default function Home({ navigation })
             AppState.removeEventListener("change", _handleAppStateChange);
         };
 
-    }, [fadeAnim])
+    }, [fadeAnim, currentUser])
+
+    useEffect(() =>
+    {
+        //On screen load no matter the history
+        const unsubscribe = navigation.addListener('focus', async () =>
+        {
+            console.log(currentUser)
+            if (currentUser)
+            {
+                await lastActive()
+            }
+        });
+
+        return unsubscribe;
+    }, [currentUser])
+
 
     React.useLayoutEffect(() =>
     {
@@ -93,18 +112,7 @@ export default function Home({ navigation })
         {
             if (currentUser)
             {
-                try
-                {
-                    await db.lastActive.doc(currentUser.uid)
-                        .set({
-                            uid: currentUser.uid,
-                            lastActive: db.getCurrentTimeStamp()
-                        })
-                }
-                catch (e)
-                {
-                    console.error('LastActive update failed.' + e)
-                }
+                await lastActive()
             }
             console.log("App has come to the foreground!");
         }
@@ -112,6 +120,24 @@ export default function Home({ navigation })
         appState.current = nextAppState;
         console.log("AppState", appState.current);
     };
+
+    const lastActive = async () =>
+    {
+        try
+        {
+            await db.lastActive.doc(currentUser.uid)
+                .set({
+                    uid: currentUser.uid,
+                    lastActive: db.getCurrentTimeStamp()
+                }).then(() => console.log('Last Active Recorded'))
+        }
+        catch (e)
+        {
+            console.error('LastActive update failed.' + e)
+        }
+    }
+
+
 
 
     return (

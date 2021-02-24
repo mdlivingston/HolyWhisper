@@ -54,9 +54,10 @@ export default function ShowWhisper({ route, navigation })
                 setRandomWhisper(whisper)
             }
 
+            handleWordAnimationsEnter()
+
             await grabFavoriteWhisper(whisper)
 
-            handleWordAnimationsEnter(1)
         }
         asyncFunc()
 

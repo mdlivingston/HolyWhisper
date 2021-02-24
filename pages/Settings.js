@@ -119,11 +119,11 @@ export default function Settings({ navigation })
         </View>
     )
 
-    // async function testNotif()
-    // {
-    //     let random = await getRandomWhisper();
-    //     notifService.schedule5Notif(null, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(random.text, 100)} ${random.verse}`, null, random)
-    // }
+    async function testNotif()
+    {
+        let random = await getRandomWhisper();
+        notifService.schedule5Notif(null, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(random.text, 100)} ${random.verse}`, null, random)
+    }
 }
 const styles = StyleSheet.create({
     container: {

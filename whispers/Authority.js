@@ -7,7 +7,7 @@ export const authority = [
     },
 
     {
-        text: "\"Yes,\" he told them, \"I saw Satan fall from heaven like lightning! 19 Look, I have given you authority over all the power of the enemy, and you can walk among snakes and scorpions and crush them. Nothing will injure you.\"",
+        text: "\"Yes,\" he told them, \"I saw Satan fall from heaven like lightning! Look, I have given you authority over all the power of the enemy, and you can walk among snakes and scorpions and crush them. Nothing will injure you.\"",
         verse: "Luke 10:18-19",
         category: 'Authority in Christ',
         version: "NLT"
