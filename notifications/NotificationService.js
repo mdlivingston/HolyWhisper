@@ -171,10 +171,11 @@ export default class NotificationService
             assignedTime.setSeconds(0)
             assignedTime.setMilliseconds(0);
 
-            const randomWhisper = await getRandomWhisper()
+            //const randomWhisper = await getRandomWhisper()
 
             if (assignedTime >= new Date())
-                this.scheduleNotif(assignedTime, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(randomWhisper.text, 100)} ${randomWhisper.verse}`, 'default', randomWhisper)
+                this.scheduleNotif(assignedTime, 'Your Daily Whisper Has Arrived! 🔥', `Tap to recieve it!`, 'default', {})
+            //this.scheduleNotif(assignedTime, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(randomWhisper.text, 100)} ${randomWhisper.verse}`, 'default', randomWhisper)
         }
     }
 

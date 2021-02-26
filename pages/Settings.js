@@ -121,8 +121,9 @@ export default function Settings({ navigation })
 
     async function testNotif()
     {
-        let random = await getRandomWhisper();
-        notifService.schedule5Notif(null, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(random.text, 100)} ${random.verse}`, null, random)
+        // let random = await getRandomWhisper();
+        // notifService.schedule5Notif(null, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(random.text, 100)} ${random.verse}`, null, random)
+        notifService.schedule5Notif(null, 'Your Daily Whisper Has Arrived! 🔥', `Tap to recieve it!`, 'default', {})
     }
 }
 const styles = StyleSheet.create({
