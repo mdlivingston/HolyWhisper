@@ -129,7 +129,7 @@ export default function Home({ navigation })
                 .set({
                     uid: currentUser.uid,
                     lastActive: db.getCurrentTimeStamp()
-                }).then(() => console.log('Last Active Recorded'))
+                }, { merge: true }).then(() => console.log('Last Active Recorded'))
         }
         catch (e)
         {

@@ -32,6 +32,7 @@ import { AuthProvider } from './context/AuthContext';
 import PrayerRequest from './pages/PrayerRequest';
 import Feedback from './pages/Feedback';
 import FavoriteWhispers from './pages/FavoriteWhispers';
+import Salvation from './pages/Salvation';
 
 const Stack = createStackNavigator();
 
@@ -108,6 +109,13 @@ export default function App()
                         headerBackTitleVisible: false,
                         headerTintColor: 'black'
                     }} component={FavoriteWhispers} />
+
+                    <Stack.Screen name="Salvation" options={{
+                        title: "Salvation",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black'
+                    }} component={Salvation} />
 
                 </Stack.Navigator>
             </NavigationContainer>
