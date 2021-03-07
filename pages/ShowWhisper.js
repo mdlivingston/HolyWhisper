@@ -69,7 +69,7 @@ export default function ShowWhisper({ route, navigation })
             headerRight: () => (
                 <View style={{ display: 'flex', flexDirection: 'row' }}>
                     <TouchableOpacity disabled={disabled} onPress={favoriteWhisper ? onUnFavorite : onFavorite}
-                        style={styles.shareButton} >
+                        style={styles.heartButton} >
                         <FontAwesomeIcon size={20} icon={favoriteWhisper ? faHeart : outlinedHeart} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => ShareWhisper({
@@ -316,6 +316,9 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontStyle: 'italic',
         alignSelf: 'flex-end'
+    },
+    heartButton: {
+        paddingRight: 20
     },
     shareButton: {
         paddingRight: 15,

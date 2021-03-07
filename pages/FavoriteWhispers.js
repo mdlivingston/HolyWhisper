@@ -72,7 +72,7 @@ export default function FavoriteWhispers({ navigation, route })
             {favoriteWhispers.length == 0 && (
                 <View style={styles.center}>
 
-                    <Text>No favorites</Text>
+                    <Text>No favorites added yet.</Text>
                 </View>
             )}
         </ScrollView>
@@ -82,10 +82,11 @@ const styles = StyleSheet.create({
     center: {
         height: '100%',
         display: 'flex',
-        alignItems: 'center',
+        flexGrow: 1,
         justifyContent: 'center',
-        //backgroundColor: 'white',
-        padding: 25
+        alignItems: 'center',
+        backgroundColor: 'white',
+        padding: 25,
     },
     container: {
         height: '100%',

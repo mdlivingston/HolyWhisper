@@ -104,6 +104,7 @@ export default function Feedback({ navigation: { goBack } })
                 style={styles.textInput}
                 onChangeText={text => onChangeText(text)}
                 value={value}
+                selectTextOnFocus
             />
             <TouchableOpacity style={styles.button} onPress={sendRequest}>
                 <Text style={styles.title}>Send</Text>

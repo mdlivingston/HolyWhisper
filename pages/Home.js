@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        borderColor: 'black',
+        borderColor: 'lightgrey',
         borderWidth: .5,
         width: 100,
         height: 100,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
-        shadowRadius: 2
+        shadowRadius: 1
     },
     blueFire: {
         width: 55,

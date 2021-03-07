@@ -25,7 +25,7 @@ export default function Salvation()
             <Text style={styles.numbered}>2. Acknowledge that it’s only through faith in the death and resurrection of Jesus Christ that you can be saved and have eternal life with God. (Romans 4:24-25; John 14:6; John 3:16)</Text>
             <Text style={styles.numbered}>3. Respond to this amazing free gift of eternal life by turning from any sin you have, putting your faith and dependence in Jesus, and following Him as the Lord of your life. (Acts 3:19)</Text>
             <Text style={styles.numbered}>4. You can say a simple prayer to God that will mark this day and allow you to begin a relationship with him today! It’s not the prayer that saves you, it’s the person you are speaking to that saves you: Jesus, thank you for loving me so much that you proved I’m worth dying for. Thank you, Father, for raising Him up from the dead so that I can have eternal life with you. Today I make you my Lord (the ruler and complete authority of my life) and Savior (the one who saved me from my sin and death). Holy Spirit of Jesus, I invite you into my life as a friend, and I ask you to change me from the inside out so I can live my whole life for you from this day forward. Amen. </Text>
-            <Text style={styles.text}>Next steps:</Text>
+            <Text style={styles.title}>Next steps:</Text>
             <Text style={styles.numbered}>1. Receive the baptism in the Holy Spirit. This is a free gift, and it is given to you by Jesus. He wants to put His Spirit in you, so that your Spirit can become one with His spirit (Matthew 3:11). Luke 24:49 explains the baptism in the Holy Spirit as being clothed with heavenly power. When the believers in the early church received the baptism in the Holy Spirit, it came with evidence- speaking in new tongues/ heavenly languages, wind, what appeared to be fire, restoration of sight from blindness, worship, and prophecy. See Acts 2:1-6; Acts 8:14-19; Acts 9:17-19; Acts 10:44-48; Acts 19:1-6. Jesus says that this gift will be given to anyone who asks, so it’s as easy as asking for it (Luke 11:13): Jesus, I want to receive the gift of the Holy Spirit. Please baptize me in your Holy Spirit today. Amen. </Text>
             <Text style={styles.numbered}>2. Find a local church to do life with. (Hebrews 10:25; Acts 2:42)</Text>
             <Text style={styles.numbered}>3. Be water baptized as a symbol of what Jesus has done for you (Acts 2:38). You have died to your old sin nature and have been raised up, born again into a new life in Christ.</Text>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: 'bold',
         fontSize: 24,
-        padding: 10
+        padding: 5
     },
     text: {
         padding: 5,
