@@ -22,6 +22,7 @@ import { useAuth } from '../context/AuthContext';
 export default function FavoriteWhispers({ navigation, route })
 {
     const [favoriteWhispers, setFavoriteWhispers] = useState([])
+    const [loading, setLoading] = useState(true)
     const { currentUser } = useAuth()
 
     useEffect(() =>
@@ -29,6 +30,7 @@ export default function FavoriteWhispers({ navigation, route })
         //On screen load no matter the history
         const unsubscribe = navigation.addListener('focus', async () =>
         {
+            setLoading(true)
             const favs = await db.favoriteWhispers.where('uid', '==', currentUser.uid)
                 .orderBy('createdAt', 'desc')
                 .get()
@@ -36,6 +38,7 @@ export default function FavoriteWhispers({ navigation, route })
             console.log(favs.docs.map(doc => db.formatDoc(doc)))
 
             setFavoriteWhispers(favs.docs.map(doc => db.formatDoc(doc)))
+            setLoading(false)
         });
 
         return unsubscribe;
@@ -71,8 +74,7 @@ export default function FavoriteWhispers({ navigation, route })
             )}
             {favoriteWhispers.length == 0 && (
                 <View style={styles.center}>
-
-                    <Text>No favorites added yet.</Text>
+                    <Text>{loading ? 'Loading...' : 'No favorites added yet.'}</Text>
                 </View>
             )}
         </ScrollView>
