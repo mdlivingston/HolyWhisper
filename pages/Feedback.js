@@ -72,7 +72,7 @@ export default function Feedback({ navigation: { goBack } })
                 await db.feedback
                     .add({
                         uid: currentUser ? currentUser.uid : 'null',
-                        prayer: value,
+                        feedback: value,
                         createdAt: db.getCurrentTimeStamp()
                     })
 
