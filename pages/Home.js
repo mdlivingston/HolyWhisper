@@ -14,6 +14,7 @@ import
     Platform,
     AppState
 } from 'react-native';
+import PushNotification from 'react-native-push-notification';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../helpers/Firebase';
 import { allowNotificationKey, getString } from '../helpers/LocalStorage';
@@ -76,7 +77,8 @@ export default function Home({ navigation })
         //On screen load no matter the history
         const unsubscribe = navigation.addListener('focus', async () =>
         {
-            console.log(currentUser)
+            PushNotification.setApplicationIconBadgeNumber(0);
+
             if (currentUser)
             {
                 await lastActive()
