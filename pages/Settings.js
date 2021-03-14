@@ -101,7 +101,7 @@ export default function Settings({ navigation })
             </TouchableOpacity>
             <TouchableWithoutFeedback >
                 <View style={styles.section}>
-                    <Text style={styles.title}>Daily Whisper Notifications</Text>
+                    <Text style={styles.title}>Daily Whisper Reminders</Text>
                     <Text style={{ width: 2, flex: 1 }}></Text>
                     <Switch
                         trackColor={{ false: "#767577", true: "limegreen" }}

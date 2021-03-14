@@ -59,22 +59,24 @@ export default function PreferredWhispers()
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView>
+            <View style={styles.container}>
 
-            <TouchableOpacity style={styles.section} onPress={() => clickAll()}>
-                <Text style={styles.title}>All</Text>
-                <Text style={{ width: 2, flex: 1 }}></Text>
-                {!selectedIds || (selectedIds && selectedIds.length < 1) && <FontAwesomeIcon style={{ color: 'limegreen' }} size={15} icon={faCheck} />}
-            </TouchableOpacity>
-
-            { categories.map((c, i) => (
-                <TouchableOpacity key={c} style={styles.section} onPress={() => changeSelectedId(c)}>
-                    <Text style={styles.title}>{c}</Text>
+                <TouchableOpacity style={styles.section} onPress={() => clickAll()}>
+                    <Text style={styles.title}>All</Text>
                     <Text style={{ width: 2, flex: 1 }}></Text>
-                    {selectedIds && selectedIds.findIndex(s => s === c) > -1 && <FontAwesomeIcon style={{ color: 'limegreen' }} size={15} icon={faCheck} />}
+                    {!selectedIds || (selectedIds && selectedIds.length < 1) && <FontAwesomeIcon style={{ color: 'limegreen' }} size={15} icon={faCheck} />}
                 </TouchableOpacity>
-            ))}
-        </View>
+
+                {categories.map((c, i) => (
+                    <TouchableOpacity key={c} style={styles.section} onPress={() => changeSelectedId(c)}>
+                        <Text style={styles.title}>{c}</Text>
+                        <Text style={{ width: 2, flex: 1 }}></Text>
+                        {selectedIds && selectedIds.findIndex(s => s === c) > -1 && <FontAwesomeIcon style={{ color: 'limegreen' }} size={15} icon={faCheck} />}
+                    </TouchableOpacity>
+                ))}
+            </View>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({

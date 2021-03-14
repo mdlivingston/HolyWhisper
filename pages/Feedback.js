@@ -22,7 +22,7 @@ import { db } from '../helpers/Firebase';
 
 export default function Feedback({ navigation: { goBack } })
 {
-    const [value, onChangeText] = React.useState('Enter app feedback...');
+    const [value, onChangeText] = React.useState('How can we improve the app?');
     const fallAnim = useRef(new Animated.Value(-100)).current
     const stokeAmin = useRef(new Animated.Value(1)).current
 
@@ -66,7 +66,7 @@ export default function Feedback({ navigation: { goBack } })
     }
     const sendRequest = async () =>
     {
-        if (value && value != 'Enter app feedback...')
+        if (value && value != 'How can we improve the app?')
             try
             {
                 await db.feedback
@@ -76,7 +76,7 @@ export default function Feedback({ navigation: { goBack } })
                         createdAt: db.getCurrentTimeStamp()
                     })
 
-                onChangeText('Enter app feedback...')
+                onChangeText('How can we improve the app?')
 
                 Alert.alert('Success!', 'Your feedback has been submitted. Jesus loves you and thank you very much for your feedback!')
 
