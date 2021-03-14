@@ -139,9 +139,6 @@ export default function Home({ navigation })
         }
     }
 
-
-
-
     return (
         <View style={styles.center}>
             <Animated.View style={{ opacity: fadeAnim }}>
