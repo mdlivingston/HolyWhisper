@@ -71,49 +71,50 @@ export default function Settings({ navigation })
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView>
+            <View style={styles.container}>
 
-            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PreferredWhispers', { name: 'Jane' })}>
-                <Text style={styles.title}>Preferred Whispers</Text>
-                <Text style={{ width: 2, flex: 1 }}></Text>
-                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('FavoriteWhispers', { name: 'Jane' })}>
-                <Text style={styles.title}>Favorite Whispers</Text>
-                <Text style={{ width: 2, flex: 1 }}></Text>
-                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Salvation', { name: 'Jane' })}>
-                <Text style={styles.title}>Salvation</Text>
-                <Text style={{ width: 2, flex: 1 }}></Text>
-                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PrayerRequest', { name: 'Jane' })}>
-                <Text style={styles.title}>Prayer Request</Text>
-                <Text style={{ width: 2, flex: 1 }}></Text>
-                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Feedback', { name: 'Jane' })}>
-                <Text style={styles.title}>Submit Feedback</Text>
-                <Text style={{ width: 2, flex: 1 }}></Text>
-                <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-            </TouchableOpacity>
-            <TouchableWithoutFeedback >
-                <View style={styles.section}>
-                    <Text style={styles.title}>Daily Whisper Reminders</Text>
+                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PreferredWhispers', { name: 'Jane' })}>
+                    <Text style={styles.title}>Preferred Whispers</Text>
                     <Text style={{ width: 2, flex: 1 }}></Text>
-                    <Switch
-                        trackColor={{ false: "#767577", true: "limegreen" }}
-                        thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
-                        ios_backgroundColor="#3e3e3e"
-                        onValueChange={toggleSwitch}
-                        value={isEnabled}
-                    />
-                </View>
-            </TouchableWithoutFeedback>
+                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('FavoriteWhispers', { name: 'Jane' })}>
+                    <Text style={styles.title}>Favorite Whispers</Text>
+                    <Text style={{ width: 2, flex: 1 }}></Text>
+                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Salvation', { name: 'Jane' })}>
+                    <Text style={styles.title}>Salvation</Text>
+                    <Text style={{ width: 2, flex: 1 }}></Text>
+                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+                </TouchableOpacity>
 
-            {/* <TouchableOpacity
+                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PrayerRequest', { name: 'Jane' })}>
+                    <Text style={styles.title}>Prayer Request</Text>
+                    <Text style={{ width: 2, flex: 1 }}></Text>
+                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Feedback', { name: 'Jane' })}>
+                    <Text style={styles.title}>Submit Feedback</Text>
+                    <Text style={{ width: 2, flex: 1 }}></Text>
+                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+                </TouchableOpacity>
+                <TouchableWithoutFeedback >
+                    <View style={styles.section}>
+                        <Text style={styles.title}>Daily Whisper Reminders</Text>
+                        <Text style={{ width: 2, flex: 1 }}></Text>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "limegreen" }}
+                            thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={toggleSwitch}
+                            value={isEnabled}
+                        />
+                    </View>
+                </TouchableWithoutFeedback>
+
+                {/* <TouchableOpacity
                 style={styles.button}
                 onPress={() => testNotif()}
             >
@@ -122,7 +123,8 @@ export default function Settings({ navigation })
                 </Text>
             </TouchableOpacity> */}
 
-        </View>
+            </View>
+        </ScrollView>
     )
 
     async function testNotif()
