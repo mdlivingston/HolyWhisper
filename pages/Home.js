@@ -16,7 +16,7 @@ import
 } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import { useAuth } from '../context/AuthContext';
-import { db } from '../helpers/Firebase';
+import { db, lastActive } from '../helpers/Firebase';
 import { allowNotificationKey, getString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
 
@@ -37,7 +37,7 @@ export default function Home({ navigation })
                 if (!currentUser)
                     await login().then((e) => console.log('Login Done'))
                 else
-                    await lastActive()
+                    await lastActive(currentUser)
             }
             catch (e)
             {
@@ -81,7 +81,7 @@ export default function Home({ navigation })
 
             if (currentUser)
             {
-                await lastActive()
+                await lastActive(currentUser)
             }
         });
 
@@ -114,7 +114,7 @@ export default function Home({ navigation })
         {
             if (currentUser)
             {
-                await lastActive()
+                await lastActive(currentUser)
             }
             console.log("App has come to the foreground!");
         }
@@ -123,21 +123,7 @@ export default function Home({ navigation })
         console.log("AppState", appState.current);
     };
 
-    const lastActive = async () =>
-    {
-        try
-        {
-            await db.lastActive.doc(currentUser.uid)
-                .set({
-                    uid: currentUser.uid,
-                    lastActive: db.getCurrentTimeStamp()
-                }, { merge: true }).then(() => console.log('Last Active Recorded'))
-        }
-        catch (e)
-        {
-            console.error('LastActive update failed.' + e)
-        }
-    }
+
 
     return (
         <View style={styles.center}>

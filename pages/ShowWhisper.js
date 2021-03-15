@@ -19,7 +19,7 @@ import { faShareSquare, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as outlinedHeart } from '@fortawesome/free-regular-svg-icons'
 import { getRandomWhisper } from '../helpers/Randomizer';
 import { ShareWhisper } from '../helpers/Share';
-import { db } from '../helpers/Firebase';
+import { db, lastActive } from '../helpers/Firebase';
 import { useAuth } from '../context/AuthContext';
 import NetInfo from "@react-native-community/netinfo";
 
@@ -58,6 +58,8 @@ export default function ShowWhisper({ route, navigation })
 
             await grabFavoriteWhisper(whisper)
 
+
+
         }
         asyncFunc()
 
@@ -91,6 +93,7 @@ export default function ShowWhisper({ route, navigation })
         fbFavoriteArray = fbFavoriteArray.docs.map(doc => db.formatDoc(doc))
 
         setFavoriteWhisper(fbFavoriteArray[0])
+        await lastActive(currentUser)
     }
 
     const onFavorite = async () =>
