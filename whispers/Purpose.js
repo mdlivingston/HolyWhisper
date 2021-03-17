@@ -155,6 +155,30 @@ export const purpose = [
         category: 'Purpose',
         version: "NIV"
     },
+    {
+        text: "And He said to them, \"Go into all the world and preach the gospel to all creation.",
+        verse: "Mark 16:15",
+        category: 'Purpose',
+        version: "NASB"
+    },
+    {
+        text: "But the one who indulges in a sinful life is of the devil, because the devil has been sinning from the beginning. The reason the Son of God was revealed was to undo and destroy the works of the devil.",
+        verse: "1 John 3:8",
+        category: 'Purpose',
+        version: "TPT"
+    },
+    // {
+    //     text: "",
+    //     verse: "",
+    //     category: 'Purpose',
+    //     version: "NIV"
+    // },
+    // {
+    //     text: "",
+    //     verse: "",
+    //     category: 'Purpose',
+    //     version: "NIV"
+    // },
     // {
     //     text: "",
     //     verse: "",
