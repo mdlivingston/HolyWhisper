@@ -76,7 +76,7 @@ export default function ShowWhisper({ route, navigation })
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => ShareWhisper({
                         title: 'Share this Holy Whisper',
-                        message: `${randomWhisper.text} ${randomWhisper.verse} ${randomWhisper.version} - Sent with the Holy Whisper app! ${Platform.OS === 'ios' ? 'https://apple.co/2Q3otbv' : 'https://bit.ly/3bJhUTU'}`
+                        message: `${randomWhisper.text} ${randomWhisper.verse} ${randomWhisper.version} - Sent with the Holy Whisper app!` //${Platform.OS === 'ios' ? 'https://apple.co/2Q3otbv' : 'https://bit.ly/3bJhUTU'}`
                     })}
                         style={styles.shareButton} >
                         <FontAwesomeIcon size={20} icon={faShareSquare} />

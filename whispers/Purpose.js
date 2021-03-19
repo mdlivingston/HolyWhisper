@@ -167,12 +167,12 @@ export const purpose = [
         category: 'Purpose',
         version: "TPT"
     },
-    // {
-    //     text: "",
-    //     verse: "",
-    //     category: 'Purpose',
-    //     version: "NIV"
-    // },
+    {
+        text: "Now that I, your Lord and Teacher, have washed your feet, you also should wash one another’s feet.",
+        verse: "John 13:14",
+        category: 'Purpose',
+        version: "NIV"
+    },
     // {
     //     text: "",
     //     verse: "",
