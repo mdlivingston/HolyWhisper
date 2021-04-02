@@ -157,7 +157,7 @@ export default class NotificationService
         for (let i = 0; i < 30; i++) 
         {
             var assignedTime = addDays(new Date(Date.now()), i)
-            assignedTime.setHours(9);
+            assignedTime.setHours(7);
             assignedTime.setMinutes(0);
             assignedTime.setSeconds(0)
             assignedTime.setMilliseconds(0);

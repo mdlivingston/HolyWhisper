@@ -136,7 +136,7 @@ export default function Home({ navigation })
                     />
                 </TouchableOpacity>
 
-                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }}>
+                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
                     Get a Whisper
                 </Text>
             </Animated.View>
@@ -157,8 +157,8 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        borderColor: 'lightgrey',
-        borderWidth: .5,
+        // borderColor: 'lightgrey',
+        //borderWidth: .5,
         width: 100,
         height: 100,
         borderRadius: 50,
@@ -170,8 +170,8 @@ const styles = StyleSheet.create({
         shadowRadius: 1
     },
     blueFire: {
-        width: 55,
-        height: 55,
+        width: 85,
+        height: 85,
         resizeMode: 'contain'
     },
     settingsIcon: {

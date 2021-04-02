@@ -173,12 +173,12 @@ export const purpose = [
         category: 'Purpose',
         version: "NIV"
     },
-    // {
-    //     text: "",
-    //     verse: "",
-    //     category: 'Purpose',
-    //     version: "NIV"
-    // },
+    {
+        text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+        verse: "Ephesians 2:10",
+        category: 'Purpose',
+        version: "NIV"
+    },
     // {
     //     text: "",
     //     verse: "",

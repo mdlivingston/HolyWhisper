@@ -327,8 +327,8 @@ const styles = StyleSheet.create({
         paddingRight: 15,
     },
     blueFire: {
-        width: 100,
-        height: 100,
+        width: 85,
+        height: 85,
         resizeMode: 'contain',
         alignSelf: 'center',
         marginTop: 75,
