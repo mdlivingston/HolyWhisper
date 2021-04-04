@@ -3,8 +3,10 @@ import { father } from "../whispers/Father";
 import { gratitude } from "../whispers/Gratitude";
 import { healing } from "../whispers/Healing";
 import { identity } from "../whispers/Identity";
+import { love } from "../whispers/Love";
 import { peace } from "../whispers/Peace";
 import { purpose } from "../whispers/Purpose";
+import { word } from "../whispers/Word";
 import { getData } from "./LocalStorage";
 
 export const categories = [
@@ -14,7 +16,9 @@ export const categories = [
     'Father',
     'Purpose',
     'Peace',
-    'Gratitude'
+    'Gratitude',
+    'Word of God',
+    'Love'
 ]
 
 function getRandomInt(min, max)
@@ -45,6 +49,10 @@ export async function getRandomWhisper()
             return peace[getRandomInt(0, peace.length - 1)]
         case 'Gratitude':
             return gratitude[getRandomInt(0, gratitude.length - 1)]
+        case 'Word of God':
+            return word[getRandomInt(0, word.length - 1)]
+        case 'Love':
+            return love[getRandomInt(0, love.length - 1)]
         default:
             return identity[0]
     }

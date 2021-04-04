@@ -22,6 +22,7 @@ import { ShareWhisper } from '../helpers/Share';
 import { db, lastActive } from '../helpers/Firebase';
 import { useAuth } from '../context/AuthContext';
 import NetInfo from "@react-native-community/netinfo";
+import PushNotification from 'react-native-push-notification';
 
 export default function ShowWhisper({ route, navigation })
 {
@@ -58,10 +59,16 @@ export default function ShowWhisper({ route, navigation })
 
             await grabFavoriteWhisper(whisper)
 
-
-
         }
         asyncFunc()
+
+        //On screen load no matter the history
+        const unsubscribe = navigation.addListener('focus', async () =>
+        {
+            PushNotification.setApplicationIconBadgeNumber(0);
+        });
+
+        return unsubscribe;
 
     }, [])
 
