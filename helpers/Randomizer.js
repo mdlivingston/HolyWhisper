@@ -6,6 +6,7 @@ import { identity } from "../whispers/Identity";
 import { love } from "../whispers/Love";
 import { peace } from "../whispers/Peace";
 import { purpose } from "../whispers/Purpose";
+import { secretPlace } from "../whispers/SecretPlace";
 import { word } from "../whispers/Word";
 import { getData } from "./LocalStorage";
 
@@ -18,7 +19,8 @@ export const categories = [
     'Peace',
     'Gratitude',
     'Word of God',
-    'Love'
+    'Love',
+    'Secret Place'
 ]
 
 function getRandomInt(min, max)
@@ -53,6 +55,8 @@ export async function getRandomWhisper()
             return word[getRandomInt(0, word.length - 1)]
         case 'Love':
             return love[getRandomInt(0, love.length - 1)]
+        case 'Secret Place':
+            return secretPlace[getRandomInt(0, secretPlace.length - 1)]
         default:
             return identity[0]
     }
