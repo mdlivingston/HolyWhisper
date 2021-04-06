@@ -54,15 +54,6 @@ export default function Home({ navigation })
 
         asyncFunc();
 
-        Animated.timing(
-            fadeAnim,
-            {
-                toValue: 1,
-                duration: 3000,
-                useNativeDriver: true // Add This line
-            },
-        ).start();
-
         AppState.addEventListener("change", _handleAppStateChange);
 
         return () =>
@@ -93,14 +84,12 @@ export default function Home({ navigation })
     {
         navigation.setOptions({
             headerRight: () => (
-                <Animated.View style={{ opacity: fadeAnim }}>
-                    <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
-                        <Image
-                            style={styles.crossIcon}
-                            source={require('../assets/cross2.png')}
-                        />
-                    </TouchableOpacity>
-                </Animated.View>
+                <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
+                    <Image
+                        style={styles.crossIcon}
+                        source={require('../assets/cross2.png')}
+                    />
+                </TouchableOpacity>
             ),
         });
     }, [navigation]);
@@ -123,24 +112,18 @@ export default function Home({ navigation })
         console.log("AppState", appState.current);
     };
 
-
-
     return (
         <View style={styles.center}>
-            <Animated.View style={{ opacity: fadeAnim }}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
+                <Image
+                    style={styles.blueFire}
+                    source={require('../assets/blueFire.gif')}
+                />
+            </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
-                    <Image
-                        style={styles.blueFire}
-                        source={require('../assets/blueFire.gif')}
-                    />
-                </TouchableOpacity>
-
-                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
-                    Get a Whisper
+            <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
+                Get a Whisper
                 </Text>
-            </Animated.View>
-
         </View>
     )
 }
