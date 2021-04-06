@@ -118,8 +118,8 @@ const styles = StyleSheet.create({
     },
     stokeButton: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 1,
-        shadowRadius: 2
+        shadowRadius: 1
     }
 });

@@ -216,7 +216,7 @@ export const love = [
         version: "ESV"
     },
     {
-        text: "But God still loved us with such great love. He is so rich in compassion and mercy. 5 Even when we were dead and doomed in our many sins, he united us into the very life of Christ and saved us by his wonderful grace!",
+        text: "But God still loved us with such great love. He is so rich in compassion and mercy. Even when we were dead and doomed in our many sins, he united us into the very life of Christ and saved us by his wonderful grace!",
         verse: "Ephesians 2:4-5",
         category: 'Love',
         version: "TPT"
