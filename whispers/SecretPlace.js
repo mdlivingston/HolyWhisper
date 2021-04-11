@@ -54,9 +54,63 @@ export const secretPlace = [
         version: "NIV"
     },
     {
-        text: "Remain in me, as I also remain in you. No branch can bear fruit by itself; it must remain in the vine. Neither can you bear fruit unless you remain in me. “I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.",
+        text: "Seek the Lord and his strength; seek his presence continually!",
+        verse: "1 Chronicles 16:11",
+        category: 'Secret Place',
+        version: "ESV"
+    },
+    {
+        text: "Remain in me, as I also remain in you. No branch can bear fruit by itself; it must remain in the vine. Neither can you bear fruit unless you remain in me. \"I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.\"",
         verse: "John 15:4–5",
         category: 'Secret Place',
         version: "NIV"
-    }
+    },
+    {
+        text: "You make known to me the path of life; in your presence there is fullness of joy; at your right hand are pleasures forevermore.",
+        verse: "Psalm 16:11",
+        category: 'Secret Place',
+        version: "ESV"
+    },
+    {
+        text: "Teaching them to observe everything that I have commanded you; and lo, I am with you always [remaining with you perpetually—regardless of circumstance, and on every occasion], even to the end of the age.",
+        verse: "Matthew 28:20",
+        category: 'Secret Place',
+        version: "AMP"
+    },
+    {
+        text: "So hide all your beloved ones in the sheltered, secret place before your face. Overshadow them with your glory-presence. Keep them from these accusations, the brutal insults of evil men. Tuck them safely away in the tabernacle where you dwell.",
+        verse: "Psalm 31:20",
+        category: 'Secret Place',
+        version: "TPT"
+    },
+    {
+        text: "And I will ask the Father and he will give you another Savior, the Holy Spirit of Truth, who will be to you a friend just like me—and he will never leave you. The world won’t receive him because they can’t see him or know him. But you know him intimately because he remains with you and will live inside you.",
+        verse: "John 14:17",
+        category: 'Secret Place',
+        version: "TPT"
+    },
+    {
+        text: "Being asked by the Pharisees when the kingdom of God would come, he answered them, “The kingdom of God is not coming with signs to be observed, nor will they say, ‘Look, here it is!’ or ‘There!’ for behold, the kingdom of God is in the midst of you.”",
+        verse: "Luke 17:20-21",
+        category: 'Secret Place',
+        version: "ESV"
+    },
+    {
+        text: "And the Pharisees and the scribes grumbled, saying, “This man receives sinners and eats with them.”",
+        verse: "Luke 15:2",
+        category: 'Secret Place',
+        version: "ESV"
+    },
+    {
+        text: "I will put my Spirit within you and cause you to walk in My statutes, and you will keep My ordinances and do them.",
+        verse: "Ezekiel 36:27",
+        category: 'Secret Place',
+        version: "AMP"
+    },
+    // {
+    //     text: "",
+    //     verse: "",
+    //     category: 'Secret Place',
+    //     version: "ESV"
+    // },
 ]

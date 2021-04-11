@@ -161,7 +161,7 @@ export const healing = [
     },
 
     {
-        text: "”So I will prove to you that the Son of Man has the authority on earth to forgive sins.” Then Jesus turned to the paralyzed man and said, “Stand up, pick up your mat, and go home!” And the man jumped up and went home!",
+        text: "”So I will prove to you that the Son of Man has the authority on earth to forgive sins.” Then Jesus turned to the paralyzed man and said, \"Stand up, pick up your mat, and go home!” And the man jumped up and went home!\"",
         verse: "Matthew 9:6-7",
         category: 'Healing',
         version: "NLT",

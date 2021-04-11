@@ -6,7 +6,7 @@ export const purpose = [
         version: "NLT"
     },
     {
-        text: "For I know the plans I have for you,\" declares the LORD, \"plans to prosper you and not to harm you, plans to give you hope and a future.",
+        text: "\"For I know the plans I have for you,\" declares the LORD, \"plans to prosper you and not to harm you, plans to give you hope and a future.\"",
         verse: "Jeremiah 29:11",
         category: 'Purpose',
         version: "NIV"
@@ -156,7 +156,7 @@ export const purpose = [
         version: "NIV"
     },
     {
-        text: "And He said to them, \"Go into all the world and preach the gospel to all creation.",
+        text: "And He said to them, \"Go into all the world and preach the gospel to all creation.\"",
         verse: "Mark 16:15",
         category: 'Purpose',
         version: "NASB"

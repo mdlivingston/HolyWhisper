@@ -5,6 +5,7 @@ import { healing } from "../whispers/Healing";
 import { identity } from "../whispers/Identity";
 import { love } from "../whispers/Love";
 import { peace } from "../whispers/Peace";
+import { purity } from "../whispers/Purity";
 import { purpose } from "../whispers/Purpose";
 import { secretPlace } from "../whispers/SecretPlace";
 import { word } from "../whispers/Word";
@@ -20,6 +21,7 @@ export const categories = [
     'Gratitude',
     'Word of God',
     'Love',
+    'Purity',
     'Secret Place'
 ]
 
@@ -55,6 +57,8 @@ export async function getRandomWhisper()
             return word[getRandomInt(0, word.length - 1)]
         case 'Love':
             return love[getRandomInt(0, love.length - 1)]
+        case 'Purity':
+            return purity[getRandomInt(0, purity.length - 1)]
         case 'Secret Place':
             return secretPlace[getRandomInt(0, secretPlace.length - 1)]
         default:

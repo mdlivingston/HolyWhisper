@@ -42,7 +42,7 @@ export const word = [
     },
 
     {
-        text: "\"Is not my word like fire,\" declares the LORD, \"and like a hammer that breaks a rock in pieces?”",
+        text: "\"Is not my word like fire,\" declares the LORD, \"and like a hammer that breaks a rock in pieces?\"",
         verse: "Jeremiah 23:29",
         category: 'Word of God',
         version: "NIV",
@@ -224,7 +224,7 @@ export const word = [
     },
 
     {
-        text: "So Jesus was saying to the Jews who had believed Him, “If you abide in My word [continually obeying My teachings and living in accordance with them, then] you are truly My disciples.",
+        text: "So Jesus was saying to the Jews who had believed Him, \"If you abide in My word [continually obeying My teachings and living in accordance with them, then] you are truly My disciples.\"",
         verse: "John 8:31",
         category: 'Word of God',
         version: "AMP",
@@ -259,7 +259,7 @@ export const word = [
     },
 
     {
-        text: "\"Therefore everyone who hears these words of mine and puts them into practice is like a wise man who built his house on the rock.”",
+        text: "\"Therefore everyone who hears these words of mine and puts them into practice is like a wise man who built his house on the rock.\"",
         verse: "Matthew 7:24",
         category: 'Word of God',
         version: "NIV",
