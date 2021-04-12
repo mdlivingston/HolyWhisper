@@ -320,11 +320,12 @@ const styles = StyleSheet.create({
     },
     version: {
         fontSize: 12,
-        fontStyle: 'italic'
+        fontStyle: 'italic',
     },
     category: {
         fontSize: 12,
         fontStyle: 'italic',
+        paddingRight: 10,
         alignSelf: 'flex-end'
     },
     heartButton: {

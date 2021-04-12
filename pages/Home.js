@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
     },
     settingsIcon: {
         paddingRight: 15,
+        paddingTop: 10
     },
     crossIcon: {
         width: 35,
