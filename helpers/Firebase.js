@@ -46,20 +46,29 @@ export const handleFirebaseInit = async () =>
 
     const unsubscribe = messaging().onMessage(async remoteMessage =>
     {
+        console.log('Firebase Message Arrived!')
         //Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
     });
     return unsubscribe;
 }
 
-export const lastActive = async (currentUser) =>
+export const lastActive = async (currentUser, fcmToken) =>
 {
     try
     {
-        await db.lastActive.doc(currentUser.uid)
-            .set({
-                uid: currentUser.uid,
-                lastActive: db.getCurrentTimeStamp()
-            }, { merge: true }).then(() => console.log('Last Active Recorded'))
+        if (fcmToken)
+            await db.lastActive.doc(currentUser.uid)
+                .set({
+                    uid: currentUser.uid,
+                    lastActive: db.getCurrentTimeStamp(),
+                    fcmToken: fcmToken
+                }, { merge: true }).then(() => console.log('Last Active Recorded'))
+        else
+            await db.lastActive.doc(currentUser.uid)
+                .set({
+                    uid: currentUser.uid,
+                    lastActive: db.getCurrentTimeStamp()
+                }, { merge: true }).then(() => console.log('Last Active Recorded'))
     }
     catch (e)
     {

@@ -23,6 +23,7 @@ import { db, lastActive } from '../helpers/Firebase';
 import { useAuth } from '../context/AuthContext';
 import NetInfo from "@react-native-community/netinfo";
 import PushNotification from 'react-native-push-notification';
+import messaging from '@react-native-firebase/messaging';
 
 export default function ShowWhisper({ route, navigation })
 {

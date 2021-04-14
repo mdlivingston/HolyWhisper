@@ -19,6 +19,7 @@ import { useAuth } from '../context/AuthContext';
 import { db, lastActive } from '../helpers/Firebase';
 import { allowNotificationKey, getString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
+import messaging from '@react-native-firebase/messaging';
 
 export default function Home({ navigation })
 {
@@ -37,7 +38,10 @@ export default function Home({ navigation })
                 if (!currentUser)
                     await login().then((e) => console.log('Login Done'))
                 else
-                    await lastActive(currentUser)
+                {
+                    let fcmToken = await messaging().getToken();
+                    await lastActive(currentUser, fcmToken)
+                }
             }
             catch (e)
             {
