@@ -13,7 +13,7 @@ class NotificationHandler
             console.log('On notif handler')
             if (notification.title === 'Your Daily Whisper Has Arrived! 🔥')
             {
-                console.log('NotificationHandler:', notification);
+                console.log('ON NOTIFICATION:', notification);
                 //this.goToWhisper.navigate('ShowWhisper', { forcedWhisper: notification.data.whisper })
                 this.goToWhisper.navigate('ShowWhisper', {})
             }
@@ -27,7 +27,7 @@ class NotificationHandler
 
     onRegister(token)
     {
-        console.log('NotificationHandler:', token);
+        console.log('ON REGISTER:', token);
 
         if (typeof this._onRegister === 'function')
         {

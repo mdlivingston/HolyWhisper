@@ -42,7 +42,7 @@ export const handleFirebaseInit = async () =>
 {
     await requestUserPermission()
     let token = await messaging().getToken();
-    console.log(token)
+    console.log('Firebase Message Token:', token)
 
     const unsubscribe = messaging().onMessage(async remoteMessage =>
     {
