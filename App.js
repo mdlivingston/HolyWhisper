@@ -33,6 +33,7 @@ import PrayerRequest from './pages/PrayerRequest';
 import Feedback from './pages/Feedback';
 import FavoriteWhispers from './pages/FavoriteWhispers';
 import Salvation from './pages/Salvation';
+import ReminderTime from './pages/ReminderTime';
 
 const Stack = createStackNavigator();
 
@@ -116,6 +117,13 @@ export default function App()
                         headerBackTitleVisible: false,
                         headerTintColor: 'black'
                     }} component={Salvation} />
+
+                    <Stack.Screen name="ReminderTime" options={{
+                        title: "Reminder Time",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black'
+                    }} component={ReminderTime} />
 
                 </Stack.Navigator>
             </NavigationContainer>

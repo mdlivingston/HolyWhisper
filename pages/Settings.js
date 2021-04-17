@@ -39,7 +39,7 @@ export default function Settings({ navigation })
             else
                 setIsEnabled(false)
 
-            if (!allowNotif && enabled)
+            if (!allowNotif && enabled) // if there is local storage string && enabled
             {
                 storeString(allowNotificationKey, 'true')
                 setIsEnabled(true)
@@ -113,6 +113,12 @@ export default function Settings({ navigation })
                         />
                     </View>
                 </TouchableWithoutFeedback>
+                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('ReminderTime', { name: 'Jane' })}>
+                    <Text style={styles.title}>Reminder Time</Text>
+                    <Text style={{ width: 2, flex: 1 }}></Text>
+                    <Text style={{ color: 'grey' }}>7:00 AM </Text>
+                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+                </TouchableOpacity>
 
                 {/* <TouchableOpacity
                 style={styles.button}
