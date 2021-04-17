@@ -19,14 +19,48 @@ import { requestUserPermission } from '../helpers/Firebase';
 import { allowNotificationKey, getString, storeString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
 import { getRandomWhisper, truncate } from '../helpers/Randomizer';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function Settings({ navigation })
 {
     const notifService = new NotificationService(null, null, navigation)
     const [isEnabled, setIsEnabled] = useState(false);
+    const [date, setDate] = useState(new Date(1598051730000));
+    const [show, setShow] = useState(false);
+
+    const onChange = (event, selectedDate) =>
+    {
+        const currentDate = selectedDate || date;
+        setDate(currentDate);
+    };
+
+    const showTimepicker = () =>
+    {
+        setShow(!show)
+    };
+
+    function formatAMPM(date)
+    {
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    }
+
 
     useEffect(() =>
     {
+        var assignedTime = new Date(Date.now())
+        assignedTime.setHours(7);
+        assignedTime.setMinutes(0);
+        assignedTime.setSeconds(0)
+        assignedTime.setMilliseconds(0);
+
+        setDate(assignedTime)
         const asyncFunc = async () =>
         {
             const allowNotif = await getString(allowNotificationKey)
@@ -113,12 +147,24 @@ export default function Settings({ navigation })
                         />
                     </View>
                 </TouchableWithoutFeedback>
-                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('ReminderTime', { name: 'Jane' })}>
+                <TouchableOpacity style={styles.section} onPress={showTimepicker}>
                     <Text style={styles.title}>Reminder Time</Text>
                     <Text style={{ width: 2, flex: 1 }}></Text>
-                    <Text style={{ color: 'grey' }}>7:00 AM </Text>
-                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+                    <Text style={{ color: 'grey' }}>{formatAMPM(date)}</Text>
+                    {/* <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} /> */}
                 </TouchableOpacity>
+
+                {show && (
+                    <DateTimePicker
+                        testID="dateTimePicker"
+                        value={date}
+                        mode={'time'}
+                        is24Hour={true}
+                        display="spinner"
+                        onChange={onChange}
+                        textColor="black"
+                    />
+                )}
 
                 {/* <TouchableOpacity
                 style={styles.button}
