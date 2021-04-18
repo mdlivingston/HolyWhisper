@@ -11,27 +11,74 @@ import
     Alert,
     Switch,
     TouchableWithoutFeedback,
-    Linking
+    Linking,
+    Platform
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { requestUserPermission } from '../helpers/Firebase';
-import { allowNotificationKey, getString, storeString } from '../helpers/LocalStorage';
+import { allowNotificationKey, getString, reminderTime, storeString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
 import { getRandomWhisper, truncate } from '../helpers/Randomizer';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function Settings({ navigation })
 {
     const notifService = new NotificationService(null, null, navigation)
     const [isEnabled, setIsEnabled] = useState(false);
+    const [date, setDate] = useState(new Date(1598051730000));
+    const [show, setShow] = useState(false);
+
+    const onChange = async (event, selectedDate) =>
+    {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+        await storeString(reminderTime, currentDate.toLocaleString())
+        await notifService.fillScheduledNotifications()
+        console.log(currentDate)
+    };
+
+    const showTimepicker = () =>
+    {
+        setShow(!show)
+    };
+
+    function formatAMPM(date)
+    {
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    }
+
 
     useEffect(() =>
     {
         const asyncFunc = async () =>
         {
-            const allowNotif = await getString(allowNotificationKey)
+            // HANDLE LOCAL STORAGE REMINDER TIME
+            var defaultTime = new Date(Date.now())
+            defaultTime.setHours(7);
+            defaultTime.setMinutes(0);
+            defaultTime.setSeconds(0)
+            defaultTime.setMilliseconds(0);
 
+            const storedReminderTime = await getString(reminderTime)
+
+            if (storedReminderTime)
+                setDate(new Date(storedReminderTime))
+            else
+                setDate(defaultTime)
+
+            // HANDLE NOTIFCATION SWITCH AND PERMISSIONS
+            const allowNotif = await getString(allowNotificationKey)
             const enabled = await requestUserPermission()
+
             if (!enabled) // Force to false if permissions have change
                 setIsEnabled(false);
             else if (allowNotif === 'true') //
@@ -39,7 +86,7 @@ export default function Settings({ navigation })
             else
                 setIsEnabled(false)
 
-            if (!allowNotif && enabled)
+            if (!allowNotif && enabled) // if there is local storage string && enabled
             {
                 storeString(allowNotificationKey, 'true')
                 setIsEnabled(true)
@@ -50,10 +97,10 @@ export default function Settings({ navigation })
 
     const toggleSwitch = async () => 
     {
-        const enabled = await requestUserPermission()
-        setIsEnabled(previousState => enabled ? !previousState : false);
+        const accessGranted = await requestUserPermission()
+        setIsEnabled(previousState => accessGranted ? !previousState : false);
 
-        if (!enabled)
+        if (!accessGranted)
         {
             Linking.openURL('app-settings:'); // Go to settings
         }
@@ -113,15 +160,34 @@ export default function Settings({ navigation })
                         />
                     </View>
                 </TouchableWithoutFeedback>
+                <TouchableOpacity style={styles.section} onPress={showTimepicker}>
+                    <Text style={styles.title}>Reminder Time</Text>
+                    <Text style={{ width: 2, flex: 1 }}></Text>
+                    <Text style={{ color: 'grey' }}>{formatAMPM(date)}</Text>
+                    {/* <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} /> */}
+                </TouchableOpacity>
+
+                {show && (
+                    <DateTimePicker
+                        testID="dateTimePicker"
+                        value={date}
+                        mode={'time'}
+                        is24Hour={false}
+                        display="spinner"
+                        onChange={onChange}
+                        textColor="black"
+                        style={{ height: 200 }}
+                    />
+                )}
 
                 {/* <TouchableOpacity
-                style={styles.button}
-                onPress={() => testNotif()}
-            >
-                <Text>
-                    Test Notification
+                    style={styles.button}
+                    onPress={() => testNotif()}
+                >
+                    <Text>
+                        Test Notification
                 </Text>
-            </TouchableOpacity> */}
+                </TouchableOpacity> */}
 
             </View>
         </ScrollView>
