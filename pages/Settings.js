@@ -61,6 +61,7 @@ export default function Settings({ navigation })
     {
         const asyncFunc = async () =>
         {
+            // HANDLE LOCAL STORAGE REMINDER TIME
             var defaultTime = new Date(Date.now())
             defaultTime.setHours(7);
             defaultTime.setMinutes(0);
@@ -69,15 +70,15 @@ export default function Settings({ navigation })
 
             const storedReminderTime = await getString(reminderTime)
 
-            console.log(storedReminderTime)
-
             if (storedReminderTime)
                 setDate(new Date(storedReminderTime))
             else
                 setDate(defaultTime)
-            const allowNotif = await getString(allowNotificationKey)
 
+            // HANDLE NOTIFCATION SWITCH AND PERMISSIONS
+            const allowNotif = await getString(allowNotificationKey)
             const enabled = await requestUserPermission()
+
             if (!enabled) // Force to false if permissions have change
                 setIsEnabled(false);
             else if (allowNotif === 'true') //
@@ -180,13 +181,13 @@ export default function Settings({ navigation })
                 )}
 
                 {/* <TouchableOpacity
-                style={styles.button}
-                onPress={() => testNotif()}
-            >
-                <Text>
-                    Test Notification
+                    style={styles.button}
+                    onPress={() => testNotif()}
+                >
+                    <Text>
+                        Test Notification
                 </Text>
-            </TouchableOpacity> */}
+                </TouchableOpacity> */}
 
             </View>
         </ScrollView>
