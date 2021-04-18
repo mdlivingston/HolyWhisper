@@ -11,12 +11,13 @@ import
     Alert,
     Switch,
     TouchableWithoutFeedback,
-    Linking
+    Linking,
+    Platform
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { requestUserPermission } from '../helpers/Firebase';
-import { allowNotificationKey, getString, storeString } from '../helpers/LocalStorage';
+import { allowNotificationKey, getString, reminderTime, storeString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
 import { getRandomWhisper, truncate } from '../helpers/Randomizer';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -28,10 +29,14 @@ export default function Settings({ navigation })
     const [date, setDate] = useState(new Date(1598051730000));
     const [show, setShow] = useState(false);
 
-    const onChange = (event, selectedDate) =>
+    const onChange = async (event, selectedDate) =>
     {
         const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
         setDate(currentDate);
+        await storeString(reminderTime, currentDate.toLocaleString())
+        await notifService.fillScheduledNotifications()
+        console.log(currentDate)
     };
 
     const showTimepicker = () =>
@@ -54,15 +59,22 @@ export default function Settings({ navigation })
 
     useEffect(() =>
     {
-        var assignedTime = new Date(Date.now())
-        assignedTime.setHours(7);
-        assignedTime.setMinutes(0);
-        assignedTime.setSeconds(0)
-        assignedTime.setMilliseconds(0);
-
-        setDate(assignedTime)
         const asyncFunc = async () =>
         {
+            var defaultTime = new Date(Date.now())
+            defaultTime.setHours(7);
+            defaultTime.setMinutes(0);
+            defaultTime.setSeconds(0)
+            defaultTime.setMilliseconds(0);
+
+            const storedReminderTime = await getString(reminderTime)
+
+            console.log(storedReminderTime)
+
+            if (storedReminderTime)
+                setDate(new Date(storedReminderTime))
+            else
+                setDate(defaultTime)
             const allowNotif = await getString(allowNotificationKey)
 
             const enabled = await requestUserPermission()
@@ -84,10 +96,10 @@ export default function Settings({ navigation })
 
     const toggleSwitch = async () => 
     {
-        const enabled = await requestUserPermission()
-        setIsEnabled(previousState => enabled ? !previousState : false);
+        const accessGranted = await requestUserPermission()
+        setIsEnabled(previousState => accessGranted ? !previousState : false);
 
-        if (!enabled)
+        if (!accessGranted)
         {
             Linking.openURL('app-settings:'); // Go to settings
         }
@@ -159,10 +171,11 @@ export default function Settings({ navigation })
                         testID="dateTimePicker"
                         value={date}
                         mode={'time'}
-                        is24Hour={true}
+                        is24Hour={false}
                         display="spinner"
                         onChange={onChange}
                         textColor="black"
+                        style={{ height: 200 }}
                     />
                 )}
 

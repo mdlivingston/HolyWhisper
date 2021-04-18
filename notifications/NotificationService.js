@@ -1,6 +1,7 @@
 import { addDays } from 'date-fns';
 import { Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
+import { getString, reminderTime } from '../helpers/LocalStorage';
 import { getRandomWhisper, truncate } from '../helpers/Randomizer';
 import NotificationHandler from './NotificationHandler';
 export default class NotificationService
@@ -153,19 +154,27 @@ export default class NotificationService
     {
         this.cancelAll();
 
-
         for (let i = 0; i < 30; i++) 
         {
-            var assignedTime = addDays(new Date(Date.now()), i)
-            assignedTime.setHours(7);
-            assignedTime.setMinutes(0);
-            assignedTime.setSeconds(0)
-            assignedTime.setMilliseconds(0);
+            var defaultTime = addDays(new Date(Date.now()), i)
+            defaultTime.setHours(7);
+            defaultTime.setMinutes(0);
+            defaultTime.setSeconds(0)
+            defaultTime.setMilliseconds(0);
+
+            const localReminderTime = await getString(reminderTime)
+
+            if (localReminderTime)
+            {
+                const reminderDate = new Date(localReminderTime);
+                defaultTime.setHours(reminderDate.getHours());
+                defaultTime.setMinutes(reminderDate.getMinutes());
+            }
 
             //const randomWhisper = await getRandomWhisper()
 
-            if (assignedTime >= new Date())
-                this.scheduleNotif(assignedTime, 'Your Daily Whisper Has Arrived! 🔥', `Tap to recieve it!`, 'default', {})
+            if (defaultTime >= new Date())
+                this.scheduleNotif(defaultTime, 'Your Daily Whisper Has Arrived! 🔥', `Tap to recieve it!`, 'default', {})
             //this.scheduleNotif(assignedTime, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(randomWhisper.text, 100)} ${randomWhisper.verse}`, 'default', randomWhisper)
         }
     }

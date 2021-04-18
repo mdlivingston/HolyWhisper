@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const allowNotificationKey = 'allowNotification'
 export const preferredWhispersKey = 'preferredWhispers'
+export const reminderTime = 'reminderTime'
 
 export const storeData = async (key, value) =>
 {
