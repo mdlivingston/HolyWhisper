@@ -7,12 +7,12 @@ var app = admin.initializeApp({
 //console.log(app)
 
 // This registration token comes from the client FCM SDKs.
-var registrationToken = 'fT3_o5KCBU0Sk61WmR8YP2:APA91bG84VbrXQQVtjY1aoOl_m1kFTuBNSNZEwryRk24tPrvbI-kcbGvQ0VkbNEYu2Grlo3GLxNaonx67ABbMfMQ1iqgx-O-BvHX1aEujXqOauO8G0DY7ELDFMD7nofYzB4ZOWhK262l';
+var registrationToken = 'fBWgcU7MmUFyioCDDAI9OB:APA91bE2n-1WijoiQYeBvpV7dmI53hmFuuVwjckAIp4zNd9rtZmBXa3o4WchLe-g7yuqt6jHaU-1eTf6ctJN_TdNKC0PUm_q81iB9tAEFUu8HwDDxrHSGasCTVpycPDKXGBZid7wY2aX';
 
 var message = {
     "notification": {
-        "title": "Portugal vs. Denmark",
-        "body": "Hello hello hello hello hello hello hello!"
+        "title": "Hey you bunchie!",
+        "body": "I love you pickle!"
     },
     data: {
         item: 'item'

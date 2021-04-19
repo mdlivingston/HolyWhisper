@@ -132,13 +132,13 @@ export const purity = [
         version: "AMP"
     },
     {
-        text: "“I speak eternal truth,” Jesus said. “When you sin you are not free. You’ve become a slave in bondage to your sin.",
+        text: "“I speak eternal truth,” Jesus said. When you sin you are not free. You’ve become a slave in bondage to your sin.",
         verse: "John 8:34",
         category: 'Purity',
         version: "TPT"
     },
     {
-        text: "The eye is the lamp of your body. When your eye is clear [spiritually perceptive, focused on God], your whole body also is full of light [benefiting from God’s precepts]. But when it is bad [spiritually blind], your body also is full of darkness [devoid of God’s word]. 35 Be careful, therefore, that the light that is in you is not darkness.",
+        text: "The eye is the lamp of your body. When your eye is clear [spiritually perceptive, focused on God], your whole body also is full of light [benefiting from God’s precepts]. But when it is bad [spiritually blind], your body also is full of darkness [devoid of God’s word]. Be careful, therefore, that the light that is in you is not darkness.",
         verse: "Luke 11:34-35",
         category: 'Purity',
         version: "AMP"
