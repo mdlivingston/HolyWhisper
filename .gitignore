@@ -63,3 +63,5 @@ ios/GoogleService-Info.plist
 android/app/google-services.json
 
 fcmFunction/holywhisperapp-firebase-adminsdk-lmwp0-5f0717a9b3.json
+
+*.hprof
