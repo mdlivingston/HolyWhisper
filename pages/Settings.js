@@ -77,16 +77,16 @@ export default function Settings({ navigation })
 
             // HANDLE NOTIFCATION SWITCH AND PERMISSIONS
             const allowNotif = await getString(allowNotificationKey)
-            const enabled = await requestUserPermission()
+            const hasPermission = await requestUserPermission()
 
-            if (!enabled) // Force to false if permissions have change
+            if (!hasPermission) // Force to false if permissions have change
                 setIsEnabled(false);
             else if (allowNotif === 'true') //
                 setIsEnabled(true)
             else
                 setIsEnabled(false)
 
-            if (!allowNotif && enabled) // if there is local storage string && enabled
+            if (!allowNotif && hasPermission) // if there is local storage string && enabled
             {
                 storeString(allowNotificationKey, 'true')
                 setIsEnabled(true)
