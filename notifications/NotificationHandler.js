@@ -6,7 +6,6 @@ class NotificationHandler
 
     onNotification(notification)
     {
-
         if (notification.userInteraction)
         {
             PushNotification.setApplicationIconBadgeNumber(0);
@@ -14,8 +13,8 @@ class NotificationHandler
             if (notification.title === 'Your Daily Whisper Has Arrived! 🔥')
             {
                 console.log('ON NOTIFICATION:', notification);
-                //this.goToWhisper.navigate('ShowWhisper', { forcedWhisper: notification.data.whisper })
-                this.goToWhisper.navigate('ShowWhisper', {})
+                this.goToWhisper.navigate('ShowWhisper', { forcedWhisper: notification.data.whisper })
+                //this.goToWhisper.navigate('ShowWhisper', {})
             }
         }
 

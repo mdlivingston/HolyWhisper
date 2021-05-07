@@ -10,6 +10,7 @@ export default class NotificationService
     {
         this.lastId = 0;
         this.lastChannelCounter = 0;
+        this.goToWhisper = navigation
 
         this.createDefaultChannels();
 
@@ -25,7 +26,14 @@ export default class NotificationService
 
     popInitialNotification()
     {
-        PushNotification.popInitialNotification((notification) => console.log('InitialNotication:', notification));
+        PushNotification.popInitialNotification((notification) =>
+        {
+            console.log('InitialNotication:', notification)
+            PushNotification.setApplicationIconBadgeNumber(0);
+            if (notification)
+                this.goToWhisper.navigate('ShowWhisper', { forcedWhisper: notification.data.whisper })
+
+        });
     }
 
     localNotif(soundName)
@@ -171,11 +179,11 @@ export default class NotificationService
                 defaultTime.setMinutes(reminderDate.getMinutes());
             }
 
-            //const randomWhisper = await getRandomWhisper()
+            const randomWhisper = await getRandomWhisper()
 
             if (defaultTime >= new Date())
-                this.scheduleNotif(defaultTime, 'Your Daily Whisper Has Arrived! 🔥', `Tap to recieve it!`, 'default', {})
-            //this.scheduleNotif(assignedTime, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(randomWhisper.text, 100)} ${randomWhisper.verse}`, 'default', randomWhisper)
+                this.scheduleNotif(defaultTime, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(randomWhisper.text, 100)} ${randomWhisper.verse}`, 'default', randomWhisper)
+            //this.scheduleNotif(defaultTime, 'Your Daily Whisper Has Arrived! 🔥', `Tap to recieve it!`, 'default', {})
         }
     }
 

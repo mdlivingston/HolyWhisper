@@ -33,6 +33,9 @@ export default function Home({ navigation })
 
         const asyncFunc = async () =>
         {
+            // Workaround for killed app notification bug https://github.com/zo0r/react-native-push-notification/issues/1955#issuecomment-821520367
+            notifService.popInitialNotification()
+
             try
             {
                 if (!currentUser)
