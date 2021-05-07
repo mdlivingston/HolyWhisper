@@ -22,7 +22,7 @@ import { db } from '../../helpers/Firebase';
 import { SafeAreaView } from 'react-navigation';
 
 
-export default function Revelations({ navigation })
+export default function RevelationList({ navigation })
 {
     const { currentUser, } = useAuth()
     const [width, setWidth] = useState(Dimensions.get('window').width)
@@ -53,23 +53,21 @@ export default function Revelations({ navigation })
     }, [navigation]);
 
     return (
-        <ScrollView style={styles.scroll}>
-            <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Home', { name: 'Jane' })}>
-                <Image
-                    style={{ width: width, height: 200, resizeMode: 'cover' }}
-                    source={require('../../assets/Forgiven_Much.jpeg')}
-                />
-                <Text style={styles.text}>It is better if I go...</Text>
-            </TouchableOpacity>
-        </ScrollView>
+        <SafeAreaView forceInset={{ bottom: 'never', top: 'never' }}>
+            <ScrollView style={styles.scroll}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Home', { name: 'Jane' })}>
+                    <Image
+                        style={{ width: width, height: 200, resizeMode: 'cover' }}
+                        source={require('../../assets/Forgiven_Much.jpeg')}
+                    />
+                    <Text style={styles.text}>It is better if I go...</Text>
+                </TouchableOpacity>
+            </ScrollView>
+        </SafeAreaView >
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        height: '100%',
-        backgroundColor: 'white'
-    },
     closeButton: {
         position: 'absolute',
         top: 50,
@@ -80,7 +78,8 @@ const styles = StyleSheet.create({
         paddingLeft: 10
     },
     scroll: {
-        //backgroundColor: 'white',
+        height: '100%',
+        //backgroundColor: 'black',
         //padding: 10,
         //paddingTop: 30
         //paddingRight: 10

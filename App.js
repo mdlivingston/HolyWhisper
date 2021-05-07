@@ -26,7 +26,7 @@ import BackgroundFetch from 'react-native-background-fetch';
 import NotificationService from './notifications/NotificationService';
 import ShowWhisper from './pages/ShowWhisper';
 import PreferredWhispers from './pages/PreferredWhispers';
-import Revelations from './pages/Revelations/Revelations';
+import RevelationList from './pages/Revelations/RevelationList';
 import { handleFirebaseInit } from './helpers/Firebase';
 import { allowNotificationKey, getString } from './helpers/LocalStorage';
 import { AuthProvider } from './context/AuthContext';
@@ -131,7 +131,7 @@ export default function App()
                         headerStyle: {
                             backgroundColor: '#38fdff'
                         },
-                    }} component={Revelations} />
+                    }} component={RevelationList} />
 
                 </Stack.Navigator>
             </NavigationContainer>
