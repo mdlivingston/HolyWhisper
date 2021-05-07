@@ -26,6 +26,7 @@ import BackgroundFetch from 'react-native-background-fetch';
 import NotificationService from './notifications/NotificationService';
 import ShowWhisper from './pages/ShowWhisper';
 import PreferredWhispers from './pages/PreferredWhispers';
+import Revelations from './pages/Revelations/Revelations';
 import { handleFirebaseInit } from './helpers/Firebase';
 import { allowNotificationKey, getString } from './helpers/LocalStorage';
 import { AuthProvider } from './context/AuthContext';
@@ -117,9 +118,25 @@ export default function App()
                         headerTintColor: 'black'
                     }} component={Salvation} />
 
+                    <Stack.Screen name="Revelations" options={{
+                        title: "Revelations",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black',
+                        headerShown: true,
+                        headerTitleStyle: {
+                            fontSize: 20,
+                            fontStyle: 'italic'
+                        },
+                        headerStyle: {
+                            backgroundColor: '#38fdff'
+                        },
+                    }} component={Revelations} />
+
                 </Stack.Navigator>
             </NavigationContainer>
         </AuthProvider>
+
     );
 }
 

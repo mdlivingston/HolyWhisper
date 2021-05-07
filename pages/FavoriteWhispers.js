@@ -87,12 +87,12 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'white',
+        //backgroundColor: 'white',
         padding: 25,
     },
     container: {
         height: '100%',
-        backgroundColor: 'white'
+        //backgroundColor: 'white'
     },
     section: {
         display: 'flex',
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         height: 60,
         paddingLeft: 10,
         paddingRight: 10,
-        backgroundColor: 'white',
+        //backgroundColor: 'white',
         borderBottomColor: 'grey',
         borderBottomWidth: .5,
     },
