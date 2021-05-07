@@ -12,7 +12,8 @@ import
     Animated,
     Image,
     Platform,
-    AppState
+    AppState,
+    Dimensions
 } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import { useAuth } from '../context/AuthContext';
@@ -98,6 +99,14 @@ export default function Home({ navigation })
                     />
                 </TouchableOpacity>
             ),
+            headerLeft: () => (
+                <TouchableOpacity style={styles.revelationIcon} onPress={() => navigation.navigate('Revelations', { name: 'Jane' })}>
+                    <Image
+                        style={styles.revelationGif}
+                        source={require('../assets/revelation.gif')}
+                    />
+                </TouchableOpacity>
+            ),
         });
     }, [navigation]);
 
@@ -136,12 +145,7 @@ export default function Home({ navigation })
                     Get a Whisper
                 </Text>
             </View>
-            <TouchableOpacity style={styles.revelationIcon} onPress={() => navigation.navigate('Revelations', { name: 'Jane' })}>
-                <Image
-                    style={styles.revelationGif}
-                    source={require('../assets/revelation.gif')}
-                />
-            </TouchableOpacity>
+
         </View>
     )
 }
@@ -184,9 +188,8 @@ const styles = StyleSheet.create({
         paddingTop: 10
     },
     revelationIcon: {
-        position: 'absolute',
-        top: 50,
-        left: 15
+        paddingLeft: 15,
+        paddingTop: 0
     },
     crossIcon: {
         width: 35,
