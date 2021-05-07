@@ -21,6 +21,10 @@ import { useRef } from 'react';
 import { db } from '../../helpers/Firebase';
 import { SafeAreaView } from 'react-navigation';
 
+const maryAtFeet = require('../../assets/Forgiven_Much.jpeg');
+const sweatBlood = require('../../assets/sweatblood.png');
+
+
 
 export default function RevelationList({ navigation })
 {
@@ -55,12 +59,19 @@ export default function RevelationList({ navigation })
     return (
         <SafeAreaView forceInset={{ bottom: 'never', top: 'never' }}>
             <ScrollView style={styles.scroll}>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Home', { name: 'Jane' })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'It\'s Better If I Go', imagePath: maryAtFeet })}>
                     <Image
                         style={{ width: width, height: 200, resizeMode: 'cover' }}
-                        source={require('../../assets/Forgiven_Much.jpeg')}
+                        source={maryAtFeet}
                     />
                     <Text style={styles.text}>It is better if I go...</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood })}>
+                    <Image
+                        style={{ width: width, height: 200, resizeMode: 'cover' }}
+                        source={sweatBlood}
+                    />
+                    <Text style={styles.text}>Not my will but yours...</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView >
@@ -79,7 +90,7 @@ const styles = StyleSheet.create({
     },
     scroll: {
         height: '100%',
-        //backgroundColor: 'black',
+        backgroundColor: 'black',
         //padding: 10,
         //paddingTop: 30
         //paddingRight: 10

@@ -34,6 +34,7 @@ import PrayerRequest from './pages/PrayerRequest';
 import Feedback from './pages/Feedback';
 import FavoriteWhispers from './pages/FavoriteWhispers';
 import Salvation from './pages/Salvation';
+import Revelation from './pages/Revelations/Revelation';
 
 const Stack = createStackNavigator();
 
@@ -132,6 +133,21 @@ export default function App()
                             backgroundColor: '#38fdff'
                         },
                     }} component={RevelationList} />
+
+                    <Stack.Screen name="Revelation" options={{
+                        title: "Revelation",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black',
+                        headerShown: true,
+                        headerTitleStyle: {
+                            fontSize: 20,
+                            fontStyle: 'italic'
+                        },
+                        headerStyle: {
+                            backgroundColor: '#38fdff'
+                        },
+                    }} component={Revelation} />
 
                 </Stack.Navigator>
             </NavigationContainer>
