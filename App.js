@@ -26,7 +26,7 @@ import BackgroundFetch from 'react-native-background-fetch';
 import NotificationService from './notifications/NotificationService';
 import ShowWhisper from './pages/ShowWhisper';
 import PreferredWhispers from './pages/PreferredWhispers';
-import RevelationList from './pages/Revelations/RevelationList';
+import RevelationList from './pages/revelations/RevelationList';
 import { handleFirebaseInit } from './helpers/Firebase';
 import { allowNotificationKey, getString } from './helpers/LocalStorage';
 import { AuthProvider } from './context/AuthContext';
@@ -34,7 +34,7 @@ import PrayerRequest from './pages/PrayerRequest';
 import Feedback from './pages/Feedback';
 import FavoriteWhispers from './pages/FavoriteWhispers';
 import Salvation from './pages/Salvation';
-import Revelation from './pages/Revelations/Revelation';
+import Revelation from './pages/revelations/Revelation';
 
 const Stack = createStackNavigator();
 

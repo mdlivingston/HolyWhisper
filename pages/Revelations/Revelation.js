@@ -22,6 +22,7 @@ import { db } from '../../helpers/Firebase';
 import { SafeAreaView } from 'react-navigation';
 
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import ItsBetterIfIGo from './stories/ItsBetterIfIGo';
 
 
 
@@ -36,25 +37,25 @@ export default function Revelation({ navigation, route })
         navigation.setOptions({ title: route.params.title })
     })
 
-    // const onChange = async () =>
-    // {
-    //     setWidth(Dimensions.get('window').width)
-    // };
+    const onChange = async () =>
+    {
+        setWidth(Dimensions.get('window').width)
+    };
 
-    // useEffect(() =>
-    // {
-    //     Dimensions.addEventListener("change", onChange);
-    //     return () =>
-    //     {
-    //         Dimensions.removeEventListener("change", onChange);
-    //     };
-    // });
+    useEffect(() =>
+    {
+        Dimensions.addEventListener("change", onChange);
+        return () =>
+        {
+            Dimensions.removeEventListener("change", onChange);
+        };
+    });
 
     function loadRevelationText()
     {
         return (
-            <View style={{ height: 500, backgroundColor: 'black', color: 'white' }}>
-                <Text style={{ color: 'white' }}>Scroll me</Text>
+            <View style={{ height: '100%', backgroundColor: 'black', color: 'white' }}>
+                <ItsBetterIfIGo />
             </View>
         )
     }
@@ -69,7 +70,7 @@ export default function Revelation({ navigation, route })
                 fadeOutForeground={true}
                 renderBackground={() => (
                     <Image
-                        style={{ height: 300, }}
+                        style={{ height: 300, width: width }}
                         source={route.params.imagePath}
                     />
                 )}>
