@@ -62,24 +62,26 @@ export default function Revelation({ navigation, route })
     }
 
     return (
-        <View style={{ height: '100%', backgroundColor: 'black' }}>
-            <ParallaxScrollView
-                backgroundColor="black"
-                contentBackgroundColor="black"
-                parallaxHeaderHeight={route.params.imageHeight}
-                stickyHeaderHeight={70}
-                fadeOutForeground={true}
-                renderBackground={() => (
-                    <Image
-                        style={{ height: route.params.imageHeight, width: width, resizeMode: 'stretch' }}
-                        source={route.params.imagePath}
-                    />
-                )}>
+        <SafeAreaView forceInset={{ bottom: 'never', top: 'never' }}>
+            <View style={{ height: '100%', backgroundColor: 'black' }}>
+                <ParallaxScrollView
+                    backgroundColor="black"
+                    contentBackgroundColor="black"
+                    parallaxHeaderHeight={route.params.imageHeight}
+                    stickyHeaderHeight={70}
+                    fadeOutForeground={true}
+                    renderBackground={() => (
+                        <Image
+                            style={{ height: route.params.imageHeight, width: width, resizeMode: 'stretch' }}
+                            source={route.params.imagePath}
+                        />
+                    )}>
 
-                {loadRevelationText()}
+                    {loadRevelationText()}
 
-            </ParallaxScrollView>
-        </View>
+                </ParallaxScrollView>
+            </View>
+        </SafeAreaView>
     )
 }
 

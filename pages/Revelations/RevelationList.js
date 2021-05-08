@@ -60,23 +60,23 @@ export default function RevelationList({ navigation })
     return (
         <SafeAreaView forceInset={{ bottom: 'never', top: 'never' }}>
             <ScrollView style={styles.scroll}>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'It\'s Better If I Go', imagePath: maryAtFeet, key: 'betterifigo', imageHeight: 400 })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'It Is Better If I Go', imagePath: maryAtFeet, key: 'betterifigo', imageHeight: 400 })}>
                     <Image
-                        style={{ width: width, height: 200, resizeMode: 'cover' }}
+                        style={{ width: width, height: 225, resizeMode: 'cover' }}
                         source={maryAtFeet}
                     />
                     <Text style={styles.text}>It is better if I go...</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood, key: 'comingsoon', imageHeight: 300 })}>
                     <Image
-                        style={{ width: width, height: 200, resizeMode: 'cover' }}
+                        style={{ width: width, height: 225, resizeMode: 'cover' }}
                         source={sweatBlood}
                     />
                     <Text style={styles.text}>Not my will but yours...</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'A Humble King', imagePath: pilate, key: 'comingsoon', imageHeight: 200 })}>
                     <Image
-                        style={{ width: width, height: 200, resizeMode: 'stretch' }}
+                        style={{ width: width, height: 225, resizeMode: 'stretch' }}
                         source={pilate}
                     />
                     <Text style={styles.text}>A humble King.</Text>
@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
     },
     close: {
         fontSize: 25,
-        paddingLeft: 10
+        paddingLeft: 10,
+        fontWeight: 'bold'
     },
     scroll: {
         height: '100%',
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         width: '100%',
-        height: 200,
+        height: 225,
         // paddingLeft: 10,
         // paddingRight: 10,
         backgroundColor: 'white',

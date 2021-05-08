@@ -95,7 +95,7 @@ export default function Home({ navigation })
                 <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
                     <Image
                         style={styles.crossIcon}
-                        source={require('../assets/cross.png')}
+                        source={require('../assets/gear.gif')}
                     />
                 </TouchableOpacity>
             ),
