@@ -55,7 +55,8 @@ export default function Revelation({ navigation, route })
     {
         return (
             <View style={{ height: '100%', backgroundColor: 'black', color: 'white' }}>
-                <ItsBetterIfIGo />
+                {route.params.key === 'betterifigo' && <ItsBetterIfIGo />}
+                {route.params.key === 'comingsoon' && <Text style={{ color: 'white', fontSize: 25, textAlign: 'center', padding: 15 }}>Coming soon!</Text>}
             </View>
         )
     }
@@ -65,12 +66,12 @@ export default function Revelation({ navigation, route })
             <ParallaxScrollView
                 backgroundColor="black"
                 contentBackgroundColor="black"
-                parallaxHeaderHeight={300}
+                parallaxHeaderHeight={route.params.imageHeight}
                 stickyHeaderHeight={70}
                 fadeOutForeground={true}
                 renderBackground={() => (
                     <Image
-                        style={{ height: 300, width: width }}
+                        style={{ height: route.params.imageHeight, width: width, resizeMode: 'stretch' }}
                         source={route.params.imagePath}
                     />
                 )}>

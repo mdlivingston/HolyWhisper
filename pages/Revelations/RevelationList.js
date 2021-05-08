@@ -23,6 +23,7 @@ import { SafeAreaView } from 'react-navigation';
 
 const maryAtFeet = require('../../assets/Forgiven_Much.jpeg');
 const sweatBlood = require('../../assets/sweatblood.png');
+const pilate = require('../../assets/marypregnant.jpeg');
 
 
 
@@ -59,19 +60,26 @@ export default function RevelationList({ navigation })
     return (
         <SafeAreaView forceInset={{ bottom: 'never', top: 'never' }}>
             <ScrollView style={styles.scroll}>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'It\'s Better If I Go', imagePath: maryAtFeet })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'It\'s Better If I Go', imagePath: maryAtFeet, key: 'betterifigo', imageHeight: 400 })}>
                     <Image
                         style={{ width: width, height: 200, resizeMode: 'cover' }}
                         source={maryAtFeet}
                     />
                     <Text style={styles.text}>It is better if I go...</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood, key: 'comingsoon', imageHeight: 300 })}>
                     <Image
                         style={{ width: width, height: 200, resizeMode: 'cover' }}
                         source={sweatBlood}
                     />
                     <Text style={styles.text}>Not my will but yours...</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'A Humble King', imagePath: pilate, key: 'comingsoon', imageHeight: 200 })}>
+                    <Image
+                        style={{ width: width, height: 200, resizeMode: 'stretch' }}
+                        source={pilate}
+                    />
+                    <Text style={styles.text}>A humble King.</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView >
