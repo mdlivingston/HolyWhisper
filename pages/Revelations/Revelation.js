@@ -62,7 +62,7 @@ export default function Revelation({ navigation, route })
     }
 
     return (
-        <SafeAreaView forceInset={{ bottom: 'never', top: 'never' }}>
+        <SafeAreaView style={{ backgroundColor: 'black' }} forceInset={{ bottom: 'never', top: 'never' }}>
             <View style={{ height: '100%', backgroundColor: 'black' }}>
                 <ParallaxScrollView
                     backgroundColor="black"
@@ -72,7 +72,7 @@ export default function Revelation({ navigation, route })
                     fadeOutForeground={true}
                     renderBackground={() => (
                         <Image
-                            style={{ height: route.params.imageHeight, width: width, resizeMode: 'stretch' }}
+                            style={{ height: route.params.imageHeight, width: width, maxWidth: 600, alignSelf: 'center', resizeMode: 'stretch' }}
                             source={route.params.imagePath}
                         />
                     )}>

@@ -58,28 +58,28 @@ export default function RevelationList({ navigation })
     }, [navigation]);
 
     return (
-        <SafeAreaView forceInset={{ bottom: 'never', top: 'never' }}>
+        <SafeAreaView style={{ backgroundColor: 'black' }} forceInset={{ bottom: 'never', top: 'never' }}>
             <ScrollView style={styles.scroll}>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'It Is Better If I Go', imagePath: maryAtFeet, key: 'betterifigo', imageHeight: 400 })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'It Is Better That I Go', imagePath: maryAtFeet, key: 'betterifigo', imageHeight: 400 })}>
                     <Image
                         style={{ width: width, height: 225, resizeMode: 'cover' }}
                         source={maryAtFeet}
                     />
-                    <Text style={styles.text}>It is better if I go...</Text>
+                    <Text style={styles.text}>It is better that I go...</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood, key: 'comingsoon', imageHeight: 300 })}>
-                    <Image
-                        style={{ width: width, height: 225, resizeMode: 'cover' }}
-                        source={sweatBlood}
-                    />
-                    <Text style={styles.text}>Not my will but yours...</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'A Humble King', imagePath: pilate, key: 'comingsoon', imageHeight: 200 })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'A Humble King', imagePath: pilate, key: 'comingsoon', imageHeight: 225 })}>
                     <Image
                         style={{ width: width, height: 225, resizeMode: 'stretch' }}
                         source={pilate}
                     />
                     <Text style={styles.text}>A humble King.</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood, key: 'comingsoon', imageHeight: 300 })}>
+                    <Image
+                        style={{ width: width, height: 225, resizeMode: 'stretch' }}
+                        source={sweatBlood}
+                    />
+                    <Text style={styles.text}>Not my will but yours...</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView >
@@ -125,6 +125,6 @@ const styles = StyleSheet.create({
         // paddingRight: 10,
         backgroundColor: 'white',
         borderBottomColor: 'grey',
-        borderBottomWidth: .5,
+        borderBottomWidth: .5
     }
 });
