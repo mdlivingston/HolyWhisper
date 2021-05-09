@@ -35,6 +35,7 @@ import Feedback from './pages/Feedback';
 import FavoriteWhispers from './pages/FavoriteWhispers';
 import Salvation from './pages/Salvation';
 import Revelation from './pages/revelations/Revelation';
+import Lullaby from './pages/Lullaby';
 
 const Stack = createStackNavigator();
 
@@ -148,6 +149,13 @@ export default function App()
                             backgroundColor: '#38fdff'
                         },
                     }} component={Revelation} />
+
+                    <Stack.Screen name="Lullaby" options={{
+                        title: "Holy Lullabys",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black'
+                    }} component={Lullaby} />
 
                 </Stack.Navigator>
             </NavigationContainer>

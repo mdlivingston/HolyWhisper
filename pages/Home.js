@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import
 {
     SafeAreaView,
@@ -13,7 +13,8 @@ import
     Image,
     Platform,
     AppState,
-    Dimensions
+    Dimensions,
+    Button
 } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import { useAuth } from '../context/AuthContext';
@@ -22,12 +23,14 @@ import { allowNotificationKey, getString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
 import messaging from '@react-native-firebase/messaging';
 
+
 export default function Home({ navigation })
 {
     const { currentUser, login, logout } = useAuth()
     const appState = useRef(AppState.currentState);
     const fadeAnim = useRef(new Animated.Value(0)).current
     const notifService = new NotificationService(null, null, navigation);
+
 
     useEffect(() =>
     {
@@ -139,7 +142,10 @@ export default function Home({ navigation })
                     />
                 </TouchableOpacity>
 
-
+                <Button
+                    title="Lullaby"
+                    onPress={() => navigation.navigate('Lullaby', { name: 'Jane' })}
+                />
 
                 <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
                     Get a Whisper

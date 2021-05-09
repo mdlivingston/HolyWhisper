@@ -38,6 +38,8 @@
     "react-native-screens": "^2.17.1",
     "react-native-share": "^5.1.1",
     "react-native-svg": "^12.1.0",
+    "react-native-swift": "^1.2.3",
+    "react-native-track-player": "^1.2.7",
     "react-navigation": "^4.4.4"
   },
   "devDependencies": {
@@ -53,5 +55,6 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "isSwift": true
 }

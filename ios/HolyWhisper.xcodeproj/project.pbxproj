@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* HolyWhisperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HolyWhisperTests.m */; };
 		07E668E9FA56E58B37C9D201 /* libPods-HolyWhisper-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E58432BD82D633FF4EBE676 /* libPods-HolyWhisper-tvOS.a */; };
@@ -23,6 +22,7 @@
 		8CA6E0CB25DFA27C00347B2A /* shofar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8CA6E0CA25DFA27C00347B2A /* shofar.mp3 */; };
 		8CBECD7E25DCEB7000307EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CBECD7D25DCEB7000307EAA /* GoogleService-Info.plist */; };
 		94BA262BD11EFC94962D51BF /* libPods-HolyWhisper-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0416A7A396D052E62C41DF /* libPods-HolyWhisper-tvOSTests.a */; };
+		A051C5CBA490408A8D66B281 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A33DA25BF0048B19B0D1BF7 /* RNPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +74,7 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F7A94EAC027D42E7086D8F0B /* Pods-HolyWhisper-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolyWhisper-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-HolyWhisper-tvOSTests/Pods-HolyWhisper-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		F964F7B611731BE4B4DD3AD2 /* libPods-HolyWhisper-HolyWhisperTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HolyWhisper-HolyWhisperTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A33DA25BF0048B19B0D1BF7 /* RNPlaceholder.swift */ = {isa = PBXFileReference; name = "RNPlaceholder.swift"; path = "RNPlaceholder.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -627,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* HolyWhisperTests.m in Sources */,
+				A051C5CBA490408A8D66B281 /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +639,7 @@
 				8C8A8E8425DCAA9200C755F9 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				A051C5CBA490408A8D66B281 /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +649,7 @@
 			files = (
 				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
 				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
+				A051C5CBA490408A8D66B281 /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DCD954D1E0B4F2C00145EB5 /* HolyWhisperTests.m in Sources */,
+				A051C5CBA490408A8D66B281 /* RNPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +698,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HolyWhisper.app/HolyWhisper";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -713,6 +719,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HolyWhisper.app/HolyWhisper";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -738,7 +745,7 @@
 				PRODUCT_NAME = "Holy Whisper";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -764,7 +771,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = developer.maximus.HolyWhisper;
 				PRODUCT_NAME = "Holy Whisper";
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -795,6 +802,7 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -823,6 +831,7 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -850,6 +859,7 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HolyWhisper-tvOS.app/HolyWhisper-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -877,6 +887,7 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HolyWhisper-tvOS.app/HolyWhisper-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -937,6 +948,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -990,6 +1002,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
