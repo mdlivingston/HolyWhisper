@@ -23,6 +23,7 @@ import { SafeAreaView } from 'react-navigation';
 
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import ItsBetterIfIGo from './stories/ItsBetterIfIGo';
+import HumbleKing from './stories/humbleKing';
 
 
 
@@ -56,6 +57,7 @@ export default function Revelation({ navigation, route })
         return (
             <View style={{ height: '100%', backgroundColor: 'black', color: 'white' }}>
                 {route.params.key === 'betterifigo' && <ItsBetterIfIGo />}
+                {route.params.key === 'humbleking' && <HumbleKing />}
                 {route.params.key === 'comingsoon' && <Text style={{ color: 'white', fontSize: 25, textAlign: 'center', padding: 15 }}>Coming soon!</Text>}
             </View>
         )

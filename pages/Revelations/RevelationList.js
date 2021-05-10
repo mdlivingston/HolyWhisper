@@ -67,7 +67,7 @@ export default function RevelationList({ navigation })
                     />
                     <Text style={styles.text}>It is better that I go...</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'A Humble King', imagePath: pilate, key: 'comingsoon', imageHeight: 225 })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'A Humble King', imagePath: pilate, key: 'humbleking', imageHeight: 225 })}>
                     <Image
                         style={{ width: width, height: 225, resizeMode: 'stretch' }}
                         source={pilate}

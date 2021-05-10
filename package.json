@@ -25,7 +25,7 @@
     "@react-native-firebase/firestore": "^10.8.0",
     "@react-native-firebase/messaging": "^10.8.0",
     "@react-navigation/native": "^5.9.2",
-    "@react-navigation/stack": "^5.14.2",
+    "@react-navigation/stack": "^5.14.5",
     "date-fns": "^2.17.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
