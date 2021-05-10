@@ -23,7 +23,7 @@ import { SafeAreaView } from 'react-navigation';
 
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import ItsBetterIfIGo from './stories/ItsBetterIfIGo';
-import HumbleKing from './stories/humbleKing';
+import HumbleKing from './stories/HumbleKing';
 
 
 

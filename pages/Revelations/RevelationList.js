@@ -24,6 +24,7 @@ import { SafeAreaView } from 'react-navigation';
 const maryAtFeet = require('../../assets/Forgiven_Much.jpeg');
 const sweatBlood = require('../../assets/sweatblood.png');
 const pilate = require('../../assets/marypregnant.jpeg');
+const secretPlace = require('../../assets/secretPlace.jpeg');
 
 
 
@@ -74,6 +75,13 @@ export default function RevelationList({ navigation })
                     />
                     <Text style={styles.text}>A humble King.</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: secretPlace, key: 'comingsoon', imageHeight: 225 })}>
+                    <Image
+                        style={{ width: width, height: 225, resizeMode: 'stretch' }}
+                        source={secretPlace}
+                    />
+                    <Text style={styles.text}>The Secret Place</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood, key: 'comingsoon', imageHeight: 300 })}>
                     <Image
                         style={{ width: width, height: 225, resizeMode: 'stretch' }}
@@ -81,6 +89,7 @@ export default function RevelationList({ navigation })
                     />
                     <Text style={styles.text}>Not my will but yours...</Text>
                 </TouchableOpacity>
+
             </ScrollView>
         </SafeAreaView >
     )
