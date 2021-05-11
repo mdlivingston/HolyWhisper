@@ -127,7 +127,7 @@ export default function App()
                         headerShown: true,
                         headerTitleStyle: {
                             fontSize: 20,
-                            fontStyle: 'italic'
+                            //fontStyle: 'italic'
                         },
                         headerStyle: {
                             backgroundColor: '#38fdff'

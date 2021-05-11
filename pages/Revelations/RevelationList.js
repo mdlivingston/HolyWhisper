@@ -75,7 +75,7 @@ export default function RevelationList({ navigation })
                     />
                     <Text style={styles.text}>A humble King.</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: secretPlace, key: 'comingsoon', imageHeight: 225 })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'The Secret Place', imagePath: secretPlace, key: 'comingsoon', imageHeight: 225 })}>
                     <Image
                         style={{ width: width, height: 225, resizeMode: 'stretch' }}
                         source={secretPlace}

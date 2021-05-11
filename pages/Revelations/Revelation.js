@@ -37,7 +37,9 @@ export default function Revelation({ navigation, route })
         const asyncFunc = async () =>
         {
             await analytics().logEvent('relevationView', {
-                page: route.params.key
+                page: route.params.key,
+                uid: currentUser.uid,
+                lastActive: db.getCurrentTimeStamp()
             })
         }
         asyncFunc()
