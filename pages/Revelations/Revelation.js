@@ -24,7 +24,7 @@ import { SafeAreaView } from 'react-navigation';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import ItsBetterIfIGo from './stories/ItsBetterIfIGo';
 import HumbleKing from './stories/HumbleKing';
-
+import analytics from '@react-native-firebase/analytics';
 
 
 export default function Revelation({ navigation, route })
@@ -34,6 +34,13 @@ export default function Revelation({ navigation, route })
 
     useEffect(() =>
     {
+        const asyncFunc = async () =>
+        {
+            await analytics().logEvent('relevationView', {
+                page: route.params.key
+            })
+        }
+        asyncFunc()
         console.log(route.params)
         navigation.setOptions({ title: route.params.title })
     })
