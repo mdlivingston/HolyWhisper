@@ -32,10 +32,17 @@ export default function RevelationList({ navigation })
 {
     const { currentUser, } = useAuth()
     const [width, setWidth] = useState(Dimensions.get('window').width)
+    const [height, setHeight] = useState(250)
 
     const onChange = async () =>
     {
         setWidth(Dimensions.get('window').width)
+
+        console.log(Dimensions.get('window').width)
+        if (Dimensions.get('window').width > Dimensions.get('window').height)
+            setHeight(Dimensions.get('window').width > 900 ? 500 : 400)
+        else
+            setHeight(250)
     };
 
     useEffect(() =>
@@ -61,33 +68,33 @@ export default function RevelationList({ navigation })
     return (
         <SafeAreaView style={{ backgroundColor: 'black' }} forceInset={{ bottom: 'never', top: 'never' }}>
             <ScrollView style={styles.scroll}>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'It Is Better That I Go', imagePath: maryAtFeet, key: 'betterifigo', imageHeight: 400 })}>
+                <TouchableOpacity style={{ ...styles.imageBox, height: height }} onPress={() => navigation.navigate('Revelation', { title: 'It Is Better That I Go', imagePath: maryAtFeet, key: 'betterifigo', imageHeight: 400 })}>
                     <Image
-                        style={{ width: width, height: 225, resizeMode: 'cover' }}
+                        style={{ width: width, height: height, resizeMode: 'cover' }}
                         source={maryAtFeet}
                     />
-                    <Text style={styles.text}>It is better that I go...</Text>
+                    <Text style={styles.text}>It is better that I go</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'A Humble King', imagePath: pilate, key: 'humbleking', imageHeight: 225 })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'A Humble King', imagePath: pilate, key: 'humbleking', imageHeight: 250 })}>
                     <Image
-                        style={{ width: width, height: 225, resizeMode: 'stretch' }}
+                        style={{ width: width, height: height, resizeMode: 'stretch' }}
                         source={pilate}
                     />
-                    <Text style={styles.text}>A humble King.</Text>
+                    <Text style={styles.text}>A humble King</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'The Secret Place', imagePath: secretPlace, key: 'comingsoon', imageHeight: 225 })}>
                     <Image
-                        style={{ width: width, height: 225, resizeMode: 'stretch' }}
+                        style={{ width: width, height: height, resizeMode: 'stretch' }}
                         source={secretPlace}
                     />
                     <Text style={styles.text}>The Secret Place</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood, key: 'comingsoon', imageHeight: 300 })}>
                     <Image
-                        style={{ width: width, height: 225, resizeMode: 'stretch' }}
+                        style={{ width: width, height: height, resizeMode: 'stretch' }}
                         source={sweatBlood}
                     />
-                    <Text style={styles.text}>Not my will but yours...</Text>
+                    <Text style={styles.text}>Not my will but yours</Text>
                 </TouchableOpacity>
 
             </ScrollView>
@@ -109,6 +116,7 @@ const styles = StyleSheet.create({
     scroll: {
         height: '100%',
         backgroundColor: 'black',
+        alignContent: 'center',
         //padding: 10,
         //paddingTop: 30
         //paddingRight: 10
@@ -129,11 +137,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         width: '100%',
-        height: 225,
         // paddingLeft: 10,
         // paddingRight: 10,
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         borderBottomColor: 'grey',
-        borderBottomWidth: .5
+        borderBottomWidth: .5,
+        //maxWidth: 500,
+        alignSelf: 'center'
     }
 });
