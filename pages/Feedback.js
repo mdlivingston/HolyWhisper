@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         height: '100%',
-        backgroundColor: 'white'
+        //backgroundColor: 'white'
     },
     textInput: {
         width: '90%',

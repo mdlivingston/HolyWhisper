@@ -12,7 +12,8 @@ import
     Animated,
     Image,
     Platform,
-    AppState
+    AppState,
+    Dimensions
 } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import { useAuth } from '../context/AuthContext';
@@ -94,7 +95,15 @@ export default function Home({ navigation })
                 <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
                     <Image
                         style={styles.crossIcon}
-                        source={require('../assets/cross2.png')}
+                        source={require('../assets/gear.gif')}
+                    />
+                </TouchableOpacity>
+            ),
+            headerLeft: () => (
+                <TouchableOpacity style={styles.revelationIcon} onPress={() => navigation.navigate('Revelations', { name: 'Jane' })}>
+                    <Image
+                        style={styles.revelationGif}
+                        source={require('../assets/revelation.gif')}
                     />
                 </TouchableOpacity>
             ),
@@ -120,17 +129,23 @@ export default function Home({ navigation })
     };
 
     return (
-        <View style={styles.center}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
-                <Image
-                    style={styles.blueFire}
-                    source={require('../assets/blueFire.gif')}
-                />
-            </TouchableOpacity>
+        <View>
 
-            <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
-                Get a Whisper
+            <View style={styles.center}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
+                    <Image
+                        style={styles.blueFire}
+                        source={require('../assets/blueFire.gif')}
+                    />
+                </TouchableOpacity>
+
+
+
+                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
+                    Get a Whisper
                 </Text>
+            </View>
+
         </View>
     )
 }
@@ -159,6 +174,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 1
     },
+    blueLight: {
+        position: 'absolute',
+        top: 0
+    },
     blueFire: {
         width: 85,
         height: 85,
@@ -168,9 +187,18 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         paddingTop: 10
     },
+    revelationIcon: {
+        paddingLeft: 15,
+        paddingTop: 0
+    },
     crossIcon: {
         width: 35,
         height: 35,
         resizeMode: 'contain'
     },
+    revelationGif: {
+        width: 45,
+        height: 45,
+        resizeMode: 'contain'
+    }
 });

@@ -26,6 +26,7 @@ import BackgroundFetch from 'react-native-background-fetch';
 import NotificationService from './notifications/NotificationService';
 import ShowWhisper from './pages/ShowWhisper';
 import PreferredWhispers from './pages/PreferredWhispers';
+import RevelationList from './pages/revelations/RevelationList';
 import { handleFirebaseInit } from './helpers/Firebase';
 import { allowNotificationKey, getString } from './helpers/LocalStorage';
 import { AuthProvider } from './context/AuthContext';
@@ -33,6 +34,7 @@ import PrayerRequest from './pages/PrayerRequest';
 import Feedback from './pages/Feedback';
 import FavoriteWhispers from './pages/FavoriteWhispers';
 import Salvation from './pages/Salvation';
+import Revelation from './pages/revelations/Revelation';
 
 const Stack = createStackNavigator();
 
@@ -117,9 +119,40 @@ export default function App()
                         headerTintColor: 'black'
                     }} component={Salvation} />
 
+                    <Stack.Screen name="Revelations" options={{
+                        title: "Revelations",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black',
+                        headerShown: true,
+                        headerTitleStyle: {
+                            fontSize: 20,
+                            //fontStyle: 'italic'
+                        },
+                        headerStyle: {
+                            backgroundColor: '#38fdff'
+                        },
+                    }} component={RevelationList} />
+
+                    <Stack.Screen name="Revelation" options={{
+                        title: "Revelation",
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black',
+                        headerShown: true,
+                        headerTitleStyle: {
+                            fontSize: 20,
+                            fontStyle: 'italic'
+                        },
+                        headerStyle: {
+                            backgroundColor: '#38fdff'
+                        },
+                    }} component={Revelation} />
+
                 </Stack.Navigator>
             </NavigationContainer>
         </AuthProvider>
+
     );
 }
 
