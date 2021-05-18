@@ -47,6 +47,7 @@ export default function RevelationList({ navigation })
 
     useEffect(() =>
     {
+        onChange()
         Dimensions.addEventListener("change", onChange);
         return () =>
         {
