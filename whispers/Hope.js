@@ -91,7 +91,7 @@ export const hope = [
     },
 
     {
-        text: "n the same way, wisdom is sweet to your soul. If you find it, you will have a bright future, and your hopes will not be cut short.",
+        text: "In the same way, wisdom is sweet to your soul. If you find it, you will have a bright future, and your hopes will not be cut short.",
         verse: "Proverbs 24:14",
         category: 'Hope',
         version: "NLT",

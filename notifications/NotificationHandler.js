@@ -13,6 +13,7 @@ class NotificationHandler
             if (notification.title === 'Your Daily Whisper Has Arrived! 🔥')
             {
                 console.log('ON NOTIFICATION:', notification);
+                this.goToWhisper.navigate('Home', { forcedWhisper: notification.data.whisper })
                 this.goToWhisper.navigate('ShowWhisper', { forcedWhisper: notification.data.whisper })
                 //this.goToWhisper.navigate('ShowWhisper', {})
             }
