@@ -53,18 +53,21 @@ export const lastActive = async (currentUser, fcmToken) =>
 {
     try
     {
+        const version = '1.1.4'
         if (fcmToken)
             await db.lastActive.doc(currentUser.uid)
                 .set({
                     uid: currentUser.uid,
                     lastActive: db.getCurrentTimeStamp(),
-                    fcmToken: fcmToken
+                    fcmToken: fcmToken,
+                    version
                 }, { merge: true }).then(() => console.log('Last Active Recorded'))
         else
             await db.lastActive.doc(currentUser.uid)
                 .set({
                     uid: currentUser.uid,
-                    lastActive: db.getCurrentTimeStamp()
+                    lastActive: db.getCurrentTimeStamp(),
+                    version
                 }, { merge: true }).then(() => console.log('Last Active Recorded'))
     }
     catch (e)
