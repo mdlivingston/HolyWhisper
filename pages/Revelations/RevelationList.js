@@ -25,6 +25,8 @@ const maryAtFeet = require('../../assets/Forgiven_Much.jpeg');
 const sweatBlood = require('../../assets/sweatblood.png');
 const pilate = require('../../assets/marypregnant.jpeg');
 const secretPlace = require('../../assets/secretPlace.jpeg');
+const anointGod = require('../../assets/anointGod.jpeg');
+const lifeandDeath = require('../../assets/lifeanddeath.png');
 
 
 
@@ -83,21 +85,34 @@ export default function RevelationList({ navigation })
                     />
                     <Text style={styles.text}>A humble King</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'The Secret Place', imagePath: secretPlace, key: 'comingsoon', imageHeight: 225 })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'The Secret Place', imagePath: secretPlace, key: 'secretplace', imageHeight: 225 })}>
                     <Image
                         style={{ width: width, height: height, resizeMode: 'stretch' }}
                         source={secretPlace}
                     />
                     <Text style={styles.text}>The Secret Place</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood, key: 'comingsoon', imageHeight: 300 })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'Not My Will But Yours', imagePath: sweatBlood, key: 'notmywill', imageHeight: 300 })}>
                     <Image
                         style={{ width: width, height: height, resizeMode: 'stretch' }}
                         source={sweatBlood}
                     />
                     <Text style={styles.text}>Not my will but yours</Text>
                 </TouchableOpacity>
-
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'God Anointed God', imagePath: anointGod, key: 'comingsoon', imageHeight: 300 })}>
+                    <Image
+                        style={{ width: width, height: height, resizeMode: 'stretch' }}
+                        source={anointGod}
+                    />
+                    <Text style={styles.text}>God Anointed God</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'The Power of Life and Death', imagePath: lifeandDeath, key: 'comingsoon', imageHeight: 250 })}>
+                    <Image
+                        style={{ width: width, height: height, resizeMode: 'stretch' }}
+                        source={lifeandDeath}
+                    />
+                    <Text style={styles.text}>The Power of Life and Death</Text>
+                </TouchableOpacity>
             </ScrollView>
         </SafeAreaView >
     )
