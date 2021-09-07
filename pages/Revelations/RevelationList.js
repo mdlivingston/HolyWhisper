@@ -99,7 +99,7 @@ export default function RevelationList({ navigation })
                     />
                     <Text style={styles.text}>Not my will but yours</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'God Anointed God', imagePath: anointGod, key: 'comingsoon', imageHeight: 300 })}>
+                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'God Anointed God', imagePath: anointGod, key: 'godanointed', imageHeight: 300 })}>
                     <Image
                         style={{ width: width, height: height, resizeMode: 'stretch' }}
                         source={anointGod}

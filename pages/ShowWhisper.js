@@ -204,9 +204,10 @@ export default function ShowWhisper({ route, navigation })
             let randomW = await getRandomWhisper()
             setRandomWhisper(randomW)
 
+            handleWordAnimationsEnter()
+
             await grabFavoriteWhisper(randomW)
 
-            handleWordAnimationsEnter()
         }, 1000);
     }
 
