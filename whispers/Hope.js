@@ -301,7 +301,7 @@ export const hope = [
     },
 
     {
-        text: "Our faith guarantees us permanent access into this marvelous kindness[a] that has given us a perfect relationship with God. What incredible joy bursts forth within us as we keep on celebrating our hope of experiencing God’s glory!",
+        text: "Our faith guarantees us permanent access into this marvelous kindness that has given us a perfect relationship with God. What incredible joy bursts forth within us as we keep on celebrating our hope of experiencing God’s glory!",
         verse: "Romans 5:2",
         category: 'Hope',
         version: "TPT",
