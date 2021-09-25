@@ -16,6 +16,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* HolyWhisperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HolyWhisperTests.m */; };
+		4366CC9C535C404E8A49C1B6 /* ShadowsIntoLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37AD2884CD144BE7A422ED89 /* ShadowsIntoLight.ttf */; };
 		558F175D2946E7AF8245D8FC /* libPods-HolyWhisper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 254A59609C0F1117FF76B1CB /* libPods-HolyWhisper.a */; };
 		56D8672876AD38FAECCE0EF8 /* libPods-HolyWhisper-HolyWhisperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F964F7B611731BE4B4DD3AD2 /* libPods-HolyWhisper-HolyWhisperTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -57,6 +58,8 @@
 		254A59609C0F1117FF76B1CB /* libPods-HolyWhisper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HolyWhisper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* HolyWhisper-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HolyWhisper-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* HolyWhisper-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HolyWhisper-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37AD2884CD144BE7A422ED89 /* ShadowsIntoLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ShadowsIntoLight.ttf; path = ../assets/fonts/ShadowsIntoLight.ttf; sourceTree = "<group>"; };
+		38BBB1FB0F2E4F3EBB1F0E10 /* ShadowsIntoLight-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ShadowsIntoLight-Regular.ttf"; path = "../assets/fonts/ShadowsIntoLight-Regular.ttf"; sourceTree = "<group>"; };
 		6E58432BD82D633FF4EBE676 /* libPods-HolyWhisper-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HolyWhisper-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HolyWhisper/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C8A8E7E25DCA9FA00C755F9 /* HolyWhisper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HolyWhisper.entitlements; path = HolyWhisper/HolyWhisper.entitlements; sourceTree = "<group>"; };
@@ -191,6 +194,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				334BFC4C7EF358849436FCDB /* Pods */,
+				F2DCDFD41EDC4C7AA1105183 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -206,6 +210,15 @@
 				2D02E4901E0B4A5D006451C7 /* HolyWhisper-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F2DCDFD41EDC4C7AA1105183 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				38BBB1FB0F2E4F3EBB1F0E10 /* ShadowsIntoLight-Regular.ttf */,
+				37AD2884CD144BE7A422ED89 /* ShadowsIntoLight.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +372,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				8CBECD7E25DCEB7000307EAA /* GoogleService-Info.plist in Resources */,
 				8CA6E0CB25DFA27C00347B2A /* shofar.mp3 in Resources */,
+				4366CC9C535C404E8A49C1B6 /* ShadowsIntoLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +545,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HolyWhisper-HolyWhisperTests/Pods-HolyWhisper-HolyWhisperTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -549,7 +563,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HolyWhisper/Pods-HolyWhisper-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (

@@ -147,6 +147,11 @@ export default function Settings({ navigation })
                     <Text style={{ width: 2, flex: 1 }}></Text>
                     <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.section} onPress={() => Linking.openURL('https://paypal.me/HolyWhisper')}>
+                    <Text style={styles.title}>Donate</Text>
+                    <Text style={{ width: 2, flex: 1 }}></Text>
+                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
+                </TouchableOpacity>
                 <TouchableWithoutFeedback >
                     <View style={styles.section}>
                         <Text style={styles.title}>Daily Whisper Reminders</Text>
@@ -160,11 +165,6 @@ export default function Settings({ navigation })
                         />
                     </View>
                 </TouchableWithoutFeedback>
-                <TouchableOpacity style={styles.section} onPress={() => Linking.openURL('https://paypal.me/HolyWhisper')}>
-                    <Text style={styles.title}>Donate</Text>
-                    <Text style={{ width: 2, flex: 1 }}></Text>
-                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-                </TouchableOpacity>
                 <TouchableOpacity style={styles.section} onPress={showTimepicker}>
                     <Text style={styles.title}>Reminder Time</Text>
                     <Text style={{ width: 2, flex: 1 }}></Text>

@@ -141,7 +141,7 @@ export default function Home({ navigation })
 
 
 
-                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 13 }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
+                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 18, fontFamily: 'ShadowsIntoLight' }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
                     Get a Whisper
                 </Text>
             </View>
