@@ -34,7 +34,7 @@ export default function RevelationList({ navigation })
 {
     const { currentUser, } = useAuth()
     const [width, setWidth] = useState(Dimensions.get('window').width)
-    const [height, setHeight] = useState(250)
+    const [height, setHeight] = useState(350)
 
     const onChange = async () =>
     {
@@ -44,16 +44,17 @@ export default function RevelationList({ navigation })
         if (Dimensions.get('window').width > Dimensions.get('window').height)
             setHeight(Dimensions.get('window').width > 900 ? 500 : 400)
         else
-            setHeight(250)
+            setHeight(350)
     };
 
     useEffect(() =>
     {
         onChange()
-        Dimensions.addEventListener("change", onChange);
+        const sub = Dimensions.addEventListener("change", onChange);
         return () =>
         {
-            Dimensions.removeEventListener("change", onChange);
+            sub.remove()
+            //Dimensions.removeEventListener("change", onChange);
         };
     });
 

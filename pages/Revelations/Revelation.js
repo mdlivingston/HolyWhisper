@@ -57,10 +57,11 @@ export default function Revelation({ navigation, route })
 
     useEffect(() =>
     {
-        Dimensions.addEventListener("change", onChange);
+        const sub = Dimensions.addEventListener("change", onChange);
         return () =>
         {
-            Dimensions.removeEventListener("change", onChange);
+            sub.remove();
+            //Dimensions.removeEventListener("change", onChange);
         };
     });
 

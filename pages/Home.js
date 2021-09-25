@@ -62,11 +62,12 @@ export default function Home({ navigation })
 
         asyncFunc();
 
-        AppState.addEventListener("change", _handleAppStateChange);
+        const sub = AppState.addEventListener("change", _handleAppStateChange);
 
         return () =>
         {
-            AppState.removeEventListener("change", _handleAppStateChange);
+            sub.remove()
+            //AppState.removeEventListener("change", _handleAppStateChange);
         };
 
     }, [fadeAnim, currentUser])

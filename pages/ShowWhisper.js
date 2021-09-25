@@ -325,10 +325,11 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
     category: {
-        fontSize: 12,
+        fontSize: 16,
         fontStyle: 'italic',
         paddingRight: 10,
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+        fontFamily: 'ShadowsIntoLight'
     },
     heartButton: {
         paddingRight: 20
