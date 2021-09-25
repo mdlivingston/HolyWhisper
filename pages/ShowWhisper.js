@@ -326,7 +326,6 @@ const styles = StyleSheet.create({
     },
     category: {
         fontSize: 16,
-        fontStyle: 'italic',
         paddingRight: 10,
         alignSelf: 'flex-end',
         fontFamily: 'ShadowsIntoLight'

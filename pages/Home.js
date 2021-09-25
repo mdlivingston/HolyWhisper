@@ -7,7 +7,7 @@ import
     View,
     Text,
     StatusBar,
-    TouchableOpacity,
+    //TouchableOpacity,
     Alert,
     Animated,
     Image,
@@ -21,6 +21,9 @@ import { db, lastActive } from '../helpers/Firebase';
 import { allowNotificationKey, getString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
 import messaging from '@react-native-firebase/messaging';
+
+// Had to import this because header buttons in android did not work
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default function Home({ navigation })
 {
@@ -142,7 +145,7 @@ export default function Home({ navigation })
 
 
 
-                <Text style={{ textAlign: 'center', fontStyle: 'italic', fontSize: 18, fontFamily: 'ShadowsIntoLight' }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
+                <Text style={{ textAlign: 'center', fontSize: 18, fontFamily: 'ShadowsIntoLight' }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
                     Get a Whisper
                 </Text>
             </View>
@@ -186,7 +189,8 @@ const styles = StyleSheet.create({
     },
     settingsIcon: {
         paddingRight: 15,
-        paddingTop: 10
+        paddingTop: 10,
+        zIndex: 99,
     },
     revelationIcon: {
         paddingLeft: 15,

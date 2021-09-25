@@ -50,10 +50,6 @@ export default function Revelation({ navigation, route })
         navigation.setOptions({ title: route.params.title })
     })
 
-    const onChange = async () =>
-    {
-        setWidth(Dimensions.get('window').width)
-    };
 
     useEffect(() =>
     {
@@ -64,6 +60,12 @@ export default function Revelation({ navigation, route })
             //Dimensions.removeEventListener("change", onChange);
         };
     });
+
+    const onChange = () =>
+    {
+        setWidth(Dimensions.get('window').width)
+    };
+
 
     function loadRevelationText()
     {
