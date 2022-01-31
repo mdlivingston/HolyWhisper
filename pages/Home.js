@@ -1,13 +1,12 @@
 import React, { useEffect, useRef } from 'react'
-import
-{
+import {
     SafeAreaView,
     StyleSheet,
     ScrollView,
     View,
     Text,
     StatusBar,
-    //TouchableOpacity,
+    TouchableOpacity,
     Alert,
     Animated,
     Image,
@@ -23,35 +22,29 @@ import NotificationService from '../notifications/NotificationService';
 import messaging from '@react-native-firebase/messaging';
 
 // Had to import this because header buttons in android did not work
-import { TouchableOpacity } from 'react-native-gesture-handler'
+//import { TouchableOpacity } from 'react-native-gesture-handler'
 
-export default function Home({ navigation })
-{
+export default function Home({ navigation }) {
     const { currentUser, login, logout } = useAuth()
     const appState = useRef(AppState.currentState);
     const fadeAnim = useRef(new Animated.Value(0)).current
     const notifService = new NotificationService(null, null, navigation);
 
-    useEffect(() =>
-    {
+    useEffect(() => {
 
-        const asyncFunc = async () =>
-        {
+        const asyncFunc = async () => {
             // Workaround for killed app notification bug https://github.com/zo0r/react-native-push-notification/issues/1955#issuecomment-821520367
             notifService.popInitialNotification()
 
-            try
-            {
+            try {
                 if (!currentUser)
                     await login().then((e) => console.log('Login Done'))
-                else
-                {
+                else {
                     let fcmToken = await messaging().getToken();
                     await lastActive(currentUser, fcmToken)
                 }
             }
-            catch (e)
-            {
+            catch (e) {
                 console.log('Failed to login.' + e)
             }
 
@@ -67,23 +60,19 @@ export default function Home({ navigation })
 
         const sub = AppState.addEventListener("change", _handleAppStateChange);
 
-        return () =>
-        {
+        return () => {
             sub.remove()
             //AppState.removeEventListener("change", _handleAppStateChange);
         };
 
     }, [fadeAnim, currentUser])
 
-    useEffect(() =>
-    {
+    useEffect(() => {
         //On screen load no matter the history
-        const unsubscribe = navigation.addListener('focus', async () =>
-        {
+        const unsubscribe = navigation.addListener('focus', async () => {
             PushNotification.setApplicationIconBadgeNumber(0);
 
-            if (currentUser)
-            {
+            if (currentUser) {
                 await lastActive(currentUser)
             }
         });
@@ -92,8 +81,7 @@ export default function Home({ navigation })
     }, [currentUser])
 
 
-    React.useLayoutEffect(() =>
-    {
+    React.useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
                 <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Settings', { name: 'Jane' })}>
@@ -114,15 +102,12 @@ export default function Home({ navigation })
         });
     }, [navigation]);
 
-    const _handleAppStateChange = async (nextAppState) =>
-    {
+    const _handleAppStateChange = async (nextAppState) => {
         if (
             appState.current.match(/inactive|background/) &&
             nextAppState === "active"
-        )
-        {
-            if (currentUser)
-            {
+        ) {
+            if (currentUser) {
                 await lastActive(currentUser)
             }
             console.log("App has come to the foreground!");
