@@ -135,8 +135,8 @@ android {
         applicationId "com.holywhisper"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 18
-        versionName "1.1.8"
+        versionCode 19
+        versionName "1.1.9"
         multiDexEnabled true
     }
     splits {
