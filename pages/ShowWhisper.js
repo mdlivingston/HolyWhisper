@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import
-{
+import {
     SafeAreaView,
     StyleSheet,
     ScrollView,
@@ -25,8 +24,7 @@ import NetInfo from "@react-native-community/netinfo";
 import PushNotification from 'react-native-push-notification';
 import messaging from '@react-native-firebase/messaging';
 
-export default function ShowWhisper({ route, navigation })
-{
+export default function ShowWhisper({ route, navigation }) {
     const fadeAnim = useRef(new Animated.Value(0)).current
     const delayedFadeAnim = useRef(new Animated.Value(0)).current
     const doubleDelayedFadeAnim = useRef(new Animated.Value(0)).current
@@ -39,19 +37,15 @@ export default function ShowWhisper({ route, navigation })
     const { currentUser } = useAuth()
 
     const { forcedWhisper } = route.params;
-    useEffect(() =>
-    {
+    useEffect(() => {
 
-        const asyncFunc = async () =>
-        {
+        const asyncFunc = async () => {
             let whisper;
-            if (forcedWhisper)
-            {
+            if (forcedWhisper) {
                 setRandomWhisper(forcedWhisper)
                 whisper = forcedWhisper;
             }
-            else
-            {
+            else {
                 whisper = await getRandomWhisper()
                 setRandomWhisper(whisper)
             }
@@ -64,17 +58,15 @@ export default function ShowWhisper({ route, navigation })
         asyncFunc()
 
         //On screen load no matter the history
-        const unsubscribe = navigation.addListener('focus', async () =>
-        {
+        const unsubscribe = navigation.addListener('focus', async () => {
             PushNotification.setApplicationIconBadgeNumber(0);
         });
 
         return unsubscribe;
 
-    }, [])
+    }, [currentUser])
 
-    React.useLayoutEffect(() =>
-    {
+    React.useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
                 <View style={{ display: 'flex', flexDirection: 'row' }}>
@@ -94,8 +86,7 @@ export default function ShowWhisper({ route, navigation })
         });
     }, [navigation, randomWhisper, favoriteWhisper, disabled]);
 
-    const grabFavoriteWhisper = async (whisper) =>
-    {
+    const grabFavoriteWhisper = async (whisper) => {
         let fbFavoriteArray = await db.favoriteWhispers.where('verse', '==', whisper.verse).where('uid', '==', currentUser.uid).get()
 
         fbFavoriteArray = fbFavoriteArray.docs.map(doc => db.formatDoc(doc))
@@ -104,10 +95,8 @@ export default function ShowWhisper({ route, navigation })
         await lastActive(currentUser)
     }
 
-    const onFavorite = async () =>
-    {
-        NetInfo.fetch().then(async (state) =>
-        {
+    const onFavorite = async () => {
+        NetInfo.fetch().then(async (state) => {
             console.log("Connection type", state.type);
             console.log("Is connected?", state.isConnected);
             if (state.isConnected)
@@ -115,29 +104,25 @@ export default function ShowWhisper({ route, navigation })
         });
     }
 
-    const onUnFavorite = async () =>
-    {
+    const onUnFavorite = async () => {
         await deleteFavorite()
         setFavoriteWhisper(null)
     }
 
-    const addFavorite = async () =>
-    {
+    const addFavorite = async () => {
         setDisabled(true)
         await db.favoriteWhispers.add({
             ...randomWhisper,
             createdAt: db.getCurrentTimeStamp(),
             uid: currentUser.uid
-        }).then((data) =>
-        {
+        }).then((data) => {
             console.log(data.id)
             setFavoriteWhisper({ ...randomWhisper, id: data.id })
             setDisabled(false)
         })
     }
 
-    const deleteFavorite = async () =>
-    {
+    const deleteFavorite = async () => {
         setDisabled(true)
         await db.favoriteWhispers.doc(favoriteWhisper.id).delete()
         setDisabled(false)
@@ -175,8 +160,9 @@ export default function ShowWhisper({ route, navigation })
         </ScrollView>
     )
 
-    async function newWhisper()
-    {
+    async function newWhisper() {
+        PushNotification.setApplicationIconBadgeNumber(0);
+
         Animated.timing(
             fireGrowAnim,
             {
@@ -199,8 +185,7 @@ export default function ShowWhisper({ route, navigation })
 
         handleWordAnimationsExit();
 
-        setTimeout(async () =>
-        {
+        setTimeout(async () => {
             let randomW = await getRandomWhisper()
             setRandomWhisper(randomW)
 
@@ -211,8 +196,7 @@ export default function ShowWhisper({ route, navigation })
         }, 1000);
     }
 
-    function handleWordAnimationsEnter()
-    {
+    function handleWordAnimationsEnter() {
         Animated.timing(
             fadeAnim,
             {
@@ -223,8 +207,7 @@ export default function ShowWhisper({ route, navigation })
         ).start();
 
 
-        setTimeout(() =>
-        {
+        setTimeout(() => {
             Animated.timing(
                 delayedFadeAnim,
                 {
@@ -235,8 +218,7 @@ export default function ShowWhisper({ route, navigation })
             ).start();
         }, 2000);
 
-        setTimeout(() =>
-        {
+        setTimeout(() => {
             Animated.timing(
                 doubleDelayedFadeAnim,
                 {
@@ -267,8 +249,7 @@ export default function ShowWhisper({ route, navigation })
         ).start();
     }
 
-    function handleWordAnimationsExit()
-    {
+    function handleWordAnimationsExit() {
         Animated.timing(
             fadeAnim,
             {

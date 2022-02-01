@@ -1,19 +1,18 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import
-{
-    StyleSheet,
-    ScrollView,
-    View,
-    Text,
-    StatusBar,
-    TouchableOpacity,
-    Alert,
-    Animated,
-    Platform,
-    Image,
-    TouchableWithoutFeedback,
-    TextInput,
-    Dimensions
+import {
+StyleSheet,
+ScrollView,
+View,
+Text,
+StatusBar,
+TouchableOpacity,
+Alert,
+Animated,
+Platform,
+Image,
+TouchableWithoutFeedback,
+TextInput,
+Dimensions
 } from 'react-native';
 
 import { useAuth } from '../../context/AuthContext';
@@ -30,14 +29,12 @@ const lifeandDeath = require('../../assets/lifeanddeath.png');
 
 
 
-export default function RevelationList({ navigation })
-{
+export default function RevelationList({ navigation }) {
     const { currentUser, } = useAuth()
     const [width, setWidth] = useState(Dimensions.get('window').width)
     const [height, setHeight] = useState(300)
 
-    const onChange = async () =>
-    {
+    const onChange = async () => {
         setWidth(Dimensions.get('window').width)
 
         console.log(Dimensions.get('window').width)
@@ -47,19 +44,16 @@ export default function RevelationList({ navigation })
             setHeight(300)
     };
 
-    useEffect(() =>
-    {
+    useEffect(() => {
         onChange()
         const sub = Dimensions.addEventListener("change", onChange);
-        return () =>
-        {
+        return () => {
             sub.remove()
             //Dimensions.removeEventListener("change", onChange);
         };
     });
 
-    React.useLayoutEffect(() =>
-    {
+    React.useLayoutEffect(() => {
         navigation.setOptions({
             headerLeft: () => (
                 <TouchableOpacity style={styles.settingsIcon} onPress={() => navigation.navigate('Home', { name: 'Jane' })}>
@@ -107,13 +101,13 @@ export default function RevelationList({ navigation })
                     />
                     <Text style={styles.text}>God Anointed God</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'The Power of Life and Death', imagePath: lifeandDeath, key: 'comingsoon', imageHeight: 250 })}>
+                {/* <TouchableOpacity style={styles.imageBox} onPress={() => navigation.navigate('Revelation', { title: 'The Power of Life and Death', imagePath: lifeandDeath, key: 'comingsoon', imageHeight: 250 })}>
                     <Image
                         style={{ width: width, height: height, resizeMode: 'stretch' }}
                         source={lifeandDeath}
                     />
                     <Text style={styles.text}>The Power of Life and Death</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </ScrollView>
         </SafeAreaView >
     )

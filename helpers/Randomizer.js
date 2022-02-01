@@ -10,6 +10,7 @@ import { peace } from "../whispers/Peace";
 import { purity } from "../whispers/Purity";
 import { purpose } from "../whispers/Purpose";
 import { secretPlace } from "../whispers/SecretPlace";
+import { discipline } from "../whispers/Discipline";
 import { word } from "../whispers/Word";
 import { getData } from "./LocalStorage";
 
@@ -26,23 +27,21 @@ export const categories = [
     'Hope',
     'Joy',
     'Purity',
-    'Secret Place'
+    'Secret Place',
+    'Discipline'
 ]
 
-function getRandomInt(min, max)
-{
+function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export async function getRandomWhisper()
-{
+export async function getRandomWhisper() {
     const preferredWhispers = await getData('preferredWhispers')
     const category = preferredWhispers && preferredWhispers.length > 0 ?
         preferredWhispers[getRandomInt(0, preferredWhispers.length - 1)] :
         categories[getRandomInt(0, categories.length - 1)]
 
-    switch (category)
-    {
+    switch (category) {
         case 'Identity':
             return identity[getRandomInt(0, identity.length - 1)]
         case 'Authority':
@@ -69,12 +68,13 @@ export async function getRandomWhisper()
             return hope[getRandomInt(0, hope.length - 1)]
         case 'Joy':
             return joy[getRandomInt(0, joy.length - 1)]
+        case 'Discipline':
+            return discipline[getRandomInt(0, discipline.length - 1)]
         default:
             return identity[0]
     }
 }
 
-export function truncate(str, n)
-{
+export function truncate(str, n) {
     return (str.length > n) ? str.substr(0, n - 1) + '...' : str;
 }

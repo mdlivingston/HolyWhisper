@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import
-{
+import {
     SafeAreaView,
     StyleSheet,
     ScrollView,
@@ -16,14 +15,11 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { getData, preferredWhispersKey, storeData } from '../helpers/LocalStorage';
 import { categories } from '../helpers/Randomizer';
 
-export default function PreferredWhispers()
-{
+export default function PreferredWhispers() {
     const [selectedIds, setSelectedIds] = useState([])
 
-    useEffect(() =>
-    {
-        const asyncFunc = async () =>
-        {
+    useEffect(() => {
+        const asyncFunc = async () => {
             let storage = await getData(preferredWhispersKey)
 
             if (!storage) // First time on page
@@ -34,8 +30,7 @@ export default function PreferredWhispers()
         asyncFunc()
     }, [])
 
-    async function changeSelectedId(id)
-    {
+    async function changeSelectedId(id) {
         const idIndex = selectedIds.findIndex(t => t == id)
 
         const tempSelected = [...selectedIds];
@@ -49,10 +44,8 @@ export default function PreferredWhispers()
         await console.log(await getData(preferredWhispersKey))
     }
 
-    async function clickAll()
-    {
-        if (selectedIds.length > 0) 
-        {
+    async function clickAll() {
+        if (selectedIds.length > 0) {
             await storeData(preferredWhispersKey, [])
             setSelectedIds([])
         }
@@ -82,7 +75,8 @@ export default function PreferredWhispers()
 const styles = StyleSheet.create({
     container: {
         height: '100%',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        paddingBottom: 100
     },
     section: {
         display: 'flex',
@@ -94,7 +88,7 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         backgroundColor: 'white',
         borderBottomColor: 'grey',
-        borderBottomWidth: .5,
+        borderBottomWidth: .5
     },
     title: {
         width: '90%',
