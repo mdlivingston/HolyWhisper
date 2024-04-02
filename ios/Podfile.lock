@@ -1215,9 +1215,9 @@ PODS:
     - React-jsi (= 0.72.3)
     - React-logger (= 0.72.3)
     - React-perflogger (= 0.72.3)
-  - RNBackgroundFetch (4.2.0):
+  - RNBackgroundFetch (4.2.4):
     - React-Core
-  - RNCAsyncStorage (1.19.2):
+  - RNCAsyncStorage (1.23.1):
     - React-Core
   - RNCMaskedView (0.1.11):
     - React
@@ -1244,40 +1244,16 @@ PODS:
     - Firebase/Messaging (= 8.15.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.12.1):
+  - RNGestureHandler (2.16.0):
+    - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - RNReanimated (3.5.0-nightly-20230812-f55e831b1):
-    - DoubleConversion
-    - FBLazyVector
-    - glog
-    - hermes-engine
-    - RCT-Folly
-    - RCTRequired
-    - RCTTypeSafety
-    - React-callinvoker
+  - RNReanimated (3.8.1):
+    - RCT-Folly (= 2021.07.22.00)
     - React-Core
-    - React-Core/DevSupport
-    - React-Core/RCTWebSocket
-    - React-CoreModules
-    - React-cxxreact
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-RCTActionSheet
-    - React-RCTAnimation
-    - React-RCTAppDelegate
-    - React-RCTBlob
-    - React-RCTImage
-    - React-RCTLinking
-    - React-RCTNetwork
-    - React-RCTSettings
-    - React-RCTText
     - ReactCommon/turbomodule/core
-    - Yoga
-  - RNScreens (3.24.0):
+  - RNScreens (3.30.1):
+    - RCT-Folly (= 2021.07.22.00)
     - React-Core
-    - React-RCTImage
   - RNShare (7.9.1):
     - React-Core
   - RNSVG (12.5.1):
@@ -1549,8 +1525,8 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 837c1bebd2f84572db17698cd702ceaf585b0d9a
   React-utils: bcb57da67eec2711f8b353f6e3d33bd8e4b2efa3
   ReactCommon: 3ccb8fb14e6b3277e38c73b0ff5e4a1b8db017a9
-  RNBackgroundFetch: e073ad5c803e9f77970afd91fbce3df3a9d1d6c6
-  RNCAsyncStorage: f57e929cd7757f2cb3dd8186d123c09e8281a1ad
+  RNBackgroundFetch: 7c2d0c55e2b8924ecbdcd56b010feddff0f8463d
+  RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNCPushNotificationIOS: 64218f3c776c03d7408284a819b2abfda1834bc8
   RNDateTimePicker: 1dd15d7ed1ab7d999056bc77879a42920d139c12
@@ -1559,9 +1535,9 @@ SPEC CHECKSUMS:
   RNFBAuth: 50ac123123b27241927e639c0ac9c8af17f05aa1
   RNFBFirestore: 24c46940b96579c50bd39a72566f6d48c6165f2f
   RNFBMessaging: 40dac204b4197a2661dec5be964780c6ec39bf65
-  RNGestureHandler: c0d04458598fcb26052494ae23dda8f8f5162b13
-  RNReanimated: 71c4a646fcaa349f238517e0f70e65f3f0729c0e
-  RNScreens: b21dc57dfa2b710c30ec600786a3fc223b1b92e7
+  RNGestureHandler: 69d0a928253547ef857a7be4f453220b9c472e07
+  RNReanimated: f4798af7dede23d41039f0bc372710ead86e90c7
+  RNScreens: bb06f14b5c352e603f2527caac02ca0d6398c6e5
   RNShare: a5dc3b9c53ddc73e155b8cd9a94c70c91913c43c
   RNSVG: d7d7bc8229af3842c9cfc3a723c815a52cdd1105
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
