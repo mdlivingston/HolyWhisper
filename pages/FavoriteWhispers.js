@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     stokeButton: {
+        backgroundColor: 'transparent',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 1,

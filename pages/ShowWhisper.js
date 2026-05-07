@@ -326,6 +326,7 @@ const styles = StyleSheet.create({
         marginBottom: 25,
     },
     button: {
+        backgroundColor: 'transparent',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
