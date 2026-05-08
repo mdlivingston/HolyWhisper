@@ -96,21 +96,39 @@ export const secretPlace = [
         version: "ESV"
     },
     {
-        text: "And the Pharisees and the scribes grumbled, saying, “This man receives sinners and eats with them.”",
-        verse: "Luke 15:2",
-        category: 'Secret Place',
-        version: "ESV"
-    },
-    {
         text: "I will put my Spirit within you and cause you to walk in My statutes, and you will keep My ordinances and do them.",
         verse: "Ezekiel 36:27",
         category: 'Secret Place',
         version: "AMP"
     },
-    // {
-    //     text: "",
-    //     verse: "",
-    //     category: 'Secret Place',
-    //     version: "ESV"
-    // },
+    {
+        text: "He will cover you with his feathers, and under his wings you will find refuge; his faithfulness will be your shield and rampart.",
+        verse: "Psalm 91:4",
+        category: 'Secret Place',
+        version: "NIV"
+    },
+    {
+        text: "God is our refuge and strength, an ever-present help in trouble.",
+        verse: "Psalm 46:1",
+        category: 'Secret Place',
+        version: "NIV"
+    },
+    {
+        text: "You, God, are my God, earnestly I seek you; I thirst for you, my whole being longs for you, in a dry and parched land where there is no water.",
+        verse: "Psalm 63:1",
+        category: 'Secret Place',
+        version: "NIV"
+    },
+    {
+        text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+        verse: "Isaiah 40:31",
+        category: 'Secret Place',
+        version: "NIV"
+    },
+    {
+        text: "The Lord is near to all who call on him, to all who call on him in truth.",
+        verse: "Psalm 145:18",
+        category: 'Secret Place',
+        version: "NIV"
+    },
 ]

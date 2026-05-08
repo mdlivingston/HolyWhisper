@@ -1,7 +1,7 @@
 export const father = [
     {
         text: "The same way a loving father feels toward his children—that’s but a sample of your tender feelings toward us, your beloved children, who live in awe of you.",
-        verse: "Pslam 103:13",
+        verse: "Psalm 103:13",
         category: 'Father',
         version: "TPT",
     },
@@ -113,4 +113,40 @@ export const father = [
         category: 'Father',
         version: "TPT",
     },
+
+    {
+        text: "So you have not received a spirit that makes you fearful slaves. Instead, you received God’s Spirit when he adopted you as his own children. Now we call him, \"Abba, Father.\" For his Spirit joins with our spirit to affirm that we are God’s children.",
+        verse: "Romans 8:15-16",
+        category: 'Father',
+        version: "NLT",
+    },
+
+    {
+        text: "Father to the fatherless, defender of widows—this is God, whose dwelling is holy.",
+        verse: "Psalm 68:5",
+        category: 'Father',
+        version: "NLT",
+    },
+
+    {
+        text: "So if you sinful people know how to give good gifts to your children, how much more will your heavenly Father give good gifts to those who ask him.",
+        verse: "Matthew 7:11",
+        category: 'Father',
+        version: "NLT",
+    },
+
+    {
+        text: "When I think of all this, I fall to my knees and pray to the Father, the Creator of everything in heaven and on earth.",
+        verse: "Ephesians 3:14-15",
+        category: 'Father',
+        version: "NLT",
+    },
+
+    {
+        text: "Can a mother forget her nursing child? Can she feel no love for the child she has borne? But even if that were possible, I would not forget you! See, I have written your name on the palms of my hands.",
+        verse: "Isaiah 49:15-16",
+        category: 'Father',
+        version: "NLT",
+    },
+
 ]

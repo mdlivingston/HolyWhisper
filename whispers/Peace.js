@@ -196,13 +196,6 @@ export const peace = [
     },
 
     {
-        text: "For God is not a God of confusion but of peace. As in all the churches of the saints,",
-        verse: "1 Corinthians 14:33",
-        category: 'Peace',
-        version: "ESV",
-    },
-
-    {
         text: "Make every effort to keep yourselves united in the Spirit, binding yourselves together with peace.",
         verse: "Ephesians 4:3",
         category: 'Peace',
@@ -305,6 +298,36 @@ export const peace = [
         verse: "Proverbs 3:24",
         category: 'Peace',
         version: "ESV",
+    },
+    {
+        text: "Lord, you establish peace for us; all that we have accomplished you have done for us.",
+        verse: "Isaiah 26:12",
+        category: 'Peace',
+        version: "NIV",
+    },
+    {
+        text: "On the evening of that first day of the week, when the disciples were together, with the doors locked for fear of the Jewish leaders, Jesus came and stood among them and said, 'Peace be with you!'",
+        verse: "John 20:19",
+        category: 'Peace',
+        version: "NIV",
+    },
+    {
+        text: "I will listen to what God the Lord says; he promises peace to his people, his faithful servants—but let them not turn to folly.",
+        verse: "Psalm 85:8",
+        category: 'Peace',
+        version: "NIV",
+    },
+    {
+        text: "Now may the God of hope fill you with all joy and peace as you believe in Him, so that you will abound in hope by the power of the Holy Spirit.",
+        verse: "Romans 15:13",
+        category: 'Peace',
+        version: "NASB",
+    },
+    {
+        text: "The Lord gives strength to his people; the Lord blesses his people with peace.",
+        verse: "Psalm 29:11",
+        category: 'Peace',
+        version: "NIV",
     },
 
 ]

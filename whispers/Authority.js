@@ -148,7 +148,7 @@ export const authority = [
 
     {
         text: "But Peter and the apostles answered, \"We must obey God rather than men.\"",
-        verse: "Acts 5:30",
+        verse: "Acts 5:29",
         category: 'Authority in Christ',
         version: "NASB"
     },
@@ -301,10 +301,45 @@ export const authority = [
     },
 
     {
-        text: "Yes,\" he told them, \"I saw Satan fall from heaven like lightning! Look, I have given you authority over all the power of the enemy, and you can walk among snakes and scorpions and crush them. Nothing will injure you.",
-        verse: "Luke 10:18",
+        text: "The Spirit of the Sovereign Lord is upon me, for the Lord has anointed me to bring good news to the poor. He has sent me to comfort the brokenhearted and to proclaim that captives will be released and prisoners will be freed.",
+        verse: "Isaiah 61:1",
         category: 'Authority in Christ',
         version: "NLT"
+    },
+
+    {
+        text: "Therefore, God elevated him to the place of highest honor and gave him the name above all other names, that at the name of Jesus every knee should bow, in heaven and on earth and under the earth, and every tongue declare that Jesus Christ is Lord, to the glory of God the Father.",
+        verse: "Philippians 2:9-11",
+        category: 'Authority in Christ',
+        version: "NLT"
+    },
+
+    {
+        text: "When Jesus had called the Twelve together, he gave them power and authority to drive out all demons and to cure diseases.",
+        verse: "Luke 9:1",
+        category: 'Authority in Christ',
+        version: "NIV"
+    },
+
+    {
+        text: "For sin shall not have dominion over you, for you are not under law but under grace.",
+        verse: "Romans 6:14",
+        category: 'Authority in Christ',
+        version: "NKJV"
+    },
+
+    {
+        text: "The Lord says to my Lord: \"Sit at my right hand until I make your enemies a footstool for your feet.\" The Lord will extend your mighty scepter from Zion, saying, \"Rule in the midst of your enemies!\"",
+        verse: "Psalm 110:1-2",
+        category: 'Authority in Christ',
+        version: "NIV"
+    },
+
+    {
+        text: "I can do all things through Christ who strengthens me.",
+        verse: "Philippians 4:13",
+        category: 'Authority in Christ',
+        version: "NKJV"
     },
 
 ]

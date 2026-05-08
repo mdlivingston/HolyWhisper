@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         justifyContent: 'center',
         marginBottom: 20,
+        backgroundColor: 'transparent',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,

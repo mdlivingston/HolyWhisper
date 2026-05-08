@@ -18,6 +18,7 @@ import { faShareSquare, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as outlinedHeart } from '@fortawesome/free-regular-svg-icons'
 import { getRandomWhisper } from '../helpers/Randomizer';
 import { ShareWhisper } from '../helpers/Share';
+import { buildBibleUrl } from '../helpers/BibleUrl';
 import { db, lastActive } from '../helpers/Firebase';
 import { useAuth } from '../context/AuthContext';
 import NetInfo from "@react-native-community/netinfo";
@@ -147,6 +148,18 @@ export default function ShowWhisper({ route, navigation }) {
                         {randomWhisper ? `-${randomWhisper.category}` : ''}
                     </Text>
                 </Animated.View>
+                {randomWhisper && buildBibleUrl(randomWhisper.verse, randomWhisper.version) && (
+                    <TouchableOpacity
+                        style={styles.readChapterButton}
+                        onPress={() => navigation.navigate('BibleWebView', {
+                            url: buildBibleUrl(randomWhisper.verse, randomWhisper.version),
+                            verse: randomWhisper.verse,
+                            version: randomWhisper.version,
+                        })}
+                    >
+                        <Text style={styles.readChapterText}>📖 Read Chapter</Text>
+                    </TouchableOpacity>
+                )}
             </Animated.View>
 
             <Animated.View style={{ transform: [{ translateY: fireMoveAnim }, { scaleY: fireGrowAnim }], ...styles.button }}>
@@ -326,9 +339,20 @@ const styles = StyleSheet.create({
         marginBottom: 25,
     },
     button: {
+        backgroundColor: 'transparent',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
         shadowRadius: 2
-    }
+    },
+    readChapterButton: {
+        alignSelf: 'flex-end',
+        paddingRight: 10,
+        paddingTop: 4,
+    },
+    readChapterText: {
+        fontSize: 14,
+        color: '#007AFF',
+        fontStyle: 'italic',
+    },
 });

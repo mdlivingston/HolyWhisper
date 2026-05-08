@@ -174,16 +174,34 @@ export const purpose = [
         version: "NIV"
     },
     {
-        text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
-        verse: "Ephesians 2:10",
+        text: "Commit to the Lord whatever you do, and he will establish your plans.",
+        verse: "Proverbs 16:3",
         category: 'Purpose',
         version: "NIV"
     },
-    // {
-    //     text: "",
-    //     verse: "",
-    //     category: 'Purpose',
-    //     version: "NIV"
-    // },
+    {
+        text: "I make known the end from the beginning, from ancient times, what is still to come. I say, 'My purpose will stand, and I will do all that I please.'",
+        verse: "Isaiah 46:10",
+        category: 'Purpose',
+        version: "NIV"
+    },
+    {
+        text: "Now to each one the manifestation of the Spirit is given for the common good.",
+        verse: "1 Corinthians 12:7",
+        category: 'Purpose',
+        version: "NIV"
+    },
+    {
+        text: "For David, after he had served the purpose of God in his own generation, fell asleep and was laid with his fathers.",
+        verse: "Acts 13:36",
+        category: 'Purpose',
+        version: "ESV"
+    },
+    {
+        text: "The plans of the diligent lead surely to abundance, but everyone who is hasty comes only to poverty.",
+        verse: "Proverbs 21:5",
+        category: 'Purpose',
+        version: "ESV"
+    },
 ]
 

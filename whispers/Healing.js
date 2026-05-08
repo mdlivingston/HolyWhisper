@@ -279,4 +279,39 @@ export const healing = [
         version: "NIV",
     },
 
+    {
+        text: "But I will restore you to health and heal your wounds, declares the Lord.",
+        verse: "Jeremiah 30:17",
+        category: 'Healing',
+        version: "NIV",
+    },
+
+    {
+        text: "Then Jesus said to her, \"Woman, you have great faith! Your request is granted.\" And her daughter was healed at that moment.",
+        verse: "Matthew 15:28",
+        category: 'Healing',
+        version: "NIV",
+    },
+
+    {
+        text: "Therefore confess your sins to each other and pray for each other so that you may be healed. The prayer of a righteous person is powerful and effective.",
+        verse: "James 5:16",
+        category: 'Healing',
+        version: "NIV",
+    },
+
+    {
+        text: "As they went, they were cleansed.",
+        verse: "Luke 17:14",
+        category: 'Healing',
+        version: "NIV",
+    },
+
+    {
+        text: "The Lord sustains them on their sickbed and restores them from their bed of illness.",
+        verse: "Psalm 41:3",
+        category: 'Healing',
+        version: "NIV",
+    },
+
 ]

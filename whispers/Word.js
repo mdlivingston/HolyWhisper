@@ -320,4 +320,34 @@ export const word = [
         category: 'Word of God',
         version: "AMP",
     },
+    {
+        text: "The law from your mouth is more precious to me than thousands of pieces of silver and gold.",
+        verse: "Psalm 119:72",
+        category: 'Word of God',
+        version: "NIV",
+    },
+    {
+        text: "For I am not ashamed of the gospel, because it is the power of God that brings salvation to everyone who believes: first to the Jew, then to the Gentile.",
+        verse: "Romans 1:16",
+        category: 'Word of God',
+        version: "NIV",
+    },
+    {
+        text: "Above all, you must understand that no prophecy of Scripture came about by the prophet's own interpretation of things. For prophecy never had its origin in the human will, but prophets, though human, spoke from God as they were carried along by the Holy Spirit.",
+        verse: "2 Peter 1:20-21",
+        category: 'Word of God',
+        version: "NIV",
+    },
+    {
+        text: "Your promises have been thoroughly tested, and your servant loves them.",
+        verse: "Psalm 119:140",
+        category: 'Word of God',
+        version: "NIV",
+    },
+    {
+        text: "They devoted themselves to the apostles' teaching and to fellowship, to the breaking of bread and to prayer.",
+        verse: "Acts 2:42",
+        category: 'Word of God',
+        version: "NIV",
+    },
 ]

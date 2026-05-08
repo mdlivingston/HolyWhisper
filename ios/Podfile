@@ -6,7 +6,7 @@ platform :ios, '15.0'
 target 'HolyWhisper' do
   config = use_native_modules!
 
-  use_react_native!(:path => config["reactNativePath"])
+  use_react_native!(:path => config[:reactNativePath])
 
   target 'HolyWhisperTests' do
     inherit! :complete
@@ -34,3 +34,52 @@ target 'HolyWhisper-tvOS' do
     # Pods for testing
   end
 end
+
+
+post_install do |installer|
+    bitcode_strip_path = `xcrun --find bitcode_strip`.chop!
+    def strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
+      framework_path = File.join(Dir.pwd, framework_relative_path)
+      command = "#{bitcode_strip_path} #{framework_path} -r -o #{framework_path}"
+      puts "Stripping bitcode: #{command}"
+      system(command)
+    end
+
+    framework_paths = [
+      "Pods/hermes-engine/destroot/Library/Frameworks/macosx/hermes.framework/hermes",
+      "Pods/hermes-engine/destroot/Library/Frameworks/macosx/hermes.framework/Versions/Current/hermes",
+      "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework/ios-arm64/hermes.framework/hermes",
+      "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework/ios-arm64_x86_64-maccatalyst/hermes.framework/hermes"
+    ]
+
+    framework_paths.each do |framework_relative_path|
+      strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
+    end
+
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['ENABLE_BITCODE'] = 'NO'
+      end
+      if target.name == 'BoringSSL-GRPC'
+        target.source_build_phase.files.each do |file|
+          if file.settings && file.settings['COMPILER_FLAGS']
+            flags = file.settings['COMPILER_FLAGS'].split
+            flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' }
+            file.settings['COMPILER_FLAGS'] = flags.join(' ')
+          end
+        end
+      end
+      # Fix gRPC template keyword warning treated as error in Xcode 26+
+      if target.name.start_with?('gRPC') || target.name == 'abseil'
+        target.build_configurations.each do |config|
+          config.build_settings['OTHER_CPLUSPLUSFLAGS'] = '$(inherited) -Wno-missing-template-arg-list-after-template-kw'
+        end
+      end
+      # Fix boost std::unary_function removed in C++17 (Xcode 26+)
+      if target.name == 'boost'
+        target.build_configurations.each do |config|
+          config.build_settings['OTHER_CPLUSPLUSFLAGS'] = '$(inherited) -D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION'
+        end
+      end
+    end
+  end

@@ -305,10 +305,34 @@ export const love = [
         category: 'Love',
         version: "ESV"
     },
-    // {
-    //     text: "",
-    //     verse: "",
-    //     category: 'Love',
-    //     version: "TPT"
-    // },
+    {
+        text: "I have loved you with an everlasting love; I have drawn you with unfailing kindness.",
+        verse: "Jeremiah 31:3",
+        category: 'Love',
+        version: "NIV"
+    },
+    {
+        text: "This is love: not that we loved God, but that he loved us and sent his Son as an atoning sacrifice for our sins.",
+        verse: "1 John 4:10",
+        category: 'Love',
+        version: "NIV"
+    },
+    {
+        text: "And I pray that you, being rooted and established in love, may have power, together with all the Lord's holy people, to grasp how wide and long and high and deep is the love of Christ, and to know this love that surpasses knowledge—that you may be filled to the measure of all the fullness of God.",
+        verse: "Ephesians 3:17-19",
+        category: 'Love',
+        version: "NIV"
+    },
+    {
+        text: "Give thanks to the Lord, for he is good; his love endures forever.",
+        verse: "Psalm 136:1",
+        category: 'Love',
+        version: "NIV"
+    },
+    {
+        text: "As the Father has loved me, so have I loved you. Now remain in my love.",
+        verse: "John 15:9",
+        category: 'Love',
+        version: "NIV"
+    },
 ]
