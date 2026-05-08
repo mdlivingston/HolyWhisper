@@ -22,7 +22,7 @@ export const gratitude = [
 
     {
         text: "Be persistent and devoted to prayer, being alert and focused in your prayer life with an attitude of thanksgiving.",
-        verse: "Colossians 4:20",
+        verse: "Colossians 4:2",
         category: 'Gratitude',
         version: "AMP",
     },
@@ -263,6 +263,41 @@ export const gratitude = [
         verse: "Psalm 107:21-22",
         category: 'Gratitude',
         version: "ESV",
+    },
+
+    {
+        text: "It is good to give thanks to the Lord, to sing praises to your name, O Most High; to declare your steadfast love in the morning, and your faithfulness by night.",
+        verse: "Psalm 92:1-2",
+        category: 'Gratitude',
+        version: "ESV",
+    },
+
+    {
+        text: "I thank my God every time I remember you. In all my prayers for all of you, I always pray with joy.",
+        verse: "Philippians 1:3-4",
+        category: 'Gratitude',
+        version: "NIV",
+    },
+
+    {
+        text: "Always giving thanks to the Father for everything, in the name of our Lord Jesus Christ.",
+        verse: "Ephesians 5:20",
+        category: 'Gratitude',
+        version: "NIV",
+    },
+
+    {
+        text: "Give thanks to the Lord, for he is good; his love endures forever.",
+        verse: "1 Chronicles 16:34",
+        category: 'Gratitude',
+        version: "NIV",
+    },
+
+    {
+        text: "I will give thanks to you, Lord, with all my heart; I will tell of all your wonderful deeds.",
+        verse: "Psalm 9:1",
+        category: 'Gratitude',
+        version: "NIV",
     },
 
 ]

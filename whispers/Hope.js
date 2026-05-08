@@ -349,4 +349,39 @@ export const hope = [
         version: "NIV",
     },
 
+    {
+        text: "We can rejoice, too, when we run into problems and trials, for we know that they help us develop endurance. And endurance develops strength of character, and character strengthens our confident hope of salvation. And this hope will not lead to disappointment. For we know how dearly God loves us, because he has given us the Holy Spirit to fill our hearts with his love.",
+        verse: "Romans 5:3-5",
+        category: 'Hope',
+        version: "NLT",
+    },
+
+    {
+        text: "Guide me in your truth and teach me, for you are God my Savior, and my hope is in you all day long.",
+        verse: "Psalm 25:5",
+        category: 'Hope',
+        version: "NIV",
+    },
+
+    {
+        text: "The Lord is good to those whose hope is in him, to the one who seeks him.",
+        verse: "Lamentations 3:25",
+        category: 'Hope',
+        version: "NIV",
+    },
+
+    {
+        text: "I wait for the Lord, my whole being waits, and in his word I put my hope.",
+        verse: "Psalm 130:5",
+        category: 'Hope',
+        version: "NIV",
+    },
+
+    {
+        text: "For everything that was written in the past was written to teach us, so that through the endurance taught in the Scriptures and the encouragement they provide we might have hope.",
+        verse: "Romans 15:4",
+        category: 'Hope',
+        version: "NIV",
+    },
+
 ]

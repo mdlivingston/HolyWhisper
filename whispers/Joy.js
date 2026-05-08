@@ -92,7 +92,7 @@ export const joy = [
 
     {
         text: "This is the very day of the Lord that brings gladness and joy, filling our hearts with glee.",
-        verse: "Psalm 118:27",
+        verse: "Psalm 118:24",
         category: 'Joy',
         version: "TPT",
     },
@@ -185,7 +185,7 @@ export const joy = [
     },
     {
         text: "You have turned my mourning into joyful dancing. You have taken away my clothes of mourning and clothed me with joy,",
-        verse: "Psalm 30:1",
+        verse: "Psalm 30:11",
         category: 'Joy',
         version: "NLT",
     },
@@ -302,6 +302,41 @@ export const joy = [
         verse: "1 Timothy 6:17",
         category: 'Joy',
         version: "ESV",
+    },
+
+    {
+        text: "Shout for joy to the Lord, all the earth. Worship the Lord with gladness; come before him with joyful songs.",
+        verse: "Psalm 100:1-2",
+        category: 'Joy',
+        version: "NIV",
+    },
+
+    {
+        text: "To all who mourn in Israel, he will give a crown of beauty for ashes, a joyous blessing instead of mourning, festive praise instead of despair.",
+        verse: "Isaiah 61:3",
+        category: 'Joy',
+        version: "NLT",
+    },
+
+    {
+        text: "Then I will go to the altar of God, to God, my joy and my delight. I will praise you with the lyre, O God, my God.",
+        verse: "Psalm 43:4",
+        category: 'Joy',
+        version: "NIV",
+    },
+
+    {
+        text: "You will grieve, but your grief will suddenly become a flood of happiness, the kind of joy that no one can take away from you!",
+        verse: "John 16:20-22",
+        category: 'Joy',
+        version: "TPT",
+    },
+
+    {
+        text: "May the righteous be glad and rejoice before God; may they be happy and joyful.",
+        verse: "Psalm 68:3",
+        category: 'Joy',
+        version: "NIV",
     },
 
 ]

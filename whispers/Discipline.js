@@ -67,7 +67,7 @@ export const discipline = [
     },
     {
         text: "And not only this, but we also celebrate in our tribulations, knowing that tribulation brings about perseverance; and perseverance, proven character; and proven character, hope; and hope does not disappoint, because the love of God has been poured out within our hearts through the Holy Spirit who was given to us.",
-        verse: "Romans 3-5",
+        verse: "Romans 5:3-5",
         category: 'Discipline',
         version: "NASB"
     },
@@ -154,6 +154,41 @@ export const discipline = [
         verse: "Galatians 5:24",
         category: 'Discipline',
         version: "NASB"
+    },
+
+    {
+        text: "My child, do not reject the Lord's discipline, and don't get angry when he corrects you. The Lord corrects those he loves, just as parents correct the child they delight in.",
+        verse: "Proverbs 3:11-12",
+        category: 'Discipline',
+        version: "NLT"
+    },
+
+    {
+        text: "Stay alert! Watch out for your great enemy, the devil. He prowls around like a roaring lion, looking for someone to devour. Stand firm against him, and be strong in your faith.",
+        verse: "1 Peter 5:8-9",
+        category: 'Discipline',
+        version: "NLT"
+    },
+
+    {
+        text: "God blesses those who patiently endure testing and temptation. Afterward they will receive the crown of life that God has promised to those who love him.",
+        verse: "James 1:12",
+        category: 'Discipline',
+        version: "NLT"
+    },
+
+    {
+        text: "I have fought the good fight, I have finished the race, I have kept the faith. Now there is in store for me the crown of righteousness, which the Lord, the righteous Judge, will award to me on that day.",
+        verse: "2 Timothy 4:7-8",
+        category: 'Discipline',
+        version: "NIV"
+    },
+
+    {
+        text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.",
+        verse: "1 Corinthians 10:13",
+        category: 'Discipline',
+        version: "NIV"
     },
 
 ]

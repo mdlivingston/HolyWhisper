@@ -227,16 +227,34 @@ export const purity = [
         category: 'Purity',
         version: "ESV"
     },
-    // {
-    //     text: "",
-    //     verse: "",
-    //     category: 'Purity',
-    //     version: "AMP"
-    // },
-    // {
-    //     text: "",
-    //     verse: "",
-    //     category: 'Purity',
-    //     version: "AMP"
-    // },
+    {
+        text: "Since we have these promises, dear friends, let us purify ourselves from everything that contaminates body and spirit, perfecting holiness out of reverence for God.",
+        verse: "2 Corinthians 7:1",
+        category: 'Purity',
+        version: "NIV"
+    },
+    {
+        text: "Who may ascend the mountain of the Lord? Who may stand in his holy place? The one who has clean hands and a pure heart, who does not trust in an idol or swear by a false god.",
+        verse: "Psalm 24:3-4",
+        category: 'Purity',
+        version: "NIV"
+    },
+    {
+        text: "Flee the evil desires of youth and pursue righteousness, faith, love and peace, along with those who call on the Lord out of a pure heart.",
+        verse: "2 Timothy 2:22",
+        category: 'Purity',
+        version: "NIV"
+    },
+    {
+        text: "Therefore, I urge you, brothers and sisters, in view of God's mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship.",
+        verse: "Romans 12:1",
+        category: 'Purity',
+        version: "NIV"
+    },
+    {
+        text: "Dear friends, now we are children of God, and what we will be has not yet been made known. But we know that when Christ appears, we shall be like him, for we shall see him as he is. All who have this hope in him purify themselves, just as he is pure.",
+        verse: "1 John 3:2-3",
+        category: 'Purity',
+        version: "NIV"
+    },
 ]

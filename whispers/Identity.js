@@ -70,10 +70,10 @@ export const identity = [
     },
 
     {
-        text: "It was faith that immersed you into Jesus, the Anointed One, and now you are covered and clothed with his anointing. And we no longer see each other in our former state—Jew or non-Jew, rich or poor,male or female—because we’re all one through our union with Jesus Christ with no distinction between us.",
+        text: "It was faith that immersed you into Jesus, the Anointed One, and now you are covered and clothed with his anointing. And we no longer see each other in our former state—Jew or non-Jew, rich or poor, male or female—because we’re all one through our union with Jesus Christ with no distinction between us.",
         verse: "Galatians 3:27-28",
         category: 'Identity',
-        version: "NIV"
+        version: "TPT"
     },
 
     {
@@ -460,9 +460,45 @@ export const identity = [
         version: "AMP"
     },
     {
-        text: "Come now and let’s deliberate over the next steps to take together. Yahweh promises you over and over: “Though your sins stain you like scarlet, I will whiten them like bright, new-fallen snow! Even though they are deep red like crimson, they will be made white like wool!”",
+        text: "Come now and let’s deliberate over the next steps to take together. Yahweh promises you over and over: \"Though your sins stain you like scarlet, I will whiten them like bright, new-fallen snow! Even though they are deep red like crimson, they will be made white like wool!\"",
         verse: "Isaiah 1:18",
         category: 'Identity',
         version: "TPT"
     },
+
+    {
+        text: "What is mankind that you are mindful of them, human beings that you care for them? You have made them a little lower than the angels and crowned them with glory and honor.",
+        verse: "Psalm 8:4-5",
+        category: 'Identity',
+        version: "NIV"
+    },
+
+    {
+        text: "Do not fear, for I have redeemed you; I have summoned you by name; you are mine.",
+        verse: "Isaiah 43:1",
+        category: 'Identity',
+        version: "NIV"
+    },
+
+    {
+        text: "Out of his fullness we have all received grace in place of grace already given.",
+        verse: "John 1:16",
+        category: 'Identity',
+        version: "NIV"
+    },
+
+    {
+        text: "Through these he has given us his very great and precious promises, so that through them you may participate in the divine nature, having escaped the corruption in the world caused by evil desires.",
+        verse: "2 Peter 1:4",
+        category: 'Identity',
+        version: "NIV"
+    },
+
+    {
+        text: "And has made us kings and priests to His God and Father, to Him be glory and dominion forever and ever. Amen.",
+        verse: "Revelation 1:6",
+        category: 'Identity',
+        version: "NKJV"
+    },
+
 ]
