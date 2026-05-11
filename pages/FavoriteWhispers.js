@@ -1,55 +1,58 @@
 import React, { useEffect, useState } from 'react'
-import
-{
-    SafeAreaView,
+import {
     StyleSheet,
-    ScrollView,
     View,
     Text,
-    StatusBar,
     TouchableOpacity,
-    Alert,
+    FlatList,
+    ActivityIndicator,
     Image,
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faCheck, faChevronRight } from '@fortawesome/free-solid-svg-icons'
-import { getData, preferredWhispersKey, storeData } from '../helpers/LocalStorage';
-import { categories } from '../helpers/Randomizer';
+import { faChevronRight, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { db } from '../helpers/Firebase';
 import { useAuth } from '../context/AuthContext';
 
-export default function FavoriteWhispers({ navigation, route })
-{
-    const [favoriteWhispers, setFavoriteWhispers] = useState([])
-    const [loading, setLoading] = useState(true)
-    const { currentUser } = useAuth()
+const CATEGORY_COLORS = {
+    'Identity':    '#5856d6',
+    'Authority':   '#1c3a6b',
+    'Healing':     '#4cd964',
+    'Father':      '#ff9500',
+    'Purpose':     '#00b5b8',
+    'Peace':       '#5ac8fa',
+    'Gratitude':   '#ffcc00',
+    'Word of God': '#ff3b30',
+    'Love':        '#ff2d55',
+    'Hope':        '#34aadc',
+    'Joy':         '#ff9f0a',
+    'Purity':      '#bf5af2',
+    'Secret Place':'#7b5ea7',
+    'Discipline':  '#636366',
+};
 
-    useEffect(() =>
-    {
-        //On screen load no matter the history
-        const unsubscribe = navigation.addListener('focus', async () =>
-        {
-            setLoading(true)
-            const favs = await db.favoriteWhispers.where('uid', '==', currentUser.uid)
+export default function FavoriteWhispers({ navigation }) {
+    const [favoriteWhispers, setFavoriteWhispers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const { currentUser } = useAuth();
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', async () => {
+            setLoading(true);
+            const favs = await db.favoriteWhispers
+                .where('uid', '==', currentUser.uid)
                 .orderBy('createdAt', 'desc')
-                .get()
-
-            console.log(favs.docs.map(doc => db.formatDoc(doc)))
-
-            setFavoriteWhispers(favs.docs.map(doc => db.formatDoc(doc)))
-            setLoading(false)
+                .get();
+            setFavoriteWhispers(favs.docs.map(doc => db.formatDoc(doc)));
+            setLoading(false);
         });
-
         return unsubscribe;
+    }, []);
 
-    }, [])
-
-    React.useLayoutEffect(() =>
-    {
+    React.useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <TouchableOpacity style={styles.stokeButton} onPress={() => navigation.navigate('ShowWhisper', {})}>
+                <TouchableOpacity style={styles.fireButton} onPress={() => navigation.navigate('ShowWhisper', {})}>
                     <Image
                         style={styles.blueFire}
                         source={require('../assets/blueFire.gif')}
@@ -59,56 +62,180 @@ export default function FavoriteWhispers({ navigation, route })
         });
     }, [navigation, favoriteWhispers]);
 
+    const formatDate = (timestamp) => {
+        if (!timestamp) return '';
+        const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    };
+
+    const renderItem = ({ item }) => {
+        const color = CATEGORY_COLORS[item.category] || '#38fdff';
+        return (
+            <TouchableOpacity
+                style={[styles.card, { borderLeftColor: color }]}
+                onPress={() => navigation.navigate('ShowWhisper', { forcedWhisper: item })}
+                activeOpacity={0.75}
+            >
+                <View style={styles.cardHeader}>
+                    <View style={[styles.categoryBadge, { backgroundColor: color + '22' }]}>
+                        <Text style={[styles.categoryText, { color }]}>{item.category}</Text>
+                    </View>
+                    <Text style={styles.dateText}>{formatDate(item.createdAt)}</Text>
+                </View>
+
+                <Text style={styles.verseText}>{item.verse}
+                    {item.version ? <Text style={styles.versionText}>  {item.version}</Text> : null}
+                </Text>
+
+                {item.text ? (
+                    <Text style={styles.whisperPreview} numberOfLines={2}>"{item.text}"</Text>
+                ) : null}
+
+                <View style={styles.cardFooter}>
+                    <Text style={styles.readMore}>Read whisper</Text>
+                    <FontAwesomeIcon icon={faChevronRight} size={11} color="#c7c7cc" />
+                </View>
+            </TouchableOpacity>
+        );
+    };
+
+    if (loading) {
+        return (
+            <View style={styles.centered}>
+                <ActivityIndicator size="large" color="#38fdff" />
+            </View>
+        );
+    }
+
     return (
-        <ScrollView>
-            {favoriteWhispers.length > 0 && (
-                <View style={styles.container}>
-                    {favoriteWhispers.map((w, i) => (
-                        <TouchableOpacity key={w.id} style={styles.section} onPress={() => navigation.navigate('ShowWhisper', { forcedWhisper: w })}>
-                            <Text style={styles.title}>{w.verse} - {w.category}</Text>
-                            <Text style={{ width: 2, flex: 1 }}></Text>
-                            <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-                        </TouchableOpacity>
-                    ))}
+        <FlatList
+            style={styles.scroll}
+            data={favoriteWhispers}
+            keyExtractor={item => item.id}
+            renderItem={renderItem}
+            contentContainerStyle={
+                favoriteWhispers.length === 0 ? styles.emptyContainer : styles.listContent
+            }
+            ListEmptyComponent={
+                <View style={styles.emptyWrapper}>
+                    <FontAwesomeIcon icon={faHeart} size={48} color="#ddd" />
+                    <Text style={styles.emptyTitle}>No favorites yet</Text>
+                    <Text style={styles.emptySubtitle}>
+                        Tap the{' '}
+                        <Text style={{ fontStyle: 'italic' }}>heart</Text>
+                        {' '}on any whisper to save it here.
+                    </Text>
                 </View>
-            )}
-            {favoriteWhispers.length == 0 && (
-                <View style={styles.center}>
-                    <Text>{loading ? 'Loading...' : 'No favorites added yet.'}</Text>
-                </View>
-            )}
-        </ScrollView>
-    )
+            }
+        />
+    );
 }
+
 const styles = StyleSheet.create({
-    center: {
-        height: '100%',
-        display: 'flex',
-        flexGrow: 1,
+    scroll: {
+        backgroundColor: '#f2f2f7',
+    },
+    listContent: {
+        padding: 14,
+    },
+    emptyContainer: {
+        flex: 1,
+        padding: 14,
+    },
+    centered: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'white',
-        padding: 25,
+        backgroundColor: '#f2f2f7',
     },
-    container: {
-        height: '100%',
-        //backgroundColor: 'white'
-    },
-    section: {
-        display: 'flex',
+    emptyWrapper: {
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row',
-        width: '100%',
-        height: 60,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: 'white',
-        borderBottomColor: 'grey',
-        borderBottomWidth: .5,
+        marginTop: 120,
     },
-    title: {
-        width: '90%',
-
+    emptyTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#ccc',
+        marginTop: 20,
+        marginBottom: 10,
+    },
+    emptySubtitle: {
+        fontSize: 14,
+        color: '#bbb',
+        textAlign: 'center',
+        paddingHorizontal: 30,
+        lineHeight: 22,
+    },
+    card: {
+        backgroundColor: '#fff',
+        borderRadius: 12,
+        padding: 16,
+        marginBottom: 12,
+        borderLeftWidth: 4,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.07,
+        shadowRadius: 4,
+    },
+    cardHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 8,
+    },
+    categoryBadge: {
+        borderRadius: 20,
+        paddingHorizontal: 10,
+        paddingVertical: 3,
+    },
+    categoryText: {
+        fontSize: 11,
+        fontWeight: '600',
+    },
+    dateText: {
+        fontSize: 11,
+        color: '#aaa',
+        fontStyle: 'italic',
+    },
+    verseText: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#333',
+        marginBottom: 6,
+    },
+    versionText: {
+        fontSize: 11,
+        fontWeight: 'normal',
+        fontStyle: 'italic',
+        color: '#777',
+    },
+    whisperPreview: {
+        fontSize: 14,
+        color: '#666',
+        fontStyle: 'italic',
+        lineHeight: 20,
+        marginBottom: 12,
+    },
+    cardFooter: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        borderTopWidth: 1,
+        borderTopColor: '#f0f0f0',
+        paddingTop: 10,
+        gap: 4,
+    },
+    readMore: {
+        fontSize: 12,
+        color: '#c7c7cc',
+    },
+    fireButton: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 1,
     },
     blueFire: {
         height: 33,
@@ -116,11 +243,4 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         margin: 10,
     },
-    stokeButton: {
-        backgroundColor: 'transparent',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 1
-    }
 });
