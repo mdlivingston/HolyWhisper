@@ -133,6 +133,10 @@ export default function Home({ navigation }) {
                 <Text style={{ textAlign: 'center', fontSize: 18, fontFamily: 'ShadowsIntoLight' }} onPress={() => navigation.navigate('ShowWhisper', { name: 'Jane' })}>
                     Get a Whisper
                 </Text>
+
+                <TouchableOpacity style={styles.journalButton} onPress={() => navigation.navigate('JournalList')}>
+                    <Text style={styles.journalButtonText}>📔 My Journal</Text>
+                </TouchableOpacity>
             </View>
 
         </View>
@@ -191,5 +195,19 @@ const styles = StyleSheet.create({
         width: 45,
         height: 45,
         resizeMode: 'contain'
-    }
+    },
+    journalButton: {
+        marginTop: 24,
+        paddingVertical: 10,
+        paddingHorizontal: 28,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        backgroundColor: '#fff',
+    },
+    journalButtonText: {
+        fontSize: 15,
+        color: '#555',
+        fontFamily: 'ShadowsIntoLight',
+    },
 });

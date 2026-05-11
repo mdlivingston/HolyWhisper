@@ -36,6 +36,8 @@ import FavoriteWhispers from './pages/FavoriteWhispers';
 import Salvation from './pages/Salvation';
 import Revelation from './pages/Revelations/Revelation';
 import BibleWebView from './pages/BibleWebView';
+import JournalNote from './pages/JournalNote';
+import JournalList from './pages/JournalList';
 
 const Stack = createStackNavigator();
 
@@ -138,6 +140,20 @@ export default function App()
                     <Stack.Screen name="BibleWebView" options={{
                         headerShown: false,
                     }} component={BibleWebView} />
+
+                    <Stack.Screen name="JournalNote" options={{
+                        title: '',
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black',
+                    }} component={JournalNote} />
+
+                    <Stack.Screen name="JournalList" options={{
+                        title: 'My Journal',
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black',
+                    }} component={JournalList} />
 
                     <Stack.Screen name="Revelation" options={{
                         title: "Revelation",

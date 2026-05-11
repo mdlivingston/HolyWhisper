@@ -1,67 +1,61 @@
 import React, { useEffect, useState } from 'react'
-import
-{
-    SafeAreaView,
+import {
     StyleSheet,
     ScrollView,
     View,
     Text,
-    StatusBar,
     TouchableOpacity,
-    Alert,
     Switch,
     TouchableWithoutFeedback,
     Linking,
-    Platform
+    Platform,
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import {
+    faChevronRight,
+    faSlidersH,
+    faHeart,
+    faBook,
+    faCross,
+    faComments,
+    faComment,
+    faGift,
+    faBell,
+    faClock,
+} from '@fortawesome/free-solid-svg-icons'
 import { requestUserPermission } from '../helpers/Firebase';
 import { allowNotificationKey, getString, reminderTime, storeString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
-import { getRandomWhisper, truncate } from '../helpers/Randomizer';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function Settings({ navigation })
-{
+export default function Settings({ navigation }) {
     const notifService = new NotificationService(null, null, navigation)
     const [isEnabled, setIsEnabled] = useState(false);
     const [date, setDate] = useState(new Date(1598051730000));
     const [show, setShow] = useState(false);
 
-    const onChange = async (event, selectedDate) =>
-    {
+    const onChange = async (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
         setDate(currentDate);
         await storeString(reminderTime, currentDate.toLocaleString())
         await notifService.fillScheduledNotifications()
-        console.log(currentDate)
     };
 
-    const showTimepicker = () =>
-    {
-        setShow(!show)
-    };
+    const showTimepicker = () => setShow(!show);
 
-    function formatAMPM(date)
-    {
+    function formatAMPM(date) {
         var hours = date.getHours();
         var minutes = date.getMinutes();
         var ampm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
+        hours = hours ? hours : 12;
         minutes = minutes < 10 ? '0' + minutes : minutes;
-        var strTime = hours + ':' + minutes + ' ' + ampm;
-        return strTime;
+        return hours + ':' + minutes + ' ' + ampm;
     }
 
-
-    useEffect(() =>
-    {
-        const asyncFunc = async () =>
-        {
-            // HANDLE LOCAL STORAGE REMINDER TIME
+    useEffect(() => {
+        const asyncFunc = async () => {
             var defaultTime = new Date(Date.now())
             defaultTime.setHours(7);
             defaultTime.setMinutes(0);
@@ -69,25 +63,17 @@ export default function Settings({ navigation })
             defaultTime.setMilliseconds(0);
 
             const storedReminderTime = await getString(reminderTime)
+            if (storedReminderTime) setDate(new Date(storedReminderTime))
+            else setDate(defaultTime)
 
-            if (storedReminderTime)
-                setDate(new Date(storedReminderTime))
-            else
-                setDate(defaultTime)
-
-            // HANDLE NOTIFCATION SWITCH AND PERMISSIONS
             const allowNotif = await getString(allowNotificationKey)
             const hasPermission = await requestUserPermission()
 
-            if (!hasPermission) // Force to false if permissions have change
-                setIsEnabled(false);
-            else if (allowNotif === 'true') //
-                setIsEnabled(true)
-            else
-                setIsEnabled(false)
+            if (!hasPermission) setIsEnabled(false);
+            else if (allowNotif === 'true') setIsEnabled(true)
+            else setIsEnabled(false)
 
-            if (!allowNotif && hasPermission) // if there is local storage string && enabled
-            {
+            if (!allowNotif && hasPermission) {
                 storeString(allowNotificationKey, 'true')
                 setIsEnabled(true)
             }
@@ -95,134 +81,213 @@ export default function Settings({ navigation })
         asyncFunc()
     }, [])
 
-    const toggleSwitch = async () => 
-    {
+    const toggleSwitch = async () => {
         const accessGranted = await requestUserPermission()
         setIsEnabled(previousState => accessGranted ? !previousState : false);
-
-        if (!accessGranted)
-        {
-            Linking.openURL('app-settings:'); // Go to settings
-        }
-
+        if (!accessGranted) Linking.openURL('app-settings:');
         storeString(allowNotificationKey, !isEnabled ? 'true' : 'false')
-
-        if (!isEnabled) // True
-        {
-            await notifService.fillScheduledNotifications()
-        }
-        else
-            notifService.cancelAll()
-
-        notifService.getScheduledLocalNotifications(notifs => console.log(notifs))
+        if (!isEnabled) await notifService.fillScheduledNotifications()
+        else notifService.cancelAll()
     }
 
+    const SettingRow = ({ icon, iconBg, label, onPress, right, isLast }) => (
+        <TouchableOpacity
+            onPress={onPress}
+            style={[styles.row, isLast && styles.rowLast]}
+            activeOpacity={onPress ? 0.6 : 1}
+        >
+            <View style={[styles.iconWrap, { backgroundColor: iconBg }]}>
+                <FontAwesomeIcon icon={icon} size={15} color="#fff" />
+            </View>
+            <Text style={styles.rowLabel}>{label}</Text>
+            <View style={styles.rowRight}>{right}</View>
+        </TouchableOpacity>
+    );
+
     return (
-        <ScrollView>
-            <View style={styles.container}>
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.content}>
 
-                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PreferredWhispers', { name: 'Jane' })}>
-                    <Text style={styles.title}>Preferred Whispers</Text>
-                    <Text style={{ width: 2, flex: 1 }}></Text>
-                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('FavoriteWhispers', { name: 'Jane' })}>
-                    <Text style={styles.title}>Favorite Whispers</Text>
-                    <Text style={{ width: 2, flex: 1 }}></Text>
-                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Salvation', { name: 'Jane' })}>
-                    <Text style={styles.title}>Salvation</Text>
-                    <Text style={{ width: 2, flex: 1 }}></Text>
-                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-                </TouchableOpacity>
+            {/* My Whispers */}
+            <Text style={styles.sectionHeader}>MY WHISPERS</Text>
+            <View style={styles.card}>
+                <SettingRow
+                    icon={faSlidersH} iconBg="#5856d6"
+                    label="Preferred Whispers"
+                    onPress={() => navigation.navigate('PreferredWhispers')}
+                    right={<FontAwesomeIcon icon={faChevronRight} size={13} color="#c7c7cc" />}
+                />
+                <SettingRow
+                    icon={faHeart} iconBg="#ff3b30"
+                    label="Favorite Whispers"
+                    onPress={() => navigation.navigate('FavoriteWhispers')}
+                    right={<FontAwesomeIcon icon={faChevronRight} size={13} color="#c7c7cc" />}
+                />
+                <SettingRow
+                    icon={faBook} iconBg="#34aadc"
+                    label="My Journal"
+                    onPress={() => navigation.navigate('JournalList')}
+                    right={<FontAwesomeIcon icon={faChevronRight} size={13} color="#c7c7cc" />}
+                    isLast
+                />
+            </View>
 
-                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('PrayerRequest', { name: 'Jane' })}>
-                    <Text style={styles.title}>Prayer Request</Text>
-                    <Text style={{ width: 2, flex: 1 }}></Text>
-                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Feedback', { name: 'Jane' })}>
-                    <Text style={styles.title}>Submit Feedback</Text>
-                    <Text style={{ width: 2, flex: 1 }}></Text>
-                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.section} onPress={() => Linking.openURL('https://paypal.me/HolyWhisper')}>
-                    <Text style={styles.title}>Donate</Text>
-                    <Text style={{ width: 2, flex: 1 }}></Text>
-                    <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} />
-                </TouchableOpacity>
-                <TouchableWithoutFeedback >
-                    <View style={styles.section}>
-                        <Text style={styles.title}>Daily Whisper Reminders</Text>
-                        <Text style={{ width: 2, flex: 1 }}></Text>
-                        <Switch
-                            trackColor={{ false: "#767577", true: "limegreen" }}
-                            thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
-                            ios_backgroundColor="#3e3e3e"
-                            onValueChange={toggleSwitch}
-                            value={isEnabled}
-                        />
+            {/* Spiritual */}
+            <Text style={styles.sectionHeader}>SPIRITUAL</Text>
+            <View style={styles.card}>
+                <SettingRow
+                    icon={faCross} iconBg="#ff9500"
+                    label="Salvation"
+                    onPress={() => navigation.navigate('Salvation')}
+                    right={<FontAwesomeIcon icon={faChevronRight} size={13} color="#c7c7cc" />}
+                />
+                <SettingRow
+                    icon={faComments} iconBg="#4cd964"
+                    label="Prayer Request"
+                    onPress={() => navigation.navigate('PrayerRequest')}
+                    right={<FontAwesomeIcon icon={faChevronRight} size={13} color="#c7c7cc" />}
+                    isLast
+                />
+            </View>
+
+            {/* Support */}
+            <Text style={styles.sectionHeader}>SUPPORT</Text>
+            <View style={styles.card}>
+                <SettingRow
+                    icon={faComment} iconBg="#007aff"
+                    label="Submit Feedback"
+                    onPress={() => navigation.navigate('Feedback')}
+                    right={<FontAwesomeIcon icon={faChevronRight} size={13} color="#c7c7cc" />}
+                />
+                <SettingRow
+                    icon={faGift} iconBg="#ff2d55"
+                    label="Donate"
+                    onPress={() => Linking.openURL('https://paypal.me/HolyWhisper')}
+                    right={<FontAwesomeIcon icon={faChevronRight} size={13} color="#c7c7cc" />}
+                    isLast
+                />
+            </View>
+
+            {/* Notifications */}
+            <Text style={styles.sectionHeader}>NOTIFICATIONS</Text>
+            <View style={styles.card}>
+                <TouchableWithoutFeedback>
+                    <View style={styles.row}>
+                        <View style={[styles.iconWrap, { backgroundColor: '#ff9500' }]}>
+                            <FontAwesomeIcon icon={faBell} size={15} color="#fff" />
+                        </View>
+                        <Text style={styles.rowLabel}>Daily Whisper Reminders</Text>
+                        <View style={styles.rowRight}>
+                            <Switch
+                                trackColor={{ false: '#d1d1d6', true: '#38fdff' }}
+                                thumbColor="#fff"
+                                ios_backgroundColor="#d1d1d6"
+                                onValueChange={toggleSwitch}
+                                value={isEnabled}
+                            />
+                        </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <TouchableOpacity style={styles.section} onPress={showTimepicker}>
-                    <Text style={styles.title}>Reminder Time</Text>
-                    <Text style={{ width: 2, flex: 1 }}></Text>
-                    <Text style={{ color: 'grey' }}>{formatAMPM(date)}</Text>
-                    {/* <FontAwesomeIcon style={{ color: 'grey' }} size={15} icon={faChevronRight} /> */}
-                </TouchableOpacity>
+                <SettingRow
+                    icon={faClock} iconBg="#5ac8fa"
+                    label="Reminder Time"
+                    onPress={showTimepicker}
+                    right={<Text style={styles.timeText}>{formatAMPM(date)}</Text>}
+                    isLast
+                />
+            </View>
 
-                {show && (
+            {show && (
+                <View style={styles.pickerWrap}>
                     <DateTimePicker
                         testID="dateTimePicker"
                         value={date}
-                        mode={'time'}
+                        mode="time"
                         is24Hour={false}
                         display="spinner"
                         onChange={onChange}
                         textColor="black"
                         style={{ height: 200 }}
                     />
-                )}
+                </View>
+            )}
 
-                {/* <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => testNotif()}
-                >
-                    <Text>
-                        Test Notification
-                </Text>
-                </TouchableOpacity> */}
+            <Text style={styles.versionText}>Holy Whisper ✦ Made with love for the Kingdom</Text>
 
-            </View>
         </ScrollView>
     )
-
-    // async function testNotif()
-    // {
-    //     let random = await getRandomWhisper();
-    //     notifService.schedule5Notif(null, 'Your Daily Whisper Has Arrived! 🔥', `${truncate(random.text, 100)} ${random.verse}`, null, random)
-    //     //notifService.schedule5Notif(null, 'Your Daily Whisper Has Arrived! 🔥', `Tap to recieve it!`, 'default', {})
-    // }
 }
+
 const styles = StyleSheet.create({
-    container: {
-        height: '100%',
-        backgroundColor: 'white'
+    scroll: {
+        backgroundColor: '#f2f2f7',
     },
-    section: {
-        display: 'flex',
-        alignItems: 'center',
+    content: {
+        paddingTop: 20,
+        paddingBottom: 50,
+        paddingHorizontal: 16,
+    },
+    sectionHeader: {
+        fontSize: 12,
+        fontWeight: '600',
+        color: '#8e8e93',
+        letterSpacing: 0.5,
+        marginBottom: 8,
+        marginTop: 24,
+        marginLeft: 4,
+    },
+    card: {
+        backgroundColor: '#fff',
+        borderRadius: 12,
+        overflow: 'hidden',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.06,
+        shadowRadius: 4,
+    },
+    row: {
         flexDirection: 'row',
-        width: '100%',
-        height: 60,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: 'white',
-        borderBottomColor: 'grey',
-        borderBottomWidth: .5,
+        alignItems: 'center',
+        paddingHorizontal: 14,
+        paddingVertical: 12,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: '#e5e5ea',
+        minHeight: 52,
     },
-    title: {
-        width: '80%',
-    }
+    rowLast: {
+        borderBottomWidth: 0,
+    },
+    iconWrap: {
+        width: 30,
+        height: 30,
+        borderRadius: 7,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 14,
+    },
+    rowLabel: {
+        flex: 1,
+        fontSize: 16,
+        color: '#1c1c1e',
+    },
+    rowRight: {
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+    },
+    timeText: {
+        fontSize: 16,
+        color: '#8e8e93',
+        marginRight: 4,
+    },
+    pickerWrap: {
+        backgroundColor: '#fff',
+        borderRadius: 12,
+        marginTop: 12,
+        overflow: 'hidden',
+    },
+    versionText: {
+        textAlign: 'center',
+        color: '#c7c7cc',
+        fontSize: 12,
+        marginTop: 36,
+    },
 });

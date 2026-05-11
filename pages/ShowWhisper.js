@@ -14,7 +14,7 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faShareSquare, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faShareSquare, faHeart, faBook } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as outlinedHeart } from '@fortawesome/free-regular-svg-icons'
 import { getRandomWhisper } from '../helpers/Randomizer';
 import { ShareWhisper } from '../helpers/Share';
@@ -71,13 +71,18 @@ export default function ShowWhisper({ route, navigation }) {
         navigation.setOptions({
             headerRight: () => (
                 <View style={{ display: 'flex', flexDirection: 'row' }}>
+                    <TouchableOpacity
+                        onPress={() => randomWhisper && navigation.navigate('JournalNote', { whisper: randomWhisper })}
+                        style={styles.journalButton}>
+                        <FontAwesomeIcon size={19} icon={faBook} color="#555" />
+                    </TouchableOpacity>
                     <TouchableOpacity disabled={disabled} onPress={favoriteWhisper ? onUnFavorite : onFavorite}
                         style={styles.heartButton} >
                         <FontAwesomeIcon size={20} icon={favoriteWhisper ? faHeart : outlinedHeart} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => ShareWhisper({
                         title: 'Share this Holy Whisper',
-                        message: `${randomWhisper.text} ${randomWhisper.verse} ${randomWhisper.version} - Sent with the Holy Whisper app!` //${Platform.OS === 'ios' ? 'https://apple.co/2Q3otbv' : 'https://bit.ly/3bJhUTU'}`
+                        message: `${randomWhisper.text} ${randomWhisper.verse} ${randomWhisper.version} - Sent with the Holy Whisper app!`
                     })}
                         style={styles.shareButton} >
                         <FontAwesomeIcon size={20} icon={faShareSquare} />
@@ -323,6 +328,9 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         alignSelf: 'flex-end',
         fontFamily: 'ShadowsIntoLight'
+    },
+    journalButton: {
+        paddingRight: 18,
     },
     heartButton: {
         paddingRight: 20

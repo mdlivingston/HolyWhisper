@@ -8,6 +8,7 @@ export const db = {
     lastActive: firestore().collection('LastActive'),
     feedback: firestore().collection('Feedback'),
     favoriteWhispers: firestore().collection('FavoriteWhispers'),
+    whisperNotes: firestore().collection('WhisperNotes'),
     formatDoc: doc =>
     {
         return {
