@@ -54,7 +54,7 @@ export const lastActive = async (currentUser, fcmToken) =>
 {
     try
     {
-        const version = '1.1.8'
+        const version = '2.0.6'
         if (fcmToken)
             await db.lastActive.doc(currentUser.uid)
                 .set({
