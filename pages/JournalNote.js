@@ -33,6 +33,13 @@ export default function JournalNote({ route, navigation }) {
         fetchNotes();
     }, []);
 
+    useEffect(() => {
+        if (!loading && inputRef.current) {
+            const timer = setTimeout(() => inputRef.current?.focus(), 100);
+            return () => clearTimeout(timer);
+        }
+    }, [loading]);
+
     const fetchNotes = async () => {
         setLoading(true);
         try {

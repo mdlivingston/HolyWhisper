@@ -14,7 +14,7 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faShareSquare, faHeart, faBook } from '@fortawesome/free-solid-svg-icons'
+import { faShareSquare, faHeart, faFeather } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as outlinedHeart } from '@fortawesome/free-regular-svg-icons'
 import { getRandomWhisper } from '../helpers/Randomizer';
 import { ShareWhisper } from '../helpers/Share';
@@ -74,7 +74,7 @@ export default function ShowWhisper({ route, navigation }) {
                     <TouchableOpacity
                         onPress={() => randomWhisper && navigation.navigate('JournalNote', { whisper: randomWhisper })}
                         style={styles.journalButton}>
-                        <FontAwesomeIcon size={19} icon={faBook} color="#555" />
+                        <FontAwesomeIcon size={19} icon={faFeather} color="#555" />
                     </TouchableOpacity>
                     <TouchableOpacity disabled={disabled} onPress={favoriteWhisper ? onUnFavorite : onFavorite}
                         style={styles.heartButton} >
