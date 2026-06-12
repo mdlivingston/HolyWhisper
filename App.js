@@ -38,6 +38,7 @@ import Revelation from './pages/Revelations/Revelation';
 import BibleWebView from './pages/BibleWebView';
 import JournalNote from './pages/JournalNote';
 import JournalList from './pages/JournalList';
+import Account from './pages/Account';
 
 const Stack = createStackNavigator();
 
@@ -154,6 +155,13 @@ export default function App()
                         headerBackTitleVisible: false,
                         headerTintColor: 'black',
                     }} component={JournalList} />
+
+                    <Stack.Screen name="Account" options={{
+                        title: 'Account',
+                        headerTransparent: false,
+                        headerBackTitleVisible: false,
+                        headerTintColor: 'black',
+                    }} component={Account} />
 
                     <Stack.Screen name="Revelation" options={{
                         title: "Revelation",
