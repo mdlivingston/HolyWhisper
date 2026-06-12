@@ -18,6 +18,28 @@ export function AuthProvider({ children })
         return auth().signInAnonymously()
     }
 
+    // Upgrades the current anonymous user to a permanent email/password
+    // account. The UID stays the same, so all Firestore data is preserved.
+    async function createAccount(email, password)
+    {
+        const credential = auth.EmailAuthProvider.credential(email, password)
+        const result = await auth().currentUser.linkWithCredential(credential)
+        setCurrentUser(auth().currentUser)
+        return result
+    }
+
+    // Signs into an existing account (e.g. on a new device). The anonymous
+    // session on this device is replaced by the existing account's UID.
+    function signIn(email, password)
+    {
+        return auth().signInWithEmailAndPassword(email, password)
+    }
+
+    function resetPassword(email)
+    {
+        return auth().sendPasswordResetEmail(email)
+    }
+
     function logout()
     {
         return auth().signOut()
@@ -38,6 +60,9 @@ export function AuthProvider({ children })
         currentUser,
         login,
         logout,
+        createAccount,
+        signIn,
+        resetPassword,
     }
     return (
         <AuthContext.Provider value={value}>
