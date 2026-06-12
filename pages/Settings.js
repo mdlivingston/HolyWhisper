@@ -22,13 +22,16 @@ import {
     faGift,
     faBell,
     faClock,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons'
+import { useAuth } from '../context/AuthContext';
 import { requestUserPermission } from '../helpers/Firebase';
 import { allowNotificationKey, getString, reminderTime, storeString } from '../helpers/LocalStorage';
 import NotificationService from '../notifications/NotificationService';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function Settings({ navigation }) {
+    const { currentUser } = useAuth()
     const notifService = new NotificationService(null, null, navigation)
     const [isEnabled, setIsEnabled] = useState(false);
     const [date, setDate] = useState(new Date(1598051730000));
@@ -106,6 +109,25 @@ export default function Settings({ navigation }) {
 
     return (
         <ScrollView style={styles.scroll} contentContainerStyle={styles.content}>
+
+            {/* Account */}
+            <Text style={styles.sectionHeader}>ACCOUNT</Text>
+            <View style={styles.card}>
+                <SettingRow
+                    icon={faUser} iconBg="#38b6c9"
+                    label={currentUser && !currentUser.isAnonymous ? currentUser.email : 'Create Account / Sign In'}
+                    onPress={() => navigation.navigate('Account')}
+                    right={
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                            <Text style={styles.accountStatus}>
+                                {currentUser && !currentUser.isAnonymous ? 'Synced ✓' : 'Guest'}
+                            </Text>
+                            <FontAwesomeIcon icon={faChevronRight} size={13} color="#c7c7cc" />
+                        </View>
+                    }
+                    isLast
+                />
+            </View>
 
             {/* My Whispers */}
             <Text style={styles.sectionHeader}>MY WHISPERS</Text>
@@ -277,6 +299,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#8e8e93',
         marginRight: 4,
+    },
+    accountStatus: {
+        fontSize: 13,
+        color: '#8e8e93',
     },
     pickerWrap: {
         backgroundColor: '#fff',
