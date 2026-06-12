@@ -228,8 +228,9 @@ export default function App() {
                   <span className="badge">{notes.length}</span>
                 </div>
                 <DataTable
-                  columns={['Verse', 'Note', 'Date']}
+                  columns={['User ID', 'Verse', 'Note', 'Date']}
                   rows={notes.slice(0, 25).map(n => [
+                    <span className="uid" title={n.uid}>{n.uid?.slice(0, 14)}…</span>,
                     <div>
                       <div className="verse-label">{n.verse}</div>
                       <span className="cat-pill" style={{ background: (CATEGORY_COLORS[n.category] || '#aaa') + '25', color: CATEGORY_COLORS[n.category] || '#aaa' }}>{n.category}</span>
