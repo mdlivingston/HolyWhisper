@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import { db, authReady } from './firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { db, auth, ADMIN_EMAIL, adminSignOut } from './firebase';
+import Login from './components/Login';
 import StatCard from './components/StatCard';
 import DataTable from './components/DataTable';
 import TopList from './components/TopList';
@@ -32,6 +34,9 @@ function formatDateShort(ts) {
 }
 
 export default function App() {
+  const [authChecked, setAuthChecked] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [prayers, setPrayers] = useState([]);
@@ -41,11 +46,26 @@ export default function App() {
   const [users, setUsers] = useState([]);
   const [refreshed, setRefreshed] = useState(new Date());
 
+  // Only the designated admin email may use this dashboard — the
+  // Email/Password provider is shared with the mobile app, so any user
+  // could otherwise sign in here with their own app account.
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user && user.email !== ADMIN_EMAIL) {
+        adminSignOut();
+        setAuthUser(null);
+      } else {
+        setAuthUser(user);
+      }
+      setAuthChecked(true);
+    });
+    return unsubscribe;
+  }, []);
+
   const fetchAll = async () => {
     setLoading(true);
     setError(null);
     try {
-      await authReady;
       const [pSnap, fSnap, favSnap, nSnap, uSnap] = await Promise.all([
         getDocs(query(collection(db, 'Prayers'), orderBy('createdAt', 'desc'))),
         getDocs(query(collection(db, 'Feedback'), orderBy('createdAt', 'desc'))),
@@ -67,7 +87,7 @@ export default function App() {
     setLoading(false);
   };
 
-  useEffect(() => { fetchAll(); }, []);
+  useEffect(() => { if (authUser) fetchAll(); }, [authUser]);
 
   // Top favorited verses
   const verseCount = favorites.reduce((acc, f) => {
@@ -101,6 +121,20 @@ export default function App() {
   const favsByUid  = favorites.reduce((acc, f) => { acc[f.uid] = (acc[f.uid] || 0) + 1; return acc; }, {});
   const notesByUid = notes.reduce((acc, n)     => { acc[n.uid] = (acc[n.uid] || 0) + 1; return acc; }, {});
 
+  // Wait for the initial auth check before deciding what to render, so we
+  // don't flash the login screen while Firebase restores a saved session.
+  if (!authChecked) {
+    return (
+      <div className="loader" style={{ height: '100vh' }}>
+        <div className="spinner" />
+      </div>
+    );
+  }
+
+  if (!authUser) {
+    return <Login />;
+  }
+
   return (
     <div className="app">
       <header className="header">
@@ -116,6 +150,7 @@ export default function App() {
           <button className="refresh-btn" onClick={fetchAll} disabled={loading}>
             {loading ? '⏳ Loading…' : '↻ Refresh'}
           </button>
+          <button className="logout-btn" onClick={adminSignOut}>Sign Out</button>
         </div>
       </header>
 
